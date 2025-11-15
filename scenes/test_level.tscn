@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://blon6ybav7bvo"]
+
+[ext_resource type="Script" uid="uid://qbgbdb86we82" path="res://scripts/nodes/Path.gd" id="1_2venv"]
+[ext_resource type="Script" uid="uid://bqe3f7xby7quk" path="res://scripts/nodes/PathElement.gd" id="2_paw1w"]
+[ext_resource type="PackedScene" uid="uid://cpuyjp2yjytmk" path="res://scenes/enemy.tscn" id="3_x4b8f"]
+[ext_resource type="Script" uid="uid://bamp2ngseei1s" path="res://scripts/components/PathFollower.gd" id="4_tmr53"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3p835"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3p835"]
+albedo_color = Color(0.11, 0.0638, 0.07689, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2venv"]
+material = SubResource("StandardMaterial3D_3p835")
+size = Vector3(20, 1, 20)
+
+[node name="TestLevel" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.650608, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_3p835")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_2venv")
+skeleton = NodePath("../..")
+
+[node name="Path" type="Node3D" parent="."]
+script = ExtResource("1_2venv")
+metadata/_custom_type_script = "uid://qbgbdb86we82"
+
+[node name="PathElement" type="Marker3D" parent="Path"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
+script = ExtResource("2_paw1w")
+metadata/_custom_type_script = "uid://bqe3f7xby7quk"
+
+[node name="PathElement2" type="Marker3D" parent="Path"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
+script = ExtResource("2_paw1w")
+metadata/_custom_type_script = "uid://bqe3f7xby7quk"
+
+[node name="PathElement3" type="Marker3D" parent="Path"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+script = ExtResource("2_paw1w")
+metadata/_custom_type_script = "uid://bqe3f7xby7quk"
+
+[node name="PathElement4" type="Marker3D" parent="Path"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 4)
+script = ExtResource("2_paw1w")
+metadata/_custom_type_script = "uid://bqe3f7xby7quk"
+
+[node name="Enemy" parent="." instance=ExtResource("3_x4b8f")]
+
+[node name="PathFollowerComponent" type="Node" parent="Enemy" node_paths=PackedStringArray("path")]
+script = ExtResource("4_tmr53")
+path = NodePath("../../Path")
+path_element_tolerance = 0.1
+speed = 5.0
+metadata/_custom_type_script = "uid://bamp2ngseei1s"

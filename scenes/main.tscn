@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfcnparuh0ldj"]
+
+[ext_resource type="PackedScene" uid="uid://dx7y8q5bq4xo2" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://blon6ybav7bvo" path="res://scenes/test_level.tscn" id="3_sugp2"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_o5qli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.678418, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.683732, 0.729733, 0, -0.729733, 0.683732, 0, 2.9189, 2.82582)
+
+[node name="Level" parent="." instance=ExtResource("3_sugp2")]
