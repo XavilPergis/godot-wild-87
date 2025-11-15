@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://cb8cutbn1w2c5"]
+
+[ext_resource type="PackedScene" uid="uid://dwtgp4mocunn8" path="res://scenes/test_patrol_point.tscn" id="1_sgtfp"]
+[ext_resource type="Script" uid="uid://ocdg2gody3yt" path="res://scripts/silly_lil_guy.gd" id="2_4oiko"]
+[ext_resource type="Script" uid="uid://dyjtvgodvnfei" path="res://scripts/patrol_route.gd" id="3_ocadd"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_0o8vf"]
+vertices = PackedVector3Array(-6.6989536, 0.42613983, -0.12976265, -2.9489536, 0.42613983, -0.12976265, -2.4489536, 0.42613983, -2.1297626, 0.05104637, 0.42613983, -3.1297626, 0.05104637, 0.42613983, -8.379763, -6.6989536, 0.42613983, -8.379763, 2.0510464, 0.42613983, -2.3797626, 3.0510464, 0.42613983, -0.12976265, 6.8010464, 0.42613983, -0.12976265, 6.8010464, 0.42613983, -8.379763, 0.8010464, 3.4261398, 0.87023735, 1.3010464, 3.4261398, 1.6202374, 2.0510464, 3.4261398, 0.12023735, 1.5510464, 3.4261398, -1.3797626, -1.9489536, 3.4261398, -0.37976265, -1.4489536, 3.4261398, 1.3702374, -0.6989536, 3.4261398, 0.87023735, -1.1989536, 3.4261398, -1.6297626, 0.5510464, 3.4261398, -1.8797626, -1.6989536, 0.42613983, -0.12976265, -1.4489536, 0.42613983, 0.37023735, -0.6989536, 0.42613983, -0.12976265, -0.9489536, 0.42613983, -1.3797626, 0.8010464, 0.42613983, -0.12976265, 1.5510464, 0.42613983, 0.62023735, 1.3010464, 0.42613983, -1.1297626, 0.30104637, 0.42613983, -1.6297626, 0.05104637, 0.42613983, 5.3702374, 0.05104637, 0.42613983, 3.3702374, -1.1989536, 0.42613983, 3.1202374, -1.4489536, 0.42613983, 6.1202374, -2.4489536, 0.42613983, 2.1202374, -6.6989536, 0.42613983, 8.370237, -1.4489536, 0.42613983, 8.370237, 1.3010464, 0.42613983, 3.1202374, 1.5510464, 0.42613983, 6.1202374, 2.5510464, 0.42613983, 1.8702374, 1.5510464, 0.42613983, 8.370237, 6.8010464, 0.42613983, 8.370237, -0.44895363, 4.42614, 2.1202374, -0.44895363, 4.42614, 6.8702374, 0.5510464, 4.67614, 6.6202374, 0.5510464, 4.42614, 2.1202374, -0.44895363, 5.42614, 4.4952374, 0.5510464, 5.42614, 4.3702374)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 2), PackedInt32Array(0, 5, 2), PackedInt32Array(2, 5, 4), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(9, 6, 4), PackedInt32Array(6, 3, 4), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(16, 15, 14), PackedInt32Array(18, 13, 17), PackedInt32Array(17, 13, 14), PackedInt32Array(14, 13, 16), PackedInt32Array(16, 13, 10), PackedInt32Array(20, 19, 21), PackedInt32Array(21, 19, 22), PackedInt32Array(25, 24, 23), PackedInt32Array(25, 23, 26), PackedInt32Array(26, 23, 21), PackedInt32Array(26, 21, 22), PackedInt32Array(29, 28, 27), PackedInt32Array(27, 30, 29), PackedInt32Array(29, 30, 31), PackedInt32Array(30, 33, 31), PackedInt32Array(31, 33, 32), PackedInt32Array(31, 32, 0), PackedInt32Array(0, 1, 31), PackedInt32Array(34, 27, 28), PackedInt32Array(27, 34, 35), PackedInt32Array(35, 34, 36), PackedInt32Array(7, 8, 36), PackedInt32Array(36, 8, 35), PackedInt32Array(35, 8, 37), PackedInt32Array(37, 8, 38), PackedInt32Array(42, 44, 39), PackedInt32Array(39, 44, 43), PackedInt32Array(43, 44, 41), PackedInt32Array(43, 41, 40)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ocadd"]
+albedo_color = Color(0.7546172, 0.52975273, 1.92523e-07, 1)
+metallic = 0.5
+metallic_specular = 0.59
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sgtfp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4oiko"]
+albedo_color = Color(0, 0.7157746, 0.35840228, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ocadd"]
+material = SubResource("StandardMaterial3D_4oiko")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_0o8vf")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(14.397907, 0, 0, 0, 1, 0, 0, 0, 17.759525, 0, -0.4565792, 0)
+use_collision = true
+material = SubResource("StandardMaterial3D_ocadd")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="NavigationRegion3D"]
+transform = Transform3D(4.824468, 0, 0, 0, 1.9273834, 0, 0, 0, 4.824468, 0, 1.08202, 0)
+use_collision = true
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="NavigationRegion3D"]
+transform = Transform3D(-2.0486218e-07, -4.032831, 0, 4.6867, -1.7628065e-07, 0, 0, 0, 4.027721, 0, 0.6128397, 4.4728827)
+use_collision = true
+
+[node name="Patrol Points" type="Node3D" parent="."]
+
+[node name="PatrolPoint" parent="Patrol Points" instance=ExtResource("1_sgtfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5434208, -6.1421294)
+
+[node name="PatrolPoint2" parent="Patrol Points" instance=ExtResource("1_sgtfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1852727, 0.5434208, -4.342904)
+
+[node name="PatrolPoint3" parent="Patrol Points" instance=ExtResource("1_sgtfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7980793, 0.54342175, 4.656837)
+
+[node name="SillyLilGuy" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6788354, 1.0434206, 4.932881)
+script = ExtResource("2_4oiko")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SillyLilGuy"]
+shape = SubResource("CapsuleShape3D_sgtfp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SillyLilGuy"]
+mesh = SubResource("CapsuleMesh_ocadd")
+
+[node name="PatrolRoute" type="Node3D" parent="SillyLilGuy" node_paths=PackedStringArray("points", "navigation_agent")]
+script = ExtResource("3_ocadd")
+points = [NodePath("../../Patrol Points/PatrolPoint"), NodePath("../../Patrol Points/PatrolPoint2"), NodePath("../../Patrol Points/PatrolPoint3")]
+navigation_agent = NodePath("../NavigationAgent3D")
+metadata/_custom_type_script = "uid://dyjtvgodvnfei"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="SillyLilGuy"]
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0.15093601, 0.5433688, 0.8165232, 1)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.9555309, 0.22837768, -0.18655916, 0, 0.63263774, 0.77444786, 0.29489097, -0.74000883, 0.6045049, -4.842146, 9.892855, 10.389012)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.9659258, 0, 0.25881913, 0.12940957, 0.8660254, 0.4829629, -0.22414394, 0.5, -0.83651626, 0, 8, 0)
+light_energy = 1.232
+shadow_enabled = true
