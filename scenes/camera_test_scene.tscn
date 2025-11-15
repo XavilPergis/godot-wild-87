@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfc7t7a2tjgfc"]
+[gd_scene load_steps=17 format=3 uid="uid://bfc7t7a2tjgfc"]
 
 [ext_resource type="Script" uid="uid://hsuw4phgcjns" path="res://scripts/movable_camera.gd" id="1_2n00v"]
 [ext_resource type="Script" uid="uid://de0qilu0eotis" path="res://scripts/camera_test_scene.gd" id="1_088pw"]
@@ -10,6 +10,80 @@ albedo_color = Color(0.14408621, 0.7213248, 0.5396855, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2n00v"]
 albedo_color = Color(0.17571235, 0.55539, 0.4040607, 1)
+
+[sub_resource type="Curve" id="Curve_088pw"]
+_data = [Vector2(0, 0), 0.0, 2.4808993, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="Animation" id="Animation_088pw"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.4746728, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-3.4681153, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-4.939824, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_4ivet"]
 resource_name = "bunny_move_around"
@@ -82,79 +156,46 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 1.95, 3.46, 4.53, 6.02, 7.23, 8.56)
 }
 
-[sub_resource type="Animation" id="Animation_088pw"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tl1sx"]
+_data = {
+&"RESET": SubResource("Animation_088pw"),
+&"bunny_move_around": SubResource("Animation_4ivet")
+}
+
+[sub_resource type="Animation" id="Animation_6fx86"]
 length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:x")
+tracks/0/path = NodePath("MonkeyAnimator/Suzanne:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.4746728, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(16.09488, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:y")
+tracks/1/path = NodePath("MonkeyAnimator/Suzanne:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-3.4681153, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(8.597274, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:position:z")
+tracks/2/path = NodePath("MonkeyAnimator/Suzanne:position:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-4.939824, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-3.4301085, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:rotation:x")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:rotation:y")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".:rotation:z")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_tl1sx"]
-_data = {
-&"RESET": SubResource("Animation_088pw"),
-&"bunny_move_around": SubResource("Animation_4ivet")
 }
 
 [sub_resource type="Animation" id="Animation_tl1sx"]
@@ -195,46 +236,46 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 1)
 }
 
-[sub_resource type="Animation" id="Animation_6fx86"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sc48x"]
+_data = {
+&"RESET": SubResource("Animation_6fx86"),
+&"monkey_bob": SubResource("Animation_tl1sx")
+}
+
+[sub_resource type="Animation" id="Animation_25acd"]
 length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MonkeyAnimator/Suzanne:position:x")
+tracks/0/path = NodePath("CornerCamAnimator/CornerCamMarker:rotation:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(16.09488, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0.46266934, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MonkeyAnimator/Suzanne:position:y")
+tracks/1/path = NodePath("CornerCamAnimator/CornerCamMarker:rotation:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(8.597274, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MonkeyAnimator/Suzanne:position:z")
+tracks/2/path = NodePath("CornerCamAnimator/CornerCamMarker:rotation:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-3.4301085, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_sc48x"]
-_data = {
-&"RESET": SubResource("Animation_6fx86"),
-&"monkey_bob": SubResource("Animation_tl1sx")
 }
 
 [sub_resource type="Animation" id="Animation_sc48x"]
@@ -275,42 +316,6 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 1, 2)
 }
 
-[sub_resource type="Animation" id="Animation_25acd"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CornerCamAnimator/CornerCamMarker:rotation:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.46266934, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CornerCamAnimator/CornerCamMarker:rotation:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CornerCamAnimator/CornerCamMarker:rotation:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_umy17"]
 _data = {
 &"RESET": SubResource("Animation_25acd"),
@@ -342,6 +347,7 @@ spot_range = 31.0
 [node name="MovableCamera" type="Camera3D" parent="."]
 transform = Transform3D(0.7071068, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, 0.7071068, -6, 0, 3)
 script = ExtResource("1_2n00v")
+smoothing_curve = SubResource("Curve_088pw")
 metadata/_custom_type_script = "uid://hsuw4phgcjns"
 
 [node name="BunnyAnimator" type="AnimationPlayer" parent="."]
