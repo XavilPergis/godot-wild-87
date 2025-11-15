@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpuyjp2yjytmk"]
+[gd_scene load_steps=5 format=3 uid="uid://cpuyjp2yjytmk"]
+
+[ext_resource type="Script" uid="uid://jhd1jv6ew0tj" path="res://scripts/enemy.gd" id="1_7p1mj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8tegq"]
 albedo_color = Color(1, 0.11, 0.11, 1)
@@ -10,9 +12,10 @@ material = SubResource("StandardMaterial3D_8tegq")
 
 [node name="Enemy" type="Node3D"]
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 5
+script = ExtResource("1_7p1mj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
 mesh = SubResource("BoxMesh_7p1mj")
@@ -20,3 +23,5 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_md0e3")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Area3D"]

@@ -12,3 +12,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.678418, 0)
 transform = Transform3D(1, 0, 0, 0, 0.683732, 0.729733, 0, -0.729733, 0.683732, 0, 2.9189, 2.82582)
 
 [node name="Level" parent="." instance=ExtResource("3_sugp2")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.577035, 0.561889, -0.592714, -0.0291711, 0.739443, 0.672587, 0.816198, -0.370817, 0.443076, -7.32241, 5.09912, 10.618)
