@@ -1,9 +1,9 @@
 [gd_scene load_steps=17 format=3 uid="uid://bfc7t7a2tjgfc"]
 
-[ext_resource type="Script" uid="uid://hsuw4phgcjns" path="res://scripts/movable_camera.gd" id="1_2n00v"]
-[ext_resource type="Script" uid="uid://de0qilu0eotis" path="res://scripts/camera_test_scene.gd" id="1_088pw"]
-[ext_resource type="ArrayMesh" uid="uid://cxomhsjk4yp5n" path="res://models/stanford-bunny.obj" id="2_aa6s6"]
-[ext_resource type="ArrayMesh" uid="uid://cgaxlunvnfvy7" path="res://models/suzanne.obj" id="3_4ivet"]
+[ext_resource type="Script" uid="uid://hsuw4phgcjns" path="res://assets/scripts/movable_camera.gd" id="1_2n00v"]
+[ext_resource type="Script" uid="uid://de0qilu0eotis" path="res://assets/scripts/camera_test_scene.gd" id="1_088pw"]
+[ext_resource type="ArrayMesh" uid="uid://cxomhsjk4yp5n" path="res://assets/models/stanford-bunny.obj" id="2_aa6s6"]
+[ext_resource type="ArrayMesh" uid="uid://cgaxlunvnfvy7" path="res://assets/models/suzanne.obj" id="3_4ivet"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_csaw4"]
 albedo_color = Color(0.14408621, 0.7213248, 0.5396855, 1)

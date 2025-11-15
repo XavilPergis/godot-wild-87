@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dwtgp4mocunn8"]
 
-[ext_resource type="Script" uid="uid://d3wr3c5sj2lfr" path="res://scripts/patrol_point.gd" id="1_upu4q"]
+[ext_resource type="Script" uid="uid://d3wr3c5sj2lfr" path="res://assets/scripts/patrol_point.gd" id="1_upu4q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4oiko"]
 albedo_color = Color(0.87, 0.25230002, 0.56115, 1)
