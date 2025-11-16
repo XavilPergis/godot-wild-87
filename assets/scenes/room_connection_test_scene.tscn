@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bm3jbutb85cvt"]
 
-[ext_resource type="Script" uid="uid://bw8wsyum6rd24" path="res://assets/scripts/room_connection_test_scene.gd" id="1_s8wub"]
+[ext_resource type="Script" uid="uid://bw8wsyum6rd24" path="res://assets/scripts/dungeon_builder.gd" id="1_s8wub"]
 [ext_resource type="PackedScene" uid="uid://chsodh85xc6ms" path="res://assets/scenes/rooms/test_room_1.tscn" id="2_syixe"]
 [ext_resource type="PackedScene" uid="uid://ckp1tdoaxmx8q" path="res://assets/scenes/rooms/test_room_2.tscn" id="3_qaybn"]
 
