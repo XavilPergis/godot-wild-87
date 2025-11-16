@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckp1tdoaxmx8q"]
+[gd_scene load_steps=5 format=3 uid="uid://ckp1tdoaxmx8q"]
 
+[ext_resource type="Script" uid="uid://c55cex4bgksae" path="res://assets/scripts/dungeon_room.gd" id="1_8fqd4"]
 [ext_resource type="Script" uid="uid://b35c4eachg476" path="res://assets/scripts/room_connection_point.gd" id="1_ikfdr"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_8fqd4"]
@@ -8,7 +9,9 @@ size = Vector2(8, 1.5)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3rlne"]
 albedo_color = Color(0.26077175, 0.50528675, 0.8390713, 1)
 
-[node name="Node3D" type="Node3D"]
+[node name="DungeonRoom" type="Node3D"]
+script = ExtResource("1_8fqd4")
+metadata/_custom_type_script = "uid://c55cex4bgksae"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_8fqd4")
