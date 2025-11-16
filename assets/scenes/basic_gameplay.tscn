@@ -1,0 +1,177 @@
+[gd_scene load_steps=19 format=3 uid="uid://oas4ikx153f1"]
+
+[ext_resource type="Texture2D" uid="uid://du1ksart2vj2l" path="res://assets/textures/prototype_grid.png" id="1_be268"]
+[ext_resource type="Script" uid="uid://dyjtvgodvnfei" path="res://assets/scripts/patrol_route.gd" id="2_tbqko"]
+[ext_resource type="Script" uid="uid://d3wr3c5sj2lfr" path="res://assets/scripts/patrol_point.gd" id="3_fj761"]
+[ext_resource type="Script" uid="uid://j7ivnt71yxbe" path="res://assets/scripts/basic_gameplay/basic_player.gd" id="4_d428f"]
+[ext_resource type="Script" uid="uid://da0ks6d670vv" path="res://assets/scripts/basic_gameplay/basic_camera.gd" id="5_4b6o8"]
+[ext_resource type="Script" uid="uid://dkejpngnf7dq1" path="res://assets/scripts/basic_gameplay/patrol_agent.gd" id="6_lirhm"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_qtayb"]
+vertices = PackedVector3Array(-1.25, 0.5, -5, 0.25, 0.5, -5, 0, 0.5, -7.75, -2, 0.5, -4.25, -7.25, 0.5, -7.75, -7.25, 0.5, 8, -2, 0.5, 8, 3.25, 0.5, -4.25, 3.25, 0.5, -2.5, 5.5, 0.5, -2.5, 5.5, 0.5, -4.25, 2.5, 0.5, -5, 6.25, 0.5, -5, 8.5, 0.5, -7.75, 8.5, 0.5, -5, 0, 2.5, -3, 0, 2.5, 8, 1, 2.5, 8, 1, 2.5, -3, 7.5, 2.5, -3, 7.5, 2.5, 3, 8.5, 2.5, 3, 8.5, 2.5, -3, 6.5, 0.5, 8, 6.5, 0.5, 5.25, 5.5, 0.5, 4.5, 3.25, 0.5, 8, 8.5, 5.5, 6, 8.5, 5.5, 7, 9.5, 5.5, 7, 9.5, 5.5, 6)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 4), PackedInt32Array(6, 5, 3), PackedInt32Array(3, 5, 4), PackedInt32Array(10, 9, 7), PackedInt32Array(7, 9, 8), PackedInt32Array(11, 1, 2), PackedInt32Array(7, 11, 10), PackedInt32Array(10, 11, 12), PackedInt32Array(12, 11, 13), PackedInt32Array(13, 11, 2), PackedInt32Array(13, 14, 12), PackedInt32Array(18, 17, 15), PackedInt32Array(15, 17, 16), PackedInt32Array(22, 21, 19), PackedInt32Array(19, 21, 20), PackedInt32Array(24, 23, 25), PackedInt32Array(25, 23, 26), PackedInt32Array(9, 25, 8), PackedInt32Array(8, 25, 26), PackedInt32Array(30, 29, 27), PackedInt32Array(27, 29, 28)]
+agent_radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oj3l8"]
+albedo_texture = ExtResource("1_be268")
+uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cmmd3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cmmd3"]
+albedo_color = Color(0.110505916, 0.5802333, 0.99999994, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xgrb6"]
+material = SubResource("StandardMaterial3D_cmmd3")
+
+[sub_resource type="Curve" id="Curve_xgrb6"]
+_data = [Vector2(0, 0), 0.0, 2.7499995, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c3tg1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6lyu1"]
+albedo_color = Color(1, 0.26000598, 0.2008352, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jj7vq"]
+material = SubResource("StandardMaterial3D_6lyu1")
+
+[sub_resource type="BoxMesh" id="BoxMesh_oj3l8"]
+size = Vector3(0.25, 0.25, 1)
+
+[sub_resource type="Animation" id="Animation_oj3l8"]
+resource_name = "test"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cmmd3"]
+_data = {
+&"test": SubResource("Animation_oj3l8")
+}
+
+[node name="Node3D" type="Node3D"]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_qtayb")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D"]
+material_override = SubResource("StandardMaterial3D_oj3l8")
+use_collision = true
+collision_layer = 3
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, 0)
+size = Vector3(20, 1, 20)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2, -9.5)
+size = Vector3(20, 4, 1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, 0)
+size = Vector3(4, 2, 8)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2, 2.5)
+size = Vector3(3, 4, 13)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.5, 6.5)
+size = Vector3(3, 5, 3)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2, 9.5)
+size = Vector3(20, 4, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, 0)
+size = Vector3(1, 4, 18)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2, 0)
+size = Vector3(1, 4, 18)
+
+[node name="PatrolRoute" type="Node3D" parent="." node_paths=PackedStringArray("points", "navigation_agent")]
+script = ExtResource("2_tbqko")
+points = [NodePath("PatrolPoint"), NodePath("PatrolPoint2"), NodePath("PatrolPoint3")]
+navigation_agent = NodePath("../PatrolAgent/RouteAgent")
+metadata/_custom_type_script = "uid://dyjtvgodvnfei"
+
+[node name="PatrolPoint" type="Marker3D" parent="PatrolRoute"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -7)
+script = ExtResource("3_fj761")
+metadata/_custom_type_script = "uid://d3wr3c5sj2lfr"
+
+[node name="PatrolPoint2" type="Marker3D" parent="PatrolRoute"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 6)
+script = ExtResource("3_fj761")
+metadata/_custom_type_script = "uid://d3wr3c5sj2lfr"
+
+[node name="PatrolPoint3" type="Marker3D" parent="PatrolRoute"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -7)
+script = ExtResource("3_fj761")
+metadata/_custom_type_script = "uid://d3wr3c5sj2lfr"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.8167624, 0.4436727, -0.3688546, 0, 0.6392914, 0.7689646, 0.57697415, -0.62806135, 0.52214915, 0, 13, 0)
+shadow_enabled = true
+
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+script = ExtResource("4_d428f")
+camera = NodePath("../MovableCamera")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_cmmd3")
+
+[node name="CameraAnchor" type="Marker3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_xgrb6")
+
+[node name="MovableCamera" type="Camera3D" parent="." node_paths=PackedStringArray("anchor", "look_target")]
+script = ExtResource("5_4b6o8")
+anchor = NodePath("../Player/CameraAnchor")
+look_target = NodePath("../Player")
+smoothing_curve = SubResource("Curve_xgrb6")
+metadata/_custom_type_script = "uid://hsuw4phgcjns"
+
+[node name="PatrolAgent" type="CharacterBody3D" parent="." node_paths=PackedStringArray("patrol_route", "player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.459119, 0, -7)
+script = ExtResource("6_lirhm")
+patrol_route = NodePath("../PatrolRoute")
+player = NodePath("../Player")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PatrolAgent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_c3tg1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PatrolAgent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_jj7vq")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="PatrolAgent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4602675, -0.48264647)
+mesh = SubResource("BoxMesh_oj3l8")
+
+[node name="RouteAgent" type="NavigationAgent3D" parent="PatrolAgent"]
+debug_enabled = true
+
+[node name="RayCast" type="RayCast3D" parent="PatrolAgent"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PatrolAgent"]
+libraries = {
+&"": SubResource("AnimationLibrary_cmmd3")
+}

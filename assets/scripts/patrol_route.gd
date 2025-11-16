@@ -6,8 +6,15 @@ class_name PatrolRoute
 
 var patrol_index = -1
 
+signal set_target(target: PatrolPoint)
+signal reached_target(target: PatrolPoint)
+
 func _ready() -> void:
+	navigation_agent.target_reached.connect(_on_target_reached)
 	pass
+
+func _on_target_reached() -> void:
+	reached_target.emit(points[patrol_index])
 
 # Returns the currently targeted patrol point
 func current_point() -> PatrolPoint:
@@ -29,6 +36,7 @@ func target_nearest_point():
 	
 	patrol_index = nearest_point_index
 	navigation_agent.set_target_position(points[patrol_index].global_position)
+	set_target.emit(points[patrol_index])
 	pass
 
 # Move onto the next point in the list
@@ -40,12 +48,16 @@ func target_next_point():
 		if patrol_index >= points.size():
 			patrol_index = 0
 		navigation_agent.set_target_position(points[patrol_index].global_position)
+		set_target.emit(points[patrol_index])
 	pass
 	
 # Suspends the patrol route
 func suspend():
 	patrol_index = -1
 	pass
+
+func next_point_position() -> Vector3:
+	return navigation_agent.get_next_path_position()
 
 # Returns the direction to the next point
 func direction_to_next_point() -> Vector3:
