@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckp1tdoaxmx8q"]
+
+[ext_resource type="Script" uid="uid://b35c4eachg476" path="res://assets/scripts/room_connection_point.gd" id="1_ikfdr"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8fqd4"]
+size = Vector2(8, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3rlne"]
+albedo_color = Color(0.26077175, 0.50528675, 0.8390713, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_8fqd4")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+material_override = SubResource("StandardMaterial3D_3rlne")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(7.3846684, 0, 0, 0, 1.6188707, 0, 0, 0, 0.13637008, 0, 0.78269625, 0.61940044)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1.4567199, 0, 0, 0, -4.371139e-08, 2.529455, 0, -1, -1.10565985e-07, -1.5772362, 4.361797e-08, 0.9978628)
+operation = 2
+sides = 13
+
+[node name="RoomConnectionPoint" type="Node3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.5, 0, 0.736)
+script = ExtResource("1_ikfdr")
+metadata/_custom_type_script = "uid://b35c4eachg476"
+
+[node name="RoomConnectionPoint2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+script = ExtResource("1_ikfdr")
+metadata/_custom_type_script = "uid://b35c4eachg476"
+
+[node name="RoomConnectionPoint3" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 0, 0)
+script = ExtResource("1_ikfdr")
+metadata/_custom_type_script = "uid://b35c4eachg476"

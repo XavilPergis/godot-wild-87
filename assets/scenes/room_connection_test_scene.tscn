@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm3jbutb85cvt"]
+
+[ext_resource type="Script" uid="uid://bw8wsyum6rd24" path="res://assets/scripts/room_connection_test_scene.gd" id="1_s8wub"]
+[ext_resource type="PackedScene" uid="uid://chsodh85xc6ms" path="res://assets/scenes/rooms/test_room_1.tscn" id="2_syixe"]
+[ext_resource type="PackedScene" uid="uid://ckp1tdoaxmx8q" path="res://assets/scenes/rooms/test_room_2.tscn" id="3_qaybn"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_s8wub")
+_rooms = Array[PackedScene]([ExtResource("2_syixe"), ExtResource("3_qaybn")])
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.7683059, 0.5586661, -0.31240717, 0, 0.48807302, 0.8728028, 0.6400829, -0.67057955, 0.37498936, -4.9250455, 10.221941, 3.4086204)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.5414294, 0.38833052, -0.74569, -1.4901161e-08, 0.8869383, 0.46188793, 0.8407462, -0.2500797, 0.48021442, -6.816397, 6.2601967, 0)
+shadow_enabled = true
