@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dygjaqu61kxlx"]
+
+[ext_resource type="Script" uid="uid://cewusgon2cbek" path="res://assets/scripts/2d_bsp_test_scene.gd" id="1_yi77f"]
+
+[node name="2dBspTestScene" type="Node2D"]
+script = ExtResource("1_yi77f")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(20, 20)
+limit_left = 0
+limit_top = 0
