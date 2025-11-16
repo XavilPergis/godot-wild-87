@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://h5ir5oo75fox"]
 
-[ext_resource type="Script" uid="uid://b6klg5s2mg4pq" path="res://character_body_3d.gd" id="1_trhou"]
+[ext_resource type="Script" uid="uid://b6klg5s2mg4pq" path="res://assets/scripts/player_movement.gd" id="1_trhou"]
 [ext_resource type="Texture2D" uid="uid://ckwan1i26p8wg" path="res://assets/sprites/DoomImp.png" id="2_briuf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y8xb4"]
