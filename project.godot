@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Godot Wild 87"
-run/main_scene="uid://cb8cutbn1w2c5"
+run/main_scene="uid://oas4ikx153f1"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://assets/icon.svg"
 
