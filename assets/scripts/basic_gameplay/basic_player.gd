@@ -2,8 +2,8 @@ extends CharacterBody3D
 
 
 @export var camera: Camera3D
+@export var speed: float = 5.0
 
-const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 
@@ -22,11 +22,11 @@ func _physics_process(delta: float) -> void:
 	var direction := (global_basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	direction = Vector3(direction.x, 0, direction.z).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
 
 	move_and_slide()
 

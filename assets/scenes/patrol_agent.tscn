@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://cohuq3mecb8qx"]
+
+[ext_resource type="Script" uid="uid://dkejpngnf7dq1" path="res://assets/scripts/basic_gameplay/patrol_agent.gd" id="1_84a1w"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4b6o8"]
+radius = 1.5234375
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c3tg1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6lyu1"]
+albedo_color = Color(1, 0.26000598, 0.2008352, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jj7vq"]
+material = SubResource("StandardMaterial3D_6lyu1")
+
+[sub_resource type="BoxMesh" id="BoxMesh_oj3l8"]
+size = Vector3(0.25, 0.25, 1)
+
+[sub_resource type="Animation" id="Animation_oj3l8"]
+resource_name = "test"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cmmd3"]
+_data = {
+&"test": SubResource("Animation_oj3l8")
+}
+
+[node name="PatrolAgent" type="CharacterBody3D"]
+script = ExtResource("1_84a1w")
+movement_speed = 4.0
+
+[node name="PhysicalHurtbox" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PhysicalHurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_4b6o8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_c3tg1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_jj7vq")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4602675, -0.48264647)
+mesh = SubResource("BoxMesh_oj3l8")
+
+[node name="RouteAgent" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="RayCast" type="RayCast3D" parent="."]
+collision_mask = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cmmd3")
+}
+
+[connection signal="body_entered" from="PhysicalHurtbox" to="." method="_on_physical_hurtbox_body_entered"]
+[connection signal="body_exited" from="PhysicalHurtbox" to="." method="_on_physical_hurtbox_body_exited"]

@@ -1,9 +1,15 @@
 extends Node
 class_name PatrolRoute
 
-@export var navigation_agent: NavigationAgent3D
 @export var holder: PatrolPointHolder
 
+var navigation_agent: NavigationAgent3D:
+	get(): return navigation_agent
+	set(value):
+		if navigation_agent:
+			navigation_agent.target_reached.disconnect(_on_target_reached)
+		value.target_reached.connect(_on_target_reached)
+		navigation_agent = value
 var points: Array[PatrolPoint]
 var patrol_index = -1
 
@@ -11,7 +17,6 @@ signal set_target(target: PatrolPoint)
 signal reached_target(target: PatrolPoint)
 
 func _ready() -> void:
-	navigation_agent.target_reached.connect(_on_target_reached)
 	points = Array(holder.points)
 	pass
 

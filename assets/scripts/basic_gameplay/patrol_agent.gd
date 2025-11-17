@@ -11,8 +11,11 @@ extends CharacterBody3D
 @export var fov_over_distance: Curve = preload("res://assets/curves/patrol_agent_detection_angle_curve.tres")
 ## How much the detection angle should be multiplied by while the agent is walking between nodes.
 @export var movement_detection_angle_factor: float = 0.5
+@export var pursuit_timeout: float = 4.0
+@export var attack_strength: int = 1
+@export var attack_timeout: float = 1.5
 
-@onready var patrol_route: PatrolRoute = $PatrolRoute
+var patrol_route: PatrolRoute
 @onready var raycast: RayCast3D = $RayCast
 @onready var route_agent: NavigationAgent3D = $RouteAgent
 
@@ -23,75 +26,106 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var state: State = State.IDLE
 # for `State.SCAN`
 var scan_time_remaining: float
+# for `State.PURSUE`
+var pursuit_timeout_remaining: float
+var attack_timeout_remaining: float
 
 # updated by some signal handlers
 var attack_targets: Array[Node3D] = []
 
 func _ready() -> void:
-	patrol_route.target_nearest_point()
-	patrol_route.reached_target.connect(_on_reached_target)
+	for node in get_children():
+		if node is PatrolRoute:
+			patrol_route = node
+			patrol_route.navigation_agent = route_agent
+	if not patrol_route:
+		push_warning("patrol agent '", name, "' does not have a child PatrolRoute")
 
 func set_state(new_state: State) -> void:
+	print("new state: ", State.keys()[new_state])
 	state = new_state
 	match new_state:
 		State.SCAN:
 			scan_time_remaining = scan_time
-			
+
 func look_at_horiz(target: Vector3) -> void:
 	target = Vector3(target.x, global_position.y, target.z)
 	look_at(target, Vector3.UP)
 
-func tick_pursuit() -> void:
+func tick_pursuit(delta: float) -> void:
+	attack_timeout_remaining = move_toward(attack_timeout_remaining, 0, delta)
 	if len(attack_targets) > 0:
-		var target = attack_targets[rng.randi_range(0, len(attack_targets) - 1)]
-		look_at_horiz(target.global_position)
-		if target.has_meta(Components.HEALTH):
-			var health = target.get_meta(Components.HEALTH) as HealthComponent
-			health.damage(1)
-	else:
-		# TODO: alert animation
-		var target_pos = route_agent.get_next_path_position()
-		velocity = (target_pos - global_position).normalized() * movement_speed
-		look_at_horiz(target_pos)
-		move_and_slide()
-		route_agent.target_position = player.global_position
-
-func _physics_process(delta: float) -> void:
-	var to_player = player.global_position - global_position
-	var facing = global_basis * Vector3.FORWARD
-	var facing_alignment = facing.dot(to_player.normalized()) if not to_player.is_zero_approx() else 1.0
-	var facing_angle = acos(facing_alignment)
-	var player_distance = to_player.length()
-	
-	var detection_angle = 0.5 * deg_to_rad(fov_over_distance.sample_baked(player_distance))
-	if state == State.MOVE_TO_TARGET:
-		detection_angle *= movement_detection_angle_factor
-	if facing_angle <= detection_angle and player_distance < 20.0:
+		if attack_timeout_remaining <= 0:
+			var target = attack_targets[rng.randi_range(0, len(attack_targets) - 1)]
+			look_at_horiz(target.global_position)
+			if target.has_meta(Components.HEALTH):
+				var health = target.get_meta(Components.HEALTH) as HealthComponent
+				health.damage(attack_strength)
+				attack_timeout_remaining = attack_timeout
+	elif attack_timeout_remaining <= 0:
+		# we want the agent to pathfind to the player's last known location.
+		# the known location should be updated constantly when the agent can directly see us.
 		raycast.target_position = raycast.to_local(player.global_position)
 		raycast.collision_mask = (1 << 1)
 		if not raycast.is_colliding():
-			set_state(State.PURSUE)
+			route_agent.target_position = player.global_position
+
+		if not route_agent.is_target_reached():
+			# TODO: alert animation
+			var target_pos = route_agent.get_next_path_position()
+			velocity = (target_pos - global_position).normalized() * movement_speed
+			if raycast.is_colliding():
+				look_at_horiz(target_pos)
+			else:
+				look_at_horiz(player.global_position)
+			move_and_slide()
+		
+		if route_agent.is_target_reached() and raycast.is_colliding():
+			pursuit_timeout_remaining = move_toward(pursuit_timeout_remaining, 0, delta)
+			if pursuit_timeout_remaining <= 0:
+				patrol_route.target_nearest_point()
+				set_state(State.MOVE_TO_TARGET)
+		else:
+			pursuit_timeout_remaining = pursuit_timeout
+
+func _physics_process(delta: float) -> void:
+	if not patrol_route: return
+	if state != State.PURSUE:
+		var to_player = player.global_position - global_position
+		var facing = global_basis * Vector3.FORWARD
+		var facing_alignment = facing.dot(to_player.normalized()) if not to_player.is_zero_approx() else 1.0
+		var facing_angle = acos(facing_alignment)
+		var player_distance = to_player.length()
+		
+		var detection_angle = 0.5 * deg_to_rad(fov_over_distance.sample_baked(player_distance))
+		if state == State.MOVE_TO_TARGET:
+			detection_angle *= movement_detection_angle_factor
+		if facing_angle <= detection_angle and player_distance < fov_over_distance.max_domain:
+			raycast.target_position = raycast.to_local(player.global_position)
+			raycast.collision_mask = (1 << 1)
+			if not raycast.is_colliding():
+				set_state(State.PURSUE)
 	
 	match state:
 		State.IDLE:
+			patrol_route.target_nearest_point()
 			set_state(State.MOVE_TO_TARGET)
 		State.PURSUE:
-			tick_pursuit()
+			tick_pursuit(delta)
 		State.MOVE_TO_TARGET:
 			var target_pos = patrol_route.next_point_position()
 			velocity = (target_pos - global_position).normalized() * movement_speed
 			if not global_position.is_equal_approx(target_pos):
 				look_at_horiz(target_pos)
 			move_and_slide()
+			if route_agent.is_target_reached():
+				set_state(State.SCAN)
 		State.SCAN:
 			# TODO: scan animation
 			scan_time_remaining = move_toward(scan_time_remaining, 0, delta)
 			if scan_time_remaining <= 0:
 				patrol_route.target_next_point()
 				set_state(State.MOVE_TO_TARGET)
-
-func _on_reached_target(_target: PatrolPoint) -> void:
-	set_state(State.SCAN)
 
 func _on_physical_hurtbox_body_entered(body: Node3D) -> void:
 	if body not in attack_targets:
