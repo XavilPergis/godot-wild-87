@@ -14,6 +14,9 @@ extends CharacterBody3D
 @export var pursuit_timeout: float = 4.0
 @export var attack_strength: int = 1
 @export var attack_timeout: float = 1.5
+## The amount of time after losing direct line of sight to the player, after which the agent will
+## stop updating its target position. Higher values make the agents feel smarter.
+@export var player_tracking_cutoff: float = 0.5
 
 var patrol_route: PatrolRoute
 @onready var eyes: Node3D = $Eyes
@@ -29,6 +32,8 @@ var scan_time_remaining: float
 # for `State.CHASE`
 var pursuit_timeout_remaining: float
 var attack_timeout_remaining: float
+## the amount of time that the agent has lost track of the player for
+var cant_see_player_time: float
 
 # updated by some signal handlers
 var attack_targets: Array[Node3D] = []
@@ -94,7 +99,8 @@ func tick_pursuit(delta: float) -> void:
 	elif attack_timeout_remaining <= 0:
 		# we want the agent to pathfind to the player's last known location.
 		# the known location should be updated constantly when the agent can directly see us.
-		if can_see_player:
+		cant_see_player_time = cant_see_player_time + delta if not can_see_player else 0.0
+		if cant_see_player_time < player_tracking_cutoff:
 			nav_agent.target_position = player.global_position
 
 		# shrimply move towards the target
