@@ -68,6 +68,11 @@ func can_see(target: Vector3) -> bool:
 	return res.is_empty()
 
 func tick_pursuit(delta: float) -> void:
+	if not is_instance_valid(player):
+		patrol_route.target_nearest_point()
+		set_state(State.MOVE_TO_TARGET)
+		return
+
 	var can_see_player = can_see(player.global_position)
 	# we don't want to lose sight of the player, even if we're in the attack timeout.
 	if can_see_player:
@@ -112,7 +117,7 @@ func tick_pursuit(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if not patrol_route: return
-	if state != State.CHASE:
+	if state != State.CHASE and is_instance_valid(player):
 		var to_player = player.global_position - global_position
 		var facing = global_basis * Vector3.FORWARD
 		var facing_alignment = facing.dot(to_player.normalized()) if not to_player.is_zero_approx() else 1.0

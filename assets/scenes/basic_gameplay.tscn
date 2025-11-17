@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://oas4ikx153f1"]
+[gd_scene load_steps=17 format=3 uid="uid://oas4ikx153f1"]
 
 [ext_resource type="Texture2D" uid="uid://du1ksart2vj2l" path="res://assets/textures/prototype_grid.png" id="1_be268"]
 [ext_resource type="Script" uid="uid://dyjtvgodvnfei" path="res://assets/scripts/patrol_route.gd" id="2_tbqko"]
@@ -37,10 +37,6 @@ albedo_color = Color(0.110505916, 0.5802333, 0.99999994, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xgrb6"]
 material = SubResource("StandardMaterial3D_cmmd3")
-
-[sub_resource type="Curve" id="Curve_xgrb6"]
-_data = [Vector2(0, 0), 0.0, 2.7499995, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
 
 [node name="Node3D" type="Node3D"]
 
@@ -167,7 +163,6 @@ mesh = SubResource("CapsuleMesh_xgrb6")
 script = ExtResource("5_4b6o8")
 anchor = NodePath("../Player/CameraAnchor")
 look_target = NodePath("../Player")
-smoothing_curve = SubResource("Curve_xgrb6")
 metadata/_custom_type_script = "uid://hsuw4phgcjns"
 
 [node name="Route1" type="Node3D" parent="."]

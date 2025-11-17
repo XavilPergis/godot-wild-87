@@ -12,20 +12,14 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		#velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_pressed("ui_accept"):
 		global_basis = global_basis.rotated(Vector3.UP, deg_to_rad(360.0 / 8.0))
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("move_west", "move_east", "move_north", "move_south")
 	var input_mag = input_dir.length()
 	var looking_at_player = Basis.looking_at(global_position - $CameraAnchor.global_position)
 	var angles = looking_at_player.get_euler()
-	#var direction = (looking_at_player * Vector3(input_dir.x, 0, input_dir.y))
 	var direction = Vector3(input_dir.x, 0, input_dir.y).rotated(Vector3.UP, angles.y)
-	#direction.y = 0
 	if not direction.is_zero_approx():
 		direction = direction.normalized()
 		direction *= input_mag
@@ -44,3 +38,4 @@ func _on_health_component_took_damage(damage_amount: int) -> void:
 
 func _on_health_component_died() -> void:
 	print("died! bleh!")
+	queue_free()
