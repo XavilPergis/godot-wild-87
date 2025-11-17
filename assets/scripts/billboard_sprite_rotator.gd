@@ -1,27 +1,56 @@
-extends Node3D
+extends Node
 class_name BillboardSpriteRotator
 
 @export var sprite: AnimatedSprite3D
-@export var sides: int
+@export var initial_animation: String
 
-var walk_animation: _Animation
+var _animations = {}
+var _current_animation: _Animation = null
 
 const FOUR_SIDED_SUFFIXES: Array[String] = ["_N", "_E", "_S", "_W"]
 const EIGHT_SIDED_SUFFIXES: Array[String] = ["_N", "_NE", "_E", "_SE", "_S", "_SW", "_W", "_NW"]
 
 func _ready() -> void:
-	walk_animation = _Animation.new(sprite.sprite_frames, "walk", sides)
+	#_current_animation = _Animation.new(sprite.sprite_frames, "walk", sides)
+	for anim_name in sprite.sprite_frames.get_animation_names():
+		if anim_name.ends_with("_N"):
+			var anim_name_base = anim_name.substr(0, anim_name.length() - 2)
+			if ((sprite.sprite_frames.has_animation(anim_name_base + "_E") or 
+				sprite.sprite_frames.has_animation(anim_name_base + "_W")) and 
+				sprite.sprite_frames.has_animation(anim_name_base + "_S")):
+				if ((sprite.sprite_frames.has_animation(anim_name_base + "_NE") or 
+					sprite.sprite_frames.has_animation(anim_name_base + "_NW")) and
+					(sprite.sprite_frames.has_animation(anim_name_base + "_SE") or 
+					sprite.sprite_frames.has_animation(anim_name_base + "_SW"))):
+					# 8-sided animation
+					_animations[StringName(anim_name_base)] = _Animation.new(sprite.sprite_frames, anim_name_base, 8)
+				else:
+					# 4-sided animation
+					_animations[StringName(anim_name_base)] = _Animation.new(sprite.sprite_frames, anim_name_base, 4)
+	
+	set_animation(initial_animation)
 	pass
 
-func update_sprite_angle():
-	var vec3_to_camera = global_position.direction_to(get_viewport().get_camera_3d().global_position)
-	var vec2_to_camera = Vector2(vec3_to_camera.z, -vec3_to_camera.x)
+func set_animation(p_name: StringName):
+	if _animations.has(p_name):
+		_current_animation = _animations[p_name]
+	elif sprite.sprite_frames.has_animation(p_name):
+		_current_animation = null
+		sprite.animation = p_name
+		sprite.flip_h = false
+		sprite.stop()
+		sprite.play()
 
-	var angle = self.global_basis.get_euler().y + vec2_to_camera.angle()
-	
-	var sub_anim = walk_animation.get_sub_animation(angle)
-	sprite.animation = sub_anim.animation
-	sprite.flip_h = sub_anim.flip_h
+func _update_sprite_angle():
+	if _current_animation:
+		var vec3_to_camera = sprite.global_position.direction_to(get_viewport().get_camera_3d().global_position)
+		var vec2_to_camera = Vector2(vec3_to_camera.z, -vec3_to_camera.x)
+
+		var angle = sprite.global_basis.get_euler().y + vec2_to_camera.angle()
+		
+		var sub_anim = _current_animation.get_sub_animation(angle)
+		sprite.animation = sub_anim.animation
+		sprite.flip_h = sub_anim.flip_h
 
 class _Animation:
 	# North, East, South, West
@@ -32,6 +61,7 @@ class _Animation:
 		match p_num_sides:
 			1:
 				anims = [_SubAnimation.new(p_base_name, false)]
+				return
 			4:
 				suffixes = FOUR_SIDED_SUFFIXES
 			8:
@@ -81,5 +111,5 @@ class _SubAnimation:
 	var flip_h: bool
 
 func _process(_delta: float) -> void:
-	update_sprite_angle()
+	_update_sprite_angle()
 	pass
