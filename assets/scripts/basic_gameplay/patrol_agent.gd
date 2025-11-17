@@ -145,7 +145,10 @@ func _physics_process(delta: float) -> void:
 				look_at_horiz(target_pos)
 			move_and_slide()
 			if nav_agent.is_target_reached():
-				set_state(State.SCAN)
+				if patrol_route.current_point().should_scan:
+					set_state(State.SCAN)
+				else:
+					patrol_route.target_next_point()
 		State.SCAN:
 			# TODO: scan animation
 			scan_time_remaining = move_toward(scan_time_remaining, 0, delta)

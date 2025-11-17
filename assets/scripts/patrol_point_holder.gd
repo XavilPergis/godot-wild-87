@@ -1,7 +1,6 @@
-extends Node3D
-class_name PatrolPointHolder
+class_name PatrolPointHolder extends Node3D
 
-@export var points: Array[PatrolPoint]
+var points: Array[PatrolPoint]
 
 func _ready() -> void:
 	for node in get_children():
