@@ -47,7 +47,7 @@ func play(p_name: StringName = &"", p_custom_speed: float = 1.0, p_from_end: boo
 		sprite.play(p_name, p_custom_speed, p_from_end)
 
 func play_backwards(p_name: StringName = &""):
-	play(p_name, -1.0)
+	play(p_name, -1.0, true)
 
 func pause():
 	sprite.pause()
