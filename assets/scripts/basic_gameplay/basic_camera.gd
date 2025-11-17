@@ -6,3 +6,4 @@ extends MovableCamera
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_target(anchor, look_target, 0)
+	reset_smoothing()
