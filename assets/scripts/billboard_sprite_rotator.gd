@@ -28,18 +28,32 @@ func _ready() -> void:
 					# 4-sided animation
 					_animations[StringName(anim_name_base)] = _Animation.new(sprite.sprite_frames, anim_name_base, 4)
 	
-	set_animation(initial_animation)
+	play(initial_animation)
 	pass
 
-func set_animation(p_name: StringName):
+func play(p_name: StringName = &"", p_custom_speed: float = 1.0, p_from_end: bool = false):
+	if _current_animation:
+		if _current_animation.name == p_name:
+			sprite.play(&"", p_custom_speed, p_from_end)
+			return
+	
 	if _animations.has(p_name):
 		_current_animation = _animations[p_name]
-	elif sprite.sprite_frames.has_animation(p_name):
+		_update_sprite_angle()
+		sprite.play(&"", p_custom_speed, p_from_end)
+	else:
 		_current_animation = null
-		sprite.animation = p_name
 		sprite.flip_h = false
-		sprite.stop()
-		sprite.play()
+		sprite.play(p_name, p_custom_speed, p_from_end)
+
+func play_backwards(p_name: StringName = &""):
+	play(p_name, -1.0)
+
+func pause():
+	sprite.pause()
+
+func stop():
+	sprite.stop()
 
 func _update_sprite_angle():
 	if _current_animation:
@@ -55,12 +69,14 @@ func _update_sprite_angle():
 class _Animation:
 	# North, East, South, West
 	var anims: Array[_SubAnimation] = []
+	var name: StringName
 	
-	func _init(p_frames: SpriteFrames, p_base_name: String, p_num_sides: int):
+	func _init(p_frames: SpriteFrames, p_name: String, p_num_sides: int):
+		self.name = StringName(p_name)
 		var suffixes: Array[String]
 		match p_num_sides:
 			1:
-				anims = [_SubAnimation.new(p_base_name, false)]
+				anims = [_SubAnimation.new(p_name, false)]
 				return
 			4:
 				suffixes = FOUR_SIDED_SUFFIXES
@@ -72,21 +88,21 @@ class _Animation:
 		anims.resize(p_num_sides)
 		
 		for i in p_num_sides:
-			var name = StringName(p_base_name + suffixes[i])
-			if p_frames.has_animation(name):
-				anims[i] = _SubAnimation.new(name, false)
+			var sub_name = StringName(p_name + suffixes[i])
+			if p_frames.has_animation(sub_name):
+				anims[i] = _SubAnimation.new(sub_name, false)
 			elif suffixes[i].contains("E"):
 				# try flipping it to W
-				name = StringName(p_base_name + suffixes[i].replace("E", "W"))
-				if p_frames.has_animation(name):
-					anims[i] = _SubAnimation.new(name, true)
+				sub_name = StringName(p_name + suffixes[i].replace("E", "W"))
+				if p_frames.has_animation(sub_name):
+					anims[i] = _SubAnimation.new(sub_name, true)
 				else:
 					assert(false, "Could not fill sub-animations!!")
 			elif suffixes[i].contains("W"):
 				# try flipping it to E
-				name = StringName(p_base_name + suffixes[i].replace("W", "E"))
-				if p_frames.has_animation(name):
-					anims[i] = _SubAnimation.new(name, true)
+				sub_name = StringName(p_name + suffixes[i].replace("W", "E"))
+				if p_frames.has_animation(sub_name):
+					anims[i] = _SubAnimation.new(sub_name, true)
 				else:
 					assert(false, "Could not fill sub-animations!!")
 			else:
