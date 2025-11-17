@@ -10,7 +10,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		patrol_route.target_next_point()
 
 func _physics_process(_delta: float) -> void:
-	var direction = patrol_route.direction_to_next_point()
+	var direction = patrol_route.direction_to_next_point(global_position)
 	
 	velocity = direction * 5.0
 	move_and_slide()

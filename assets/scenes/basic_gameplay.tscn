@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://oas4ikx153f1"]
+[gd_scene load_steps=20 format=3 uid="uid://oas4ikx153f1"]
 
 [ext_resource type="Texture2D" uid="uid://du1ksart2vj2l" path="res://assets/textures/prototype_grid.png" id="1_be268"]
 [ext_resource type="Script" uid="uid://dyjtvgodvnfei" path="res://assets/scripts/patrol_route.gd" id="2_tbqko"]
 [ext_resource type="Script" uid="uid://d3wr3c5sj2lfr" path="res://assets/scripts/patrol_point.gd" id="3_fj761"]
+[ext_resource type="Script" uid="uid://bfh2xs3pq2bj3" path="res://assets/scripts/patrol_point_holder.gd" id="4_be268"]
 [ext_resource type="Script" uid="uid://j7ivnt71yxbe" path="res://assets/scripts/basic_gameplay/basic_player.gd" id="4_d428f"]
 [ext_resource type="Script" uid="uid://da0ks6d670vv" path="res://assets/scripts/basic_gameplay/basic_camera.gd" id="5_4b6o8"]
 [ext_resource type="Script" uid="uid://dkejpngnf7dq1" path="res://assets/scripts/basic_gameplay/patrol_agent.gd" id="6_lirhm"]
@@ -100,27 +101,6 @@ size = Vector3(1, 4, 18)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2, 0)
 size = Vector3(1, 4, 18)
 
-[node name="PatrolRoute" type="Node3D" parent="." node_paths=PackedStringArray("points", "navigation_agent")]
-script = ExtResource("2_tbqko")
-points = [NodePath("PatrolPoint"), NodePath("PatrolPoint2"), NodePath("PatrolPoint3")]
-navigation_agent = NodePath("../PatrolAgent/RouteAgent")
-metadata/_custom_type_script = "uid://dyjtvgodvnfei"
-
-[node name="PatrolPoint" type="Marker3D" parent="PatrolRoute"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -7)
-script = ExtResource("3_fj761")
-metadata/_custom_type_script = "uid://d3wr3c5sj2lfr"
-
-[node name="PatrolPoint2" type="Marker3D" parent="PatrolRoute"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 6)
-script = ExtResource("3_fj761")
-metadata/_custom_type_script = "uid://d3wr3c5sj2lfr"
-
-[node name="PatrolPoint3" type="Marker3D" parent="PatrolRoute"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -7)
-script = ExtResource("3_fj761")
-metadata/_custom_type_script = "uid://d3wr3c5sj2lfr"
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.8167624, 0.4436727, -0.3688546, 0, 0.6392914, 0.7689646, 0.57697415, -0.62806135, 0.52214915, 0, 13, 0)
 shadow_enabled = true
@@ -148,11 +128,37 @@ look_target = NodePath("../Player")
 smoothing_curve = SubResource("Curve_xgrb6")
 metadata/_custom_type_script = "uid://hsuw4phgcjns"
 
-[node name="PatrolAgent" type="CharacterBody3D" parent="." node_paths=PackedStringArray("patrol_route", "player")]
+[node name="Route1" type="Node3D" parent="." node_paths=PackedStringArray("points")]
+script = ExtResource("4_be268")
+points = [NodePath("PatrolPoint"), NodePath("PatrolPoint2"), NodePath("PatrolPoint3")]
+metadata/_custom_type_script = "uid://bfh2xs3pq2bj3"
+
+[node name="PatrolPoint" type="Marker3D" parent="Route1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -7)
+script = ExtResource("3_fj761")
+metadata/_custom_type_script = "uid://d3wr3c5sj2lfr"
+
+[node name="PatrolPoint2" type="Marker3D" parent="Route1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 6)
+script = ExtResource("3_fj761")
+metadata/_custom_type_script = "uid://d3wr3c5sj2lfr"
+
+[node name="PatrolPoint3" type="Marker3D" parent="Route1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -7)
+script = ExtResource("3_fj761")
+metadata/_custom_type_script = "uid://d3wr3c5sj2lfr"
+
+[node name="PatrolAgent" type="CharacterBody3D" parent="." node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.459119, 0, -7)
 script = ExtResource("6_lirhm")
-patrol_route = NodePath("../PatrolRoute")
 player = NodePath("../Player")
+movement_speed = 4.0
+
+[node name="PatrolRoute" type="Node" parent="PatrolAgent" node_paths=PackedStringArray("navigation_agent", "holder")]
+script = ExtResource("2_tbqko")
+navigation_agent = NodePath("../RouteAgent")
+holder = NodePath("../../Route1")
+metadata/_custom_type_script = "uid://dyjtvgodvnfei"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PatrolAgent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
