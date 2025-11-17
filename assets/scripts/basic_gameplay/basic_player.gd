@@ -29,3 +29,11 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+
+func _on_health_component_took_damage(damage_amount: int) -> void:
+	print(damage_amount, " damage!! ow!!")
+
+
+func _on_health_component_died() -> void:
+	print("died! bleh!")

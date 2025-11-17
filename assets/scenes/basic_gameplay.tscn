@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://oas4ikx153f1"]
+[gd_scene load_steps=22 format=3 uid="uid://oas4ikx153f1"]
 
 [ext_resource type="Texture2D" uid="uid://du1ksart2vj2l" path="res://assets/textures/prototype_grid.png" id="1_be268"]
 [ext_resource type="Script" uid="uid://dyjtvgodvnfei" path="res://assets/scripts/patrol_route.gd" id="2_tbqko"]
+[ext_resource type="Script" uid="uid://gi1wna232m0o" path="res://assets/scripts/components/HealthComponent.gd" id="3_d428f"]
 [ext_resource type="Script" uid="uid://d3wr3c5sj2lfr" path="res://assets/scripts/patrol_point.gd" id="3_fj761"]
 [ext_resource type="Script" uid="uid://bfh2xs3pq2bj3" path="res://assets/scripts/patrol_point_holder.gd" id="4_be268"]
 [ext_resource type="Script" uid="uid://j7ivnt71yxbe" path="res://assets/scripts/basic_gameplay/basic_player.gd" id="4_d428f"]
@@ -28,6 +29,9 @@ material = SubResource("StandardMaterial3D_cmmd3")
 [sub_resource type="Curve" id="Curve_xgrb6"]
 _data = [Vector2(0, 0), 0.0, 2.7499995, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4b6o8"]
+radius = 1.5234375
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c3tg1"]
 
@@ -107,8 +111,13 @@ shadow_enabled = true
 
 [node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+collision_layer = 5
 script = ExtResource("4_d428f")
 camera = NodePath("../MovableCamera")
+
+[node name="HealthComponent" type="Node" parent="Player"]
+script = ExtResource("3_d428f")
+metadata/_custom_type_script = "uid://gi1wna232m0o"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -160,6 +169,14 @@ navigation_agent = NodePath("../RouteAgent")
 holder = NodePath("../../Route1")
 metadata/_custom_type_script = "uid://dyjtvgodvnfei"
 
+[node name="PhysicalHurtbox" type="Area3D" parent="PatrolAgent"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PatrolAgent/PhysicalHurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_4b6o8")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PatrolAgent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_c3tg1")
@@ -181,3 +198,8 @@ debug_enabled = true
 libraries = {
 &"": SubResource("AnimationLibrary_cmmd3")
 }
+
+[connection signal="died" from="Player/HealthComponent" to="Player" method="_on_health_component_died"]
+[connection signal="took_damage" from="Player/HealthComponent" to="Player" method="_on_health_component_took_damage"]
+[connection signal="body_entered" from="PatrolAgent/PhysicalHurtbox" to="PatrolAgent" method="_on_physical_hurtbox_body_entered"]
+[connection signal="body_exited" from="PatrolAgent/PhysicalHurtbox" to="PatrolAgent" method="_on_physical_hurtbox_body_exited"]

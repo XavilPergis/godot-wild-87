@@ -19,9 +19,13 @@ extends CharacterBody3D
 
 enum State { IDLE, MOVE_TO_TARGET, PURSUE, SCAN, }
 
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var state: State = State.IDLE
 # for `State.SCAN`
 var scan_time_remaining: float
+
+# updated by some signal handlers
+var attack_targets: Array[Node3D] = []
 
 func _ready() -> void:
 	patrol_route.target_nearest_point()
@@ -32,6 +36,25 @@ func set_state(new_state: State) -> void:
 	match new_state:
 		State.SCAN:
 			scan_time_remaining = scan_time
+			
+func look_at_horiz(target: Vector3) -> void:
+	target = Vector3(target.x, global_position.y, target.z)
+	look_at(target, Vector3.UP)
+
+func tick_pursuit() -> void:
+	if len(attack_targets) > 0:
+		var target = attack_targets[rng.randi_range(0, len(attack_targets) - 1)]
+		look_at_horiz(target.global_position)
+		if target.has_meta(Components.HEALTH):
+			var health = target.get_meta(Components.HEALTH) as HealthComponent
+			health.damage(1)
+	else:
+		# TODO: alert animation
+		var target_pos = route_agent.get_next_path_position()
+		velocity = (target_pos - global_position).normalized() * movement_speed
+		look_at_horiz(target_pos)
+		move_and_slide()
+		route_agent.target_position = player.global_position
 
 func _physics_process(delta: float) -> void:
 	var to_player = player.global_position - global_position
@@ -53,17 +76,12 @@ func _physics_process(delta: float) -> void:
 		State.IDLE:
 			set_state(State.MOVE_TO_TARGET)
 		State.PURSUE:
-			# TODO: alert animation
-			var target_pos = route_agent.get_next_path_position()
-			velocity = (target_pos - global_position).normalized() * movement_speed
-			look_at(target_pos, Vector3.UP)
-			move_and_slide()
-			route_agent.target_position = player.global_position
+			tick_pursuit()
 		State.MOVE_TO_TARGET:
 			var target_pos = patrol_route.next_point_position()
 			velocity = (target_pos - global_position).normalized() * movement_speed
 			if not global_position.is_equal_approx(target_pos):
-				look_at(target_pos, Vector3.UP)
+				look_at_horiz(target_pos)
 			move_and_slide()
 		State.SCAN:
 			# TODO: scan animation
@@ -74,4 +92,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_reached_target(_target: PatrolPoint) -> void:
 	set_state(State.SCAN)
-	
+
+func _on_physical_hurtbox_body_entered(body: Node3D) -> void:
+	if body not in attack_targets:
+		attack_targets.push_back(body)
+func _on_physical_hurtbox_body_exited(body: Node3D) -> void:
+	attack_targets.remove_at(attack_targets.find(body))
