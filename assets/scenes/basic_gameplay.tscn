@@ -174,7 +174,7 @@ metadata/_custom_type_script = "uid://gi1wna232m0o"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_cmmd3")
 
-[node name="SneakingShape" type="CollisionShape3D" parent="Player"]
+[node name="CrawlingShape" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45000008, 0)
 shape = SubResource("BoxShape3D_fj761")
 

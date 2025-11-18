@@ -2,16 +2,16 @@ extends CharacterBody3D
 
 @export var camera: Camera3D
 @export var speed: float = 5.0
-@export var sneaking_speed: float = 2.5
-var is_sneaking: bool = false
+@export var crawling_speed: float = 2.5
+var is_crawling: bool = false
 
 @onready var standing_allowed_cast: ShapeCast3D = $StandingAllowedCast
 
-func set_sneaking(sneaking: bool) -> void:
-	if is_sneaking != sneaking:
-		is_sneaking = sneaking
-		$StandingShape.set_deferred("disabled", sneaking)
-		$SneakingShape.set_deferred("disabled", not sneaking)
+func set_crawling(crawling: bool) -> void:
+	if is_crawling != crawling:
+		is_crawling = crawling
+		$StandingShape.set_deferred("disabled", crawling)
+		$CrawlingShape.set_deferred("disabled", not crawling)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -19,10 +19,10 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("ui_accept"):
 		global_basis = global_basis.rotated(Vector3.UP, deg_to_rad(360.0 / 8.0))
-	var can_stand = not standing_allowed_cast.is_colliding()
-	set_sneaking(Input.is_action_pressed("sneak") or (is_sneaking and not can_stand))
 
-	var real_speed = sneaking_speed if is_sneaking else speed
+	var can_stand = not standing_allowed_cast.is_colliding()
+	set_crawling(Input.is_action_pressed("crawl") or (is_crawling and not can_stand))
+	var real_speed = crawling_speed if is_crawling else speed
 
 	var input_dir = Input.get_vector("move_west", "move_east", "move_north", "move_south")
 	var input_mag = input_dir.length()
