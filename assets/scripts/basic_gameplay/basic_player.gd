@@ -1,19 +1,28 @@
 extends CharacterBody3D
 
-
 @export var camera: Camera3D
 @export var speed: float = 5.0
+@export var sneaking_speed: float = 2.5
+var is_sneaking: bool = false
 
-const JUMP_VELOCITY = 4.5
+@onready var standing_allowed_cast: ShapeCast3D = $StandingAllowedCast
 
+func set_sneaking(sneaking: bool) -> void:
+	if is_sneaking != sneaking:
+		is_sneaking = sneaking
+		$StandingShape.set_deferred("disabled", sneaking)
+		$SneakingShape.set_deferred("disabled", not sneaking)
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
 	if Input.is_action_just_pressed("ui_accept"):
 		global_basis = global_basis.rotated(Vector3.UP, deg_to_rad(360.0 / 8.0))
+	var can_stand = not standing_allowed_cast.is_colliding()
+	set_sneaking(Input.is_action_pressed("sneak") or (is_sneaking and not can_stand))
+
+	var real_speed = sneaking_speed if is_sneaking else speed
 
 	var input_dir = Input.get_vector("move_west", "move_east", "move_north", "move_south")
 	var input_mag = input_dir.length()
@@ -23,11 +32,11 @@ func _physics_process(delta: float) -> void:
 	if not direction.is_zero_approx():
 		direction = direction.normalized()
 		direction *= input_mag
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
+		velocity.x = direction.x * real_speed
+		velocity.z = direction.z * real_speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, real_speed)
+		velocity.z = move_toward(velocity.z, 0, real_speed)
 
 	move_and_slide()
 
