@@ -325,7 +325,7 @@ _data = {
 [node name="Node3D" type="Node3D" node_paths=PackedStringArray("camera_positions", "camera_targets")]
 script = ExtResource("1_088pw")
 camera_positions = [NodePath("CornerCamAnimator/CornerCamMarker"), NodePath("BCamParent/BunnyCam")]
-camera_targets = [null, NodePath("BunnyAnimator/StanfordBunny")]
+camera_targets = [null, NodePath("MonkeyAnimator/Suzanne/SuzanneTarget")]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.0266895, 0)
@@ -348,6 +348,7 @@ spot_range = 31.0
 transform = Transform3D(0.7071068, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, 0.7071068, -6, 0, 3)
 script = ExtResource("1_2n00v")
 smoothing_curve = SubResource("Curve_088pw")
+position_smoothing_speed = 10.0
 metadata/_custom_type_script = "uid://hsuw4phgcjns"
 
 [node name="BunnyAnimator" type="AnimationPlayer" parent="."]
@@ -376,6 +377,9 @@ autoplay = "monkey_bob"
 transform = Transform3D(0.64307016, -1.3629879, -1.9946742, 0.41822127, 2.095773, -1.2972382, 2.3794017, 0, 0.7671038, 16.09488, 8.597274, -3.4301085)
 mesh = ExtResource("3_4ivet")
 skeleton = NodePath("../..")
+
+[node name="SuzanneTarget" type="Marker3D" parent="MonkeyAnimator/Suzanne"]
+transform = Transform3D(1, 3.246033e-08, -5.9604645e-08, -5.8244645e-09, 0.99999976, 4.797634e-07, 0, -5.874772e-08, 1.0000001, -2.5254774, 1.4768374, 4.875686)
 
 [node name="CornerCamAnimator" type="AnimationPlayer" parent="."]
 libraries = {
