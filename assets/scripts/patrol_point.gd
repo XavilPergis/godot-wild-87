@@ -8,3 +8,6 @@ class_name PatrolPoint extends Marker3D
 ## You might want to use this option if agents are pathing in a way you did not
 ## intend for them to.
 @export var should_scan: bool = true
+## If set to true, agents may select this node as a result of calling
+## [method PatrolRoute.target_nearest_point]
+@export var can_start_at: bool = true

@@ -55,7 +55,8 @@ func set_state(new_state: State) -> void:
 
 func look_at_horiz(target: Vector3) -> void:
 	target = Vector3(target.x, global_position.y, target.z)
-	if target.x != global_position.x or target.z != global_position.z:
+	if not is_equal_approx(target.x, global_position.x) \
+		or not is_equal_approx(target.z, global_position.z):
 		look_at(target, Vector3.UP)
 
 func can_see(target: Vector3) -> bool:
@@ -101,10 +102,10 @@ func tick_pursuit(delta: float) -> void:
 		# the known location should be updated constantly when the agent can directly see us.
 		cant_see_player_time = cant_see_player_time + delta if not can_see_player else 0.0
 		if cant_see_player_time < player_tracking_cutoff:
-			nav_agent.target_position = player.global_position
+			nav_agent.target_position = player.global_position + 0.25 * Vector3.UP
 
 		# shrimply move towards the target
-		if not nav_agent.is_target_reached():
+		if not nav_agent.is_navigation_finished():
 			var target_pos = nav_agent.get_next_path_position()
 			velocity = (target_pos - global_position).normalized() * movement_speed
 			if not can_see_player:
@@ -113,7 +114,7 @@ func tick_pursuit(delta: float) -> void:
 
 		# lose interest in chasing the player if the agent cant see them for a
 		# long enough period of time.
-		if nav_agent.is_target_reached() and not can_see_player:
+		if nav_agent.is_navigation_finished() and not can_see_player:
 			pursuit_timeout_remaining = move_toward(pursuit_timeout_remaining, 0, delta)
 			if pursuit_timeout_remaining <= 0:
 				patrol_route.target_nearest_point()
@@ -157,6 +158,8 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 			if nav_agent.is_target_reached():
 				if patrol_route.current_point().should_scan:
+					var point = patrol_route.current_point()
+					global_basis = point.global_basis
 					set_state(State.SCAN)
 				else:
 					patrol_route.target_next_point()

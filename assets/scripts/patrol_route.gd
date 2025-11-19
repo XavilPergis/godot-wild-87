@@ -32,10 +32,13 @@ func current_point() -> PatrolPoint:
 # Targets the nearest point
 func target_nearest_point():
 	var nearest_point_index = 0
-	var nearest_distance: float = TYPE_MAX
+	var nearest_distance: float = INF
 	
 	for i in points.size():
-		navigation_agent.set_target_position(points[i].global_position)
+		var point = points[i]
+		if not point.can_start_at:
+			continue
+		navigation_agent.set_target_position(point.global_position)
 		var distance = navigation_agent.distance_to_target()
 		if distance < nearest_distance:
 			nearest_point_index = i

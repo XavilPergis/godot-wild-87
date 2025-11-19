@@ -36,6 +36,8 @@ func set_target(position_node: Node3D, lookat_node: Node3D, seconds: float):
 	source_basis = global_basis
 	
 func _interpolate_rotation(from: Basis, to: Basis, t: float) -> Basis:
+	from = from.orthonormalized()
+	to = to.orthonormalized()
 	var euler = from.slerp(to, t).get_euler()
 	if lock_z_rotation:
 		euler.z = 0
