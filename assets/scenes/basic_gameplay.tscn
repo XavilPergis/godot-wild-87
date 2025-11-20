@@ -185,8 +185,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.60457, 0, 0)
 
 [node name="CameraAnchor" type="Marker3D" parent="PlayerPosReceiver"]
 script = ExtResource("8_fj761")
-height = 6.78
-horizontal_offset = 8.49
+height = 4.0
+horizontal_offset = 6.0
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008850098, -3.8146973e-06, 0.091667175)

@@ -17,6 +17,7 @@ var use_camera_angle: bool = false
 @onready var right_visibility: RayCast3D = $RightVisibility
 @onready var look_around_wall_anchor: Node3D = $LookAroundWallAnchor
 @onready var eyes: Node3D = $Eyes
+@onready var sprite_rotator: BillboardSpriteRotator = $AnimatedSprite3D/BillboardSpriteRotator
 
 func set_crawling(crawling: bool) -> void:
 	if is_crawling != crawling:
@@ -80,10 +81,16 @@ func _physics_process(delta: float) -> void:
 	if not movement.is_zero_approx():
 		if not is_crawling:
 			look_at(global_position + movement)
+			if sprite_rotator.animation != &"walk":
+				sprite_rotator.play(&"walk")
+		else:
+			pass
 		movement = movement
 		velocity.x = movement.x * real_speed
 		velocity.z = movement.z * real_speed
 	else:
+		if sprite_rotator.animation != &"idle":
+			sprite_rotator.play(&"idle")
 		use_camera_angle = false  
 		velocity.x = move_toward(velocity.x, 0, real_speed)
 		velocity.z = move_toward(velocity.z, 0, real_speed)

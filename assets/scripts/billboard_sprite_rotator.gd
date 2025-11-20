@@ -7,6 +7,9 @@ class_name BillboardSpriteRotator
 var _animations = {}
 var _current_animation: _Animation = null
 
+var animation: StringName:
+	get(): return _current_animation.name
+
 const FOUR_SIDED_SUFFIXES: Array[String] = ["_N", "_E", "_S", "_W"]
 const EIGHT_SIDED_SUFFIXES: Array[String] = ["_N", "_NE", "_E", "_SE", "_S", "_SW", "_W", "_NW"]
 
