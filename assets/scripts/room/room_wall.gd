@@ -34,6 +34,12 @@ class_name RoomWall
 			if _mesh_instance:
 				_mesh_instance.mesh.surface_set_material(0, material)
 
+# we assume this is sorted
+# very quick and dirty way of getting doorways into these walls
+var connection_slots: PackedInt32Array = []
+var doorway_height: float = 2.2
+var quads: Array[Rect2]
+
 var _mesh_instance: MeshInstance3D = null
 var _static_body: StaticBody3D = null
 var _shape_owner: int = 0
@@ -42,8 +48,33 @@ func _ready():
 	build()
 
 func build():
+	build_quads()
 	build_physics()
 	build_visual()
+
+func build_quads():
+	quads.clear()
+	
+	var i: int = 0
+	var effective_doorway_height = min(doorway_height, height)
+	
+	for conn in connection_slots:
+		if conn > i:
+			quads.append(Rect2(
+				i, 0, conn - i, effective_doorway_height
+			))
+		i = conn + 1
+	
+	if i < width:
+		quads.append(Rect2(
+			i, 0, width - i, effective_doorway_height
+		))
+	
+	if doorway_height < height:
+		quads.append(Rect2(
+			0, doorway_height,
+			width, height-doorway_height
+		))
 
 func build_physics():
 	if not _static_body:
@@ -53,7 +84,7 @@ func build_physics():
 	else:
 		_static_body.shape_owner_clear_shapes(_shape_owner)
 	
-	var shape = QuadsMeshMaker.make_shape([Rect2(0, 0, width, height)], direction)
+	var shape = QuadsMeshMaker.make_shape(quads, direction)
 	_static_body.shape_owner_add_shape(_shape_owner, shape)
 
 func build_visual():
@@ -61,7 +92,7 @@ func build_visual():
 		_mesh_instance = MeshInstance3D.new()
 		add_child(_mesh_instance)
 
-	var mesh = QuadsMeshMaker.make_mesh([Rect2(0, 0, width, height)], direction)
+	var mesh = QuadsMeshMaker.make_mesh(quads, direction)
 	mesh.surface_set_material(0, material)
 	
 	_mesh_instance.mesh = mesh
