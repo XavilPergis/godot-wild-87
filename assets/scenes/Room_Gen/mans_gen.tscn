@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c6rtbqm2gscen"]
 
-[ext_resource type="Script" uid="uid://cun3vy6y7n31x" path="res://mans_gen.gd" id="1_jg2eo"]
+[ext_resource type="Script" uid="uid://cun3vy6y7n31x" path="res://assets/scripts/mans_gen.gd" id="1_jg2eo"]
 [ext_resource type="MeshLibrary" uid="uid://dxlatku5bnj54" path="res://assets/scenes/Room_Gen/mansion_tiles.tres" id="2_o4ln4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jg2eo"]
