@@ -67,12 +67,14 @@ func count_leafs() -> int:
 func partition(direction: PartitionDirection, dimension: int, relative: bool = true) -> Array[BSPNodeI]:
 	assert(not _left_child and not _right_child, "Cannot partition: already has children!!")
 	
-	partition_direction = direction
 	var children_bounds = _partition_recti(bounds, direction, dimension, relative)
-	_left_child = BSPNodeI.new(children_bounds[0], self)
-	_right_child = BSPNodeI.new(children_bounds[1], self)
-	
-	return [_left_child, _right_child]
+	if children_bounds.size() < 2:
+		return []
+	else:
+		partition_direction = direction
+		_left_child = BSPNodeI.new(children_bounds[0], self)
+		_right_child = BSPNodeI.new(children_bounds[1], self)
+		return [_left_child, _right_child]
 
 static func _partition_recti(rect: Rect2i, direction: PartitionDirection,\
 		dimension: int, relative: bool) -> Array[Rect2i]:
@@ -80,21 +82,27 @@ static func _partition_recti(rect: Rect2i, direction: PartitionDirection,\
 		PartitionDirection.VERTICAL:
 			if not relative:
 				dimension -= rect.position.x
-			return [
-			Rect2i(rect.position, Vector2i(dimension, rect.size.y)),
-			Rect2i(
-				Vector2i(rect.position.x + dimension, rect.position.y),
-				Vector2i(rect.size.x - dimension, rect.size.y)
-			)]
+			if dimension <= 0 || dimension >= rect.size.x:
+				return [rect]
+			else:
+				return [
+				Rect2i(rect.position, Vector2i(dimension, rect.size.y)),
+				Rect2i(
+					Vector2i(rect.position.x + dimension, rect.position.y),
+					Vector2i(rect.size.x - dimension, rect.size.y)
+				)]
 		PartitionDirection.HORIZONTAL:
 			if not relative:
 				dimension -= rect.position.y
-			return [
-			Rect2i(rect.position, Vector2i(rect.size.x, dimension)),
-			Rect2i(
-				Vector2i(rect.position.y, rect.position.y + dimension),
-				Vector2i(rect.size.x, rect.size.y - dimension)
-			)]
+			if dimension <= 0 || dimension >= rect.size.y:
+				return [rect]
+			else:
+				return [
+				Rect2i(rect.position, Vector2i(rect.size.x, dimension)),
+				Rect2i(
+					Vector2i(rect.position.x, rect.position.y + dimension),
+					Vector2i(rect.size.x, rect.size.y - dimension)
+				)]
 		_:
 			assert(false, "Invalid partition direction!!")
 			return []
