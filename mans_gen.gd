@@ -8,7 +8,7 @@ const HALLWAY_COUNT : int = 3
 
 var room_tiles : Array[PackedVector3Array] = []
 var room_positions : PackedVector3Array = []
-var partitions : Array[Rect2i] = []
+var tree : BSPNodeI = null
 
 # preset room sizes
 var unique_rooms : Array[Vector2i] =\
@@ -48,10 +48,17 @@ func set_border_size(val : Vector2i) -> void:
 func _ready() -> void:
 	generate_mansion()
 
+class _GenerationState:
+	var start_room_leaf: BSPNodeI
+	var hallways_node: BSPNodeI
+	
+var _generation_state: _GenerationState = null
+
 func generate_mansion():
+	_generation_state = _GenerationState.new()
+	
 	print(unique_rooms.size())
-	partitions.clear()
-	partitions.append(Rect2i(\
+	tree = BSPNodeI.new(Rect2i(
 	Vector2(0, 0), Vector2(border_size.x, border_size.y)))
 	visualize_border()
 	print("border visualized")
@@ -59,7 +66,7 @@ func generate_mansion():
 	place_start_room()
 	print("start room placed")
 	#generate hallways
-	generate_hallways(partitions.pop_front(), HALLWAY_COUNT)
+	generate_hallways(_generation_state.hallways_node, HALLWAY_COUNT)
 	print("hallways placed")
 	
 	#partition empty spaces until room fits
@@ -76,65 +83,94 @@ func visualize_border():
 			
 func place_start_room():
 	var direction = randi() % 4
-	var start_pos : Vector3i = Vector3i(0, 0, 0)
-	var partition_room : Rect2i
+	var partition_room : BSPNodeI
 	
 	if direction == 0:
-		partition_room = partitions.pop_front()
+		partition_room = tree
+		var partitions_tmp: Array[BSPNodeI]
 		var partition_location = (randi_range(3, int(partition_room.size.x) - 4 - START_ROOM_SIZE.x))
-		partitions.append_array(partition_rect_y(partition_room, START_ROOM_SIZE.y))
-		partition_room = partitions.pop_front()
-		partitions.append_array(partition_rect_x(partition_room, partition_location))
-		partition_room = partitions.pop_back()
-		partitions.append_array(partition_rect_x(partition_room, START_ROOM_SIZE.x))
-		partition_room = partitions.pop_at(partitions.size() - 2)
+		partitions_tmp = partition_room.partition(BSPNodeI.PartitionDirection.HORIZONTAL, START_ROOM_SIZE.y)
+		partition_room = partitions_tmp[0]
+		_generation_state.hallways_node = partitions_tmp[1]
+		partitions_tmp = partition_room.partition(BSPNodeI.PartitionDirection.VERTICAL, partition_location)
+		partition_room = partitions_tmp[1]
+		partitions_tmp = partition_room.partition(BSPNodeI.PartitionDirection.VERTICAL, START_ROOM_SIZE.x)
+		partition_room = partitions_tmp[0]
 		place_room(partition_room)
+		_generation_state.start_room_leaf = partition_room
 		
 	elif direction == 1:
-		partition_room = partitions.pop_front()
+		partition_room = tree
+		var partitions_tmp: Array[BSPNodeI]
 		var partition_location = (randi_range(3, int(partition_room.size.y) - 4 - START_ROOM_SIZE.y))
-		partitions.append_array(partition_rect_x(partition_room, \
-		border_size.x - START_ROOM_SIZE.x))
-		partition_room = partitions.pop_back()
-		partitions.append_array(partition_rect_y(partition_room, partition_location))
-		partition_room = partitions.pop_back()
-		partitions.append_array(partition_rect_y(partition_room, START_ROOM_SIZE.y))
-		partition_room = partitions.pop_at(partitions.size() - 2)
+		partitions_tmp = partition_room.partition(BSPNodeI.PartitionDirection.VERTICAL, border_size.x - START_ROOM_SIZE.x)
+		partition_room = partitions_tmp[1]
+		_generation_state.hallways_node = partitions_tmp[0]
+		partitions_tmp = partition_room.partition(BSPNodeI.PartitionDirection.HORIZONTAL, partition_location)
+		partition_room = partitions_tmp[1]
+		partitions_tmp = partition_room.partition(BSPNodeI.PartitionDirection.HORIZONTAL, START_ROOM_SIZE.y)
+		partition_room = partitions_tmp[0]
 		place_room(partition_room)
+		_generation_state.start_room_leaf = partition_room
 		
 	elif direction == 2:
-		partition_room = partitions.pop_front()
+		partition_room = tree
 		var partition_location = (randi_range(3, int(partition_room.size.x) - 4 - START_ROOM_SIZE.x))
-		partitions.append_array(partition_rect_y(partition_room, \
-		border_size.y - START_ROOM_SIZE.y))
-		partition_room = partitions.back()
-		partitions.append_array(partition_rect_x(partition_room, partition_location))
-		partition_room = partitions.pop_back()
-		partitions.append_array(partition_rect_x(partition_room, START_ROOM_SIZE.x))
-		partition_room = partitions.pop_at(partitions.size() - 2)
+		var partitions_tmp: Array[BSPNodeI]
+		partitions_tmp = partition_room.partition(BSPNodeI.PartitionDirection.HORIZONTAL, border_size.y - START_ROOM_SIZE.y)
+		partition_room = partitions_tmp[1]
+		_generation_state.hallways_node = partitions_tmp[0]
+		partitions_tmp = partition_room.partition(BSPNodeI.PartitionDirection.VERTICAL, partition_location)
+		partition_room = partitions_tmp[1]
+		partitions_tmp = partition_room.partition(BSPNodeI.PartitionDirection.VERTICAL, START_ROOM_SIZE.x)
+		partition_room = partitions_tmp[0]
 		place_room(partition_room)
+		_generation_state.start_room_leaf = partition_room
 	else:
-		partition_room = partitions.pop_front()
+		partition_room = tree
 		var partition_location = (randi_range(3, int(partition_room.size.y) - 4 - START_ROOM_SIZE.y))
-		partitions.append_array(partition_rect_x(partition_room, \
-		START_ROOM_SIZE.x))
-		partition_room = partitions.pop_front()
-		partitions.append_array(partition_rect_y(partition_room, partition_location))
-		partition_room = partitions.pop_back()
-		partitions.append_array(partition_rect_y(partition_room, START_ROOM_SIZE.y))
-		partition_room = partitions.pop_at(partitions.size() - 2)
+		var partitions_tmp: Array[BSPNodeI]
+		partitions_tmp = partition_room.partition(BSPNodeI.PartitionDirection.VERTICAL, START_ROOM_SIZE.x)
+		partition_room = partitions_tmp[0]
+		_generation_state.hallways_node = partitions_tmp[1]
+		partitions_tmp = partition_room.partition(BSPNodeI.PartitionDirection.HORIZONTAL, partition_location)
+		partition_room = partitions_tmp[1]
+		partitions_tmp = partition_room.partition(BSPNodeI.PartitionDirection.HORIZONTAL, START_ROOM_SIZE.y)
+		partition_room = partitions_tmp[0]
 		place_room(partition_room)
+		_generation_state.start_room_leaf = partition_room
+
+func leaf_is_free(leaf: BSPNodeI) -> bool:
+	return not leaf.data
 	
-func place_room(room : Rect2i):
+func count_free_leafs(root: BSPNodeI = tree) -> int:
+	return root.evaluate_tree(func(leaf, accum): 
+		if not accum:
+			accum = 0
+		if not leaf.data:
+			print(leaf.bounds)
+			accum += 1
+		else:
+			print(leaf.bounds)
+		return accum
+		,
+		true,
+		0)
+
+func place_room(room : BSPNodeI):
 	fill_grid(Vector3i(room.position.x, 0, room.position.y), Vector2i(room.size.x, room.size.y), 0)
+	room.data = &"BWEH"
 	
-func generate_hallways(hallway_room : Rect2i, recurse: int):
-	var hallway_partitions : Array[Rect2i] = []
+func generate_hallways(hallway_room : BSPNodeI, recurse: int):
+	if not hallway_room:
+		return
+	
+	var hallway_partitions : Array[BSPNodeI] = []
 	var cutloc : int = 0
-	var hall_to_be_placed : Rect2i
+	var hall_to_be_placed : BSPNodeI
 	
 	hallway_partitions.append(hallway_room)
-	if recurse > 0 and hallway_room.get_area() >= 20\
+	if recurse > 0 and hallway_room.bounds.get_area() >= 20\
 	and hallway_room.size.x >3 and hallway_room.size.y > 3:	
 		
 		if hallway_room.size.x > hallway_room.size.y:
@@ -146,9 +182,11 @@ func generate_hallways(hallway_room : Rect2i, recurse: int):
 				cutloc = randi() % int(hallway_room.size.x)
 				
 			hallway_partitions.append_array(\
-			partition_rect_x(hallway_partitions.pop_front(), cutloc))
+			hallway_partitions.pop_front().partition(BSPNodeI.PartitionDirection.VERTICAL, cutloc))
+			#partition_rect_x(hallway_partitions.pop_front(), cutloc))
 			hallway_partitions.append_array(\
-			partition_rect_x(hallway_partitions.pop_back(), 1))
+			hallway_partitions.pop_back().partition(BSPNodeI.PartitionDirection.VERTICAL, 1))
+			#partition_rect_x(hallway_partitions.pop_back(), 1))
 		else:
 			# horizontal hallway
 			
@@ -158,9 +196,11 @@ func generate_hallways(hallway_room : Rect2i, recurse: int):
 				cutloc = randi() % int(hallway_room.size.y)
 				
 			hallway_partitions.append_array(\
-			partition_rect_y(hallway_partitions.pop_front(), cutloc))
+			hallway_partitions.pop_front().partition(BSPNodeI.PartitionDirection.HORIZONTAL, cutloc))
+			#partition_rect_y(hallway_partitions.pop_front(), cutloc))
 			hallway_partitions.append_array(\
-			partition_rect_y(hallway_partitions.pop_back(), 1))
+			hallway_partitions.pop_back().partition(BSPNodeI.PartitionDirection.HORIZONTAL, 1))
+			#partition_rect_y(hallway_partitions.pop_back(), 1))
 			
 		# place hallway into correct area
 		if hallway_partitions.size() == 2 and cutloc != 0:
@@ -173,117 +213,109 @@ func generate_hallways(hallway_room : Rect2i, recurse: int):
 		var largest_index : int = 0
 		var largest_area : int = 0
 		for i in hallway_partitions.size():
-			var area = hallway_partitions[i].get_area()
+			var area = hallway_partitions[i].bounds.get_area()
 			if area > largest_area:
 				largest_area = area
 				largest_index = i	
 		generate_hallways(hallway_partitions.pop_at(largest_index), recurse-1)
-	partitions.append_array(hallway_partitions)
 	pass
 	
 func generate_subrooms():
-	var index_array : Array[int] = []
-	for i in partitions.size():
-		index_array.append(i)
-	index_array.sort()
+	
+	var num_free_leafs = count_free_leafs()
 	
 	print(unique_rooms.size())
-	print(partitions.size())
-	while unique_rooms.size() > 0 and partitions.size() > 0:
+	print(num_free_leafs)
+	
+	while unique_rooms.size() > 0 and num_free_leafs > 0:
 		var i : int = randi() % unique_rooms.size()
 		var p_room_size : Vector2i = unique_rooms.pop_at(i)
-		var place_i : int = find_suitable_placement_area(p_room_size)
-		var room : Rect2i = partitions.pop_at(place_i)
-		place_room(room)
-		print("room placed")
-		print(room)
+		var place : BSPNodeI = find_suitable_placement_area(p_room_size)
+		if place:
+			place_room(place)
+			num_free_leafs -= 1
+			print("room placed")
+			print(place.bounds)
 	
-	# returns index to partition that fits best, or -1 otherwise
-func find_suitable_placement_area(room_size: Vector2i) -> int:
+# returns leaf that fits best, or null otherwise
+func find_suitable_placement_area(room_size: Vector2i) -> BSPNodeI:
 	# for possible scenarios for this function
 	# 1 an existing partition that already fits the needed size is available
 	# 2 an existing partition exists with the same width and greater length or same length and greater width
 	# 3 both options are bigger
 	# 4 no possible room
-	var index_array : Array[int] = []
-	for i in partitions.size():
-		index_array.append(i)
-	index_array.shuffle()
-	var ibf : int = -1 # index to best fit partition in partition list
+	var partitions = tree.collect()
+	partitions.shuffle()
+	var best: BSPNodeI = null # index to best fit partition in partition list
 	var rank : int = 0 # 0 = no possible room, 1 = bigger room, 2 = fits smaller dimension, 3 = fits larger dimension
-	for i in partitions.size():
-		var p : Rect2i = partitions[index_array[i]]
-		if p.size == room_size:
-			return index_array[i]
-		if p.size.x == room_size.x and p.size.y > room_size.y:
+	for p in partitions:
+		if p.data:
+			continue
+		if p.bounds.size == room_size:
+			return p
+		if p.bounds.size.x == room_size.x and p.bounds.size.y > room_size.y:
 			if room_size.x > room_size.y and rank < 3:
 				rank = 3
-				ibf = index_array[i]
+				best = p
 			elif rank < 2:
 				rank = 2
-				ibf = index_array[i]
-		if p.size.y == room_size.y and p.size.x > room_size.x:
+				best = p
+		if p.bounds.size.y == room_size.y and p.bounds.size.x > room_size.x:
 			if room_size.y > room_size.x and rank < 3:
 				rank = 3
-				ibf = index_array[i]
+				best = p
 			elif rank < 2:
 				rank = 2
-				ibf = index_array[i]
-		if p.size.x > room_size.x and p.size.y > room_size.y and rank < 1:
+				best = p
+		if p.bounds.size.x > room_size.x and p.bounds.size.y > room_size.y and rank < 1:
 			rank = 1
-			ibf = index_array[i]
+			best = p
 	
 	# no fit
 	if rank == 0:
-		return -1
+		return null
 	
 	# partition to make matching partition in size
-	var partition : Rect2i = partitions.pop_at(ibf)
-	var tmp_partitions : Array[Rect2i] = []
+	var partition : BSPNodeI = best
 	
 	# increase rank
 	if rank == 1:
 		var r = randi() % 2
 		if r:
-			tmp_partitions.append_array(\
-			partition_rect_x(partition, room_size.x))
-			partition = tmp_partitions.pop_front()
+			var tmp_partitions = partition.partition(
+				BSPNodeI.PartitionDirection.VERTICAL, room_size.x )
+			partition = tmp_partitions[0]
 		else:
-			tmp_partitions.append_array(\
-			partition_rect_x(partition, partition.size.x - room_size.x))
-			partition = tmp_partitions.pop_back()
-		partitions.append_array(tmp_partitions)
-		tmp_partitions.clear()
+			var tmp_partitions = partition.partition(
+				BSPNodeI.PartitionDirection.VERTICAL, partition.size.x - room_size.x )
+			partition = tmp_partitions[1]
 	
 	if partition.size.x == room_size.x:
 		var r = randi() % 2
 		if r:
-			tmp_partitions.append_array(\
-			partition_rect_y(partition, room_size.y))
-			partition = tmp_partitions.pop_front()
+			var tmp_partitions = partition.partition(
+				BSPNodeI.PartitionDirection.HORIZONTAL, room_size.y )
+			partition = tmp_partitions[0]
 		else:
-			tmp_partitions.append_array(\
-			partition_rect_y(partition, partition.size.y - room_size.y))
-			partition = tmp_partitions.pop_back()
-		partitions.append_array(tmp_partitions)
-		partitions.append(partition)
-		return partitions.size() - 1
+			var tmp_partitions = partition.partition(
+				BSPNodeI.PartitionDirection.HORIZONTAL, partition.size.y - room_size.y )
+			partition = tmp_partitions[1]
+		return partition
 	elif partition.size.y == room_size.y:
 		var r = randi() % 2
 		if r:
-			tmp_partitions.append_array(\
-			partition_rect_x(partition, room_size.x))
-			partition = tmp_partitions.pop_front()
+			var tmp_partitions = partition.partition(
+				BSPNodeI.PartitionDirection.VERTICAL, room_size.x )
+			partition = tmp_partitions[0]
 		else:
-			tmp_partitions.append_array(\
-			partition_rect_x(partition, partition.size.x - room_size.x))
-			partition = tmp_partitions.pop_back()
-		partitions.append_array(tmp_partitions)
-		partitions.append(partition)
-		return partitions.size() - 1
-	return -1
+			var tmp_partitions = partition.partition(
+				BSPNodeI.PartitionDirection.VERTICAL, partition.size.x - room_size.x )
+			partition = tmp_partitions[1]
+		return partition
+	else:
+		return null
 	
-func place_hallway(hall: Rect2i):
+func place_hallway(hall: BSPNodeI):
 	place_room(hall)
 	connect_hallways()
 	
