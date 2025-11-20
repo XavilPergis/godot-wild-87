@@ -81,7 +81,7 @@ func place_start_room():
 	
 	if direction == 0:
 		partition_room = partitions.pop_front()
-		var partition_location = (randi() % (int(partition_room[1].x) - 6 - START_ROOM_SIZE.x)) + 3
+		var partition_location = (randi_range(3, int(partition_room[1].x) - 4 - START_ROOM_SIZE.x))
 		partitions.append_array(partition_rect(partition_room, Vector2i(0, START_ROOM_SIZE.y)))
 		partition_room = partitions.pop_front()
 		partitions.append_array(partition_rect(partition_room, Vector2i(partition_location, 0)))
@@ -92,7 +92,7 @@ func place_start_room():
 		
 	elif direction == 1:
 		partition_room = partitions.pop_front()
-		var partition_location = (randi() % (int(partition_room[1].y) - 6 - START_ROOM_SIZE.y)) + 3
+		var partition_location = (randi_range(3, int(partition_room[1].y) - 4 - START_ROOM_SIZE.y))
 		partitions.append_array(partition_rect(partition_room, \
 		Vector2i(border_size.x - START_ROOM_SIZE.x, 0)))
 		partition_room = partitions.pop_back()
@@ -104,7 +104,7 @@ func place_start_room():
 		
 	elif direction == 2:
 		partition_room = partitions.pop_front()
-		var partition_location = (randi() % (int(partition_room[1].x) - 6 - START_ROOM_SIZE.x)) + 3
+		var partition_location = (randi_range(3, int(partition_room[1].x) - 4 - START_ROOM_SIZE.x))
 		partitions.append_array(partition_rect(partition_room, \
 		Vector2i(0, border_size.y - START_ROOM_SIZE.y)))
 		partition_room = partitions.back()
@@ -115,7 +115,7 @@ func place_start_room():
 		place_room(partition_room)
 	else:
 		partition_room = partitions.pop_front()
-		var partition_location = (randi() % (int(partition_room[1].y) - 6 - START_ROOM_SIZE.y)) + 3
+		var partition_location = (randi_range(3, int(partition_room[1].y) - 4 - START_ROOM_SIZE.y))
 		partitions.append_array(partition_rect(partition_room, \
 		Vector2i(START_ROOM_SIZE.x, 0)))
 		partition_room = partitions.pop_front()
