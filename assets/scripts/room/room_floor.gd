@@ -46,7 +46,7 @@ func build_physics():
 	else:
 		_static_body.shape_owner_clear_shapes(_shape_owner)
 	
-	var shape = QuadsMeshMaker.make_shape([Rect2(0, 0, width, length)])
+	var shape = QuadsMeshMaker.make_shape([Rect2(0, 0, width, length)], QuadsMeshMaker.PlaneDirection.Y_PLUS)
 	_static_body.shape_owner_add_shape(_shape_owner, shape)
 
 func build_visual():
@@ -54,7 +54,7 @@ func build_visual():
 		_mesh_instance = MeshInstance3D.new()
 		add_child(_mesh_instance)
 
-	var mesh = QuadsMeshMaker.make_mesh([Rect2(0, 0, width, length)])
+	var mesh = QuadsMeshMaker.make_mesh([Rect2(0, 0, width, length)], QuadsMeshMaker.PlaneDirection.Y_PLUS)
 	mesh.surface_set_material(0, material)
 	
 	_mesh_instance.mesh = mesh
