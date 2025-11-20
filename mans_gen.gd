@@ -301,7 +301,7 @@ func partition_rect(rect: Rect2i, cutLoc: Vector2i) -> Array[Rect2i]:
 	var new_rects : Array[Rect2i]
 	if cutLoc.x > 0 and cutLoc.x < rect.size.x:
 		new_rects.append(Rect2i(\
-		Vector2i(rect.position.x, rect.position.y), Vector2i(cutLoc.x, rect.size.y)))
+		rect.position, Vector2i(cutLoc.x, rect.size.y)))
 		
 		new_rects.append(Rect2i(\
 		rect.position.x + cutLoc.x, rect.position.y, \
@@ -313,7 +313,7 @@ func partition_rect(rect: Rect2i, cutLoc: Vector2i) -> Array[Rect2i]:
 			new_rects.append_array(partition_rect(tmpRect, Vector2i(0, cutLoc.y)))
 	elif cutLoc.y > 0 and cutLoc.y < rect.size.y:
 		new_rects.append(Rect2i(\
-		Vector2i(rect.position.x, rect.position.y), Vector2i(rect.size.x, cutLoc.y)))
+		rect.position, Vector2i(rect.size.x, cutLoc.y)))
 		
 		new_rects.append(Rect2i(\
 		rect.position.x, rect.position.y + cutLoc.y, \
