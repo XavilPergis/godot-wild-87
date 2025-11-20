@@ -23,6 +23,5 @@ heightmap_min_layers = 8
 heightmap_max_layers = 32
 heightmap_texture = ExtResource("4")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
-uv1_triplanar = true
 uv1_world_triplanar = true
 texture_filter = 2
