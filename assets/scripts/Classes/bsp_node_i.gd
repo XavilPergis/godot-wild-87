@@ -137,7 +137,7 @@ func evaluate_tree(expression: Callable, leafs_only = true, accum = null):
 		return expression.call(self, accum)
 	else:
 		if not leafs_only:
-			accum = expression.call(self, leafs_only, accum)
+			accum = expression.call(self, accum)
 		accum = _left_child.evaluate_tree(expression, leafs_only, accum)
 		accum = _right_child.evaluate_tree(expression, leafs_only, accum)
 	return accum
