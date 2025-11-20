@@ -57,12 +57,12 @@ func collect() -> Array[BSPNodeI]:
 		collection.append(_right_child.collect())
 		return collection
 
-func count_descendants() -> int:
+func count_leafs() -> int:
 	if not _left_child:
-		return 0
+		return 1
 	else:
 		return _left_child.count_descendants() +\
-			_right_child.count_descendants() + 2
+			_right_child.count_descendants()
 
 func partition(direction: PartitionDirection, dimension: int, relative: bool = true) -> Array[BSPNodeI]:
 	assert(not _left_child and not _right_child, "Cannot partition: already has children!!")
