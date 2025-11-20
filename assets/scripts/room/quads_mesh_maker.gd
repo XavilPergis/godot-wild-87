@@ -10,14 +10,11 @@ static func make_shape(quads: Array[Rect2]) -> ConcavePolygonShape3D:
 		var y0 = quad.position.y
 		var y1 = quad.end.y
 		
+		var verts = _quad_to_vertices(quad)
+		
 		triangles.append_array([
-			Vector3(x0, 0, y0),
-			Vector3(x1, 0, y0),
-			Vector3(x1, 0, y1),
-			
-			Vector3(x0, 0, y0),
-			Vector3(x1, 0, y1),
-			Vector3(x0, 0, y1)
+			verts[0], verts[1], verts[2],
+			verts[0], verts[2], verts[3]
 		])
 		
 	var shape = ConcavePolygonShape3D.new()
@@ -41,12 +38,7 @@ static func make_mesh(quads: Array[Rect2]) -> ArrayMesh:
 		var y0 = quad.position.y
 		var y1 = quad.end.y
 		
-		verts.append_array([
-			Vector3(x0, 0, y0),
-			Vector3(x1, 0, y0),
-			Vector3(x1, 0, y1),
-			Vector3(x0, 0, y1)
-		])
+		verts.append_array(_quad_to_vertices(quad))
 		
 		uvs.append_array([
 			Vector2(x0, -y0),
@@ -76,3 +68,16 @@ static func make_mesh(quads: Array[Rect2]) -> ArrayMesh:
 	var mesh = ArrayMesh.new()
 	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, surface_array)
 	return mesh
+
+static func _quad_to_vertices(quad: Rect2) -> PackedVector3Array:
+	var x0 = quad.position.x
+	var x1 = quad.end.x
+	var y0 = quad.position.y
+	var y1 = quad.end.y
+	
+	return [
+		Vector3(x0, 0, y0),
+		Vector3(x1, 0, y0),
+		Vector3(x1, 0, y1),
+		Vector3(x0, 0, y1)
+	]
