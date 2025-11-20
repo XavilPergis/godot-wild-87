@@ -21,9 +21,29 @@ func _init(p_bounds: Rect2i, p_parent: BSPNodeI = null):
 
 func is_leaf() -> bool:
 	return not _left_child and not _right_child
+	
+func is_descendant_of(who: BSPNodeI) -> bool:
+	if not parent:
+		return false
+	else:
+		var parent_ref = parent.get_ref()
+		if not parent_ref:
+			return false
+		elif parent_ref == who:
+			return true
+		else:
+			return parent.get_ref().is_descendant_of(who)
 
 func get_children() -> Array[BSPNodeI]:
 	return [_left_child, _right_child]
+	
+func collect() -> Array[BSPNodeI]:
+	if is_leaf():
+		return [self]
+	else:
+		var collection = _left_child.collect()
+		collection.append(_right_child.collect())
+		return collection
 	
 func partition(direction: PartitionDirection, dimension: int, relative: bool = true) -> Array[BSPNodeI]:
 	assert(not _left_child and not _right_child, "Cannot partition: already has children!!")
