@@ -64,12 +64,15 @@ func count_leafs() -> int:
 		return _left_child.count_descendants() +\
 			_right_child.count_descendants()
 
-func partition(direction: PartitionDirection, dimension: int, relative: bool = true) -> Array[BSPNodeI]:
+func partition(direction: PartitionDirection, dimension: int, relative: bool = true, self_if_fail: bool = false) -> Array[BSPNodeI]:
 	assert(not _left_child and not _right_child, "Cannot partition: already has children!!")
 	
 	var children_bounds = _partition_recti(bounds, direction, dimension, relative)
 	if children_bounds.size() < 2:
-		return []
+		if self_if_fail:
+			return [self]
+		else:
+			return []
 	else:
 		partition_direction = direction
 		_left_child = BSPNodeI.new(children_bounds[0], self)
