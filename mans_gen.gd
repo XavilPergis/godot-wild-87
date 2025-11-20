@@ -1,7 +1,8 @@
 @tool
 extends Node3D
 
-@onready var grid_map: GridMap = $GridMap
+var grid_map: GridMap = null
+@export var mesh_library: MeshLibrary
 
 const START_ROOM_SIZE : Vector2i = Vector2i(3, 3)
 const HALLWAY_COUNT : int = 3
@@ -33,11 +34,10 @@ var repeatable_rooms : Array[Vector2i] =\
 	Vector2i(1, 1) 	# Small junction
 ]
 
-@export var start : bool = false : set = set_start
-func set_start(val_bool)->void:
-	if Engine.is_editor_hint():
-		await get_tree().process_frame
-		generate_mansion()
+@export_tool_button("Generate Mansion", "Callable") var generate_action = editor_generate
+func editor_generate():
+	await get_tree().process_frame
+	generate_mansion()
 
 @export var border_size : Vector2i = Vector2i(10, 12) : set = set_border_size
 func set_border_size(val : Vector2i) -> void:
@@ -48,6 +48,16 @@ func set_border_size(val : Vector2i) -> void:
 func _ready() -> void:
 	generate_mansion()
 
+func make_gridmap():
+	grid_map = GridMap.new()
+	grid_map.mesh_library = mesh_library
+	grid_map.cell_octant_size = 8
+	grid_map.cell_center_x = true
+	grid_map.cell_center_y = true
+	grid_map.cell_center_z = true
+	grid_map.cell_size = Vector3(1, 1, 1)
+	add_child(grid_map)
+
 class _GenerationState:
 	var start_room_leaf: BSPNodeI
 	var hallways_node: BSPNodeI
@@ -55,6 +65,9 @@ class _GenerationState:
 var _generation_state: _GenerationState = null
 
 func generate_mansion():
+	if not grid_map:
+		make_gridmap()
+		
 	_generation_state = _GenerationState.new()
 	
 	print(unique_rooms.size())
