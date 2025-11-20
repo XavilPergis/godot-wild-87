@@ -82,46 +82,46 @@ func place_start_room():
 	if direction == 0:
 		partition_room = partitions.pop_front()
 		var partition_location = (randi_range(3, int(partition_room.size.x) - 4 - START_ROOM_SIZE.x))
-		partitions.append_array(partition_rect(partition_room, Vector2i(0, START_ROOM_SIZE.y)))
+		partitions.append_array(partition_rect_y(partition_room, START_ROOM_SIZE.y))
 		partition_room = partitions.pop_front()
-		partitions.append_array(partition_rect(partition_room, Vector2i(partition_location, 0)))
+		partitions.append_array(partition_rect_x(partition_room, partition_location))
 		partition_room = partitions.pop_back()
-		partitions.append_array(partition_rect(partition_room, Vector2i(START_ROOM_SIZE.x, 0)))
+		partitions.append_array(partition_rect_x(partition_room, START_ROOM_SIZE.x))
 		partition_room = partitions.pop_at(partitions.size() - 2)
 		place_room(partition_room)
 		
 	elif direction == 1:
 		partition_room = partitions.pop_front()
 		var partition_location = (randi_range(3, int(partition_room.size.y) - 4 - START_ROOM_SIZE.y))
-		partitions.append_array(partition_rect(partition_room, \
-		Vector2i(border_size.x - START_ROOM_SIZE.x, 0)))
+		partitions.append_array(partition_rect_x(partition_room, \
+		border_size.x - START_ROOM_SIZE.x))
 		partition_room = partitions.pop_back()
-		partitions.append_array(partition_rect(partition_room, Vector2i(0, partition_location)))
+		partitions.append_array(partition_rect_y(partition_room, partition_location))
 		partition_room = partitions.pop_back()
-		partitions.append_array(partition_rect(partition_room, Vector2i(0, START_ROOM_SIZE.y)))
+		partitions.append_array(partition_rect_y(partition_room, START_ROOM_SIZE.y))
 		partition_room = partitions.pop_at(partitions.size() - 2)
 		place_room(partition_room)
 		
 	elif direction == 2:
 		partition_room = partitions.pop_front()
 		var partition_location = (randi_range(3, int(partition_room.size.x) - 4 - START_ROOM_SIZE.x))
-		partitions.append_array(partition_rect(partition_room, \
-		Vector2i(0, border_size.y - START_ROOM_SIZE.y)))
+		partitions.append_array(partition_rect_y(partition_room, \
+		border_size.y - START_ROOM_SIZE.y))
 		partition_room = partitions.back()
-		partitions.append_array(partition_rect(partition_room, Vector2i(partition_location, 0)))
+		partitions.append_array(partition_rect_x(partition_room, partition_location))
 		partition_room = partitions.pop_back()
-		partitions.append_array(partition_rect(partition_room, Vector2i(START_ROOM_SIZE.x, 0)))
+		partitions.append_array(partition_rect_x(partition_room, START_ROOM_SIZE.x))
 		partition_room = partitions.pop_at(partitions.size() - 2)
 		place_room(partition_room)
 	else:
 		partition_room = partitions.pop_front()
 		var partition_location = (randi_range(3, int(partition_room.size.y) - 4 - START_ROOM_SIZE.y))
-		partitions.append_array(partition_rect(partition_room, \
-		Vector2i(START_ROOM_SIZE.x, 0)))
+		partitions.append_array(partition_rect_x(partition_room, \
+		START_ROOM_SIZE.x))
 		partition_room = partitions.pop_front()
-		partitions.append_array(partition_rect(partition_room, Vector2i(0, partition_location)))
+		partitions.append_array(partition_rect_y(partition_room, partition_location))
 		partition_room = partitions.pop_back()
-		partitions.append_array(partition_rect(partition_room, Vector2i(0, START_ROOM_SIZE.y)))
+		partitions.append_array(partition_rect_y(partition_room, START_ROOM_SIZE.y))
 		partition_room = partitions.pop_at(partitions.size() - 2)
 		place_room(partition_room)
 	
@@ -134,13 +134,11 @@ func generate_hallways(hallway_room : Rect2i, recurse: int):
 	var hall_to_be_placed : Rect2i
 	
 	hallway_partitions.append(hallway_room)
-	if recurse > 0 and (hallway_room.size.x * hallway_room.size.y) >= 20\
+	if recurse > 0 and hallway_room.get_area() >= 20\
 	and hallway_room.size.x >3 and hallway_room.size.y > 3:	
-		var is_vert = false
-		if hallway_room.size.x > hallway_room.size.y:
-			is_vert = true
 		
-		if is_vert:
+		if hallway_room.size.x > hallway_room.size.y:
+			# vertical hallway
 			
 			if recurse < HALLWAY_COUNT:
 				cutloc = (randi() % int(hallway_room.size.x -2)) + 1
@@ -148,19 +146,21 @@ func generate_hallways(hallway_room : Rect2i, recurse: int):
 				cutloc = randi() % int(hallway_room.size.x)
 				
 			hallway_partitions.append_array(\
-			partition_rect(hallway_partitions.pop_front(), Vector2i(cutloc, 0)))
+			partition_rect_x(hallway_partitions.pop_front(), cutloc))
 			hallway_partitions.append_array(\
-			partition_rect(hallway_partitions.pop_back(), Vector2i(1, 0)))
+			partition_rect_x(hallway_partitions.pop_back(), 1))
 		else:
+			# horizontal hallway
+			
 			if recurse < HALLWAY_COUNT:
 				cutloc = (randi() % int(hallway_room.size.y -2)) + 1
 			else:
 				cutloc = randi() % int(hallway_room.size.y)
 				
 			hallway_partitions.append_array(\
-			partition_rect(hallway_partitions.pop_front(), Vector2i(0, cutloc)))
+			partition_rect_y(hallway_partitions.pop_front(), cutloc))
 			hallway_partitions.append_array(\
-			partition_rect(hallway_partitions.pop_back(), Vector2i(0, 1)))
+			partition_rect_y(hallway_partitions.pop_back(), 1))
 			
 		# place hallway into correct area
 		if hallway_partitions.size() == 2 and cutloc != 0:
@@ -170,13 +170,14 @@ func generate_hallways(hallway_room : Rect2i, recurse: int):
 		place_hallway(hall_to_be_placed)
 		
 		#find largest room
-		var bsi : int = 0
-		var bhs : int = 0
+		var largest_index : int = 0
+		var largest_area : int = 0
 		for i in hallway_partitions.size():
-			if hallway_partitions[i].size.x * hallway_partitions[i].size.y > bhs:
-				bhs = hallway_partitions[i].size.x * hallway_partitions[i].size.y
-				bsi = i	
-		generate_hallways(hallway_partitions.pop_at(bsi), recurse-1)
+			var area = hallway_partitions[i].get_area()
+			if area > largest_area:
+				largest_area = area
+				largest_index = i	
+		generate_hallways(hallway_partitions.pop_at(largest_index), recurse-1)
 	partitions.append_array(hallway_partitions)
 	pass
 	
@@ -212,7 +213,7 @@ func find_suitable_placement_area(room_size: Vector2i) -> int:
 	var rank : int = 0 # 0 = no possible room, 1 = bigger room, 2 = fits smaller dimension, 3 = fits larger dimension
 	for i in partitions.size():
 		var p : Rect2i = partitions[index_array[i]]
-		if p.size.x == room_size.x and p.size.y == room_size.y:
+		if p.size == room_size:
 			return index_array[i]
 		if p.size.x == room_size.x and p.size.y > room_size.y:
 			if room_size.x > room_size.y and rank < 3:
@@ -245,11 +246,11 @@ func find_suitable_placement_area(room_size: Vector2i) -> int:
 		var r = randi() % 2
 		if r:
 			tmp_partitions.append_array(\
-			partition_rect(partition, Vector2i(room_size.x, 0)))
+			partition_rect_x(partition, room_size.x))
 			partition = tmp_partitions.pop_front()
 		else:
 			tmp_partitions.append_array(\
-			partition_rect(partition, Vector2i(partition.size.x - room_size.x, 0)))
+			partition_rect_x(partition, partition.size.x - room_size.x))
 			partition = tmp_partitions.pop_back()
 		partitions.append_array(tmp_partitions)
 		tmp_partitions.clear()
@@ -258,11 +259,11 @@ func find_suitable_placement_area(room_size: Vector2i) -> int:
 		var r = randi() % 2
 		if r:
 			tmp_partitions.append_array(\
-			partition_rect(partition, Vector2i(0, room_size.y)))
+			partition_rect_y(partition, room_size.y))
 			partition = tmp_partitions.pop_front()
 		else:
 			tmp_partitions.append_array(\
-			partition_rect(partition, Vector2i(0, partition.size.y - room_size.y)))
+			partition_rect_y(partition, partition.size.y - room_size.y))
 			partition = tmp_partitions.pop_back()
 		partitions.append_array(tmp_partitions)
 		partitions.append(partition)
@@ -271,11 +272,11 @@ func find_suitable_placement_area(room_size: Vector2i) -> int:
 		var r = randi() % 2
 		if r:
 			tmp_partitions.append_array(\
-			partition_rect(partition, Vector2i(room_size.x, 0)))
+			partition_rect_x(partition, room_size.x))
 			partition = tmp_partitions.pop_front()
 		else:
 			tmp_partitions.append_array(\
-			partition_rect(partition, Vector2i(partition.size.x - room_size.x, 0)))
+			partition_rect_x(partition, partition.size.x - room_size.x))
 			partition = tmp_partitions.pop_back()
 		partitions.append_array(tmp_partitions)
 		partitions.append(partition)
@@ -296,28 +297,30 @@ func fill_grid(pos: Vector3i, size: Vector2i, fill: int):
 			grid_map.set_cell_item(fillpos, fill)
 	pass
 
+func partition_rect_x(rect: Rect2i, cut_x: int) -> Array[Rect2i]:
+	if cut_x > 0 and cut_x < rect.size.x:
+		return [
+			Rect2i(rect.position, Vector2i(cut_x, rect.size.y)),
+			Rect2i(Vector2i(rect.position.x + cut_x, rect.position.y),
+				Vector2i(rect.size.x - cut_x, rect.size.y))
+		]
+	else:
+		return [rect]
+
+func partition_rect_y(rect: Rect2i, cut_y: int) -> Array[Rect2i]:
+	if cut_y > 0 and cut_y < rect.size.y:
+		return [
+			Rect2i(rect.position, Vector2i(rect.size.x, cut_y)),
+			Rect2i(Vector2i(rect.position.x, rect.position.y + cut_y),
+				Vector2i(rect.size.x, rect.size.y - cut_y))
+		]
+	else:
+		return [rect]
+
 # cutLoc is location to split
 func partition_rect(rect: Rect2i, cutLoc: Vector2i) -> Array[Rect2i]:
-	var new_rects : Array[Rect2i]
-	if cutLoc.x > 0 and cutLoc.x < rect.size.x:
-		new_rects.append(Rect2i(\
-		rect.position, Vector2i(cutLoc.x, rect.size.y)))
-		
-		new_rects.append(Rect2i(\
-		rect.position.x + cutLoc.x, rect.position.y, \
-		rect.size.x - cutLoc.x, rect.size.y))
-		if cutLoc.y > 0 and cutLoc.y < rect.size.y:
-			var tmpRect : Rect2i = new_rects.pop_front()
-			new_rects.append_array(partition_rect(tmpRect, Vector2i(0, cutLoc.y)))
-			tmpRect = new_rects.pop_front()
-			new_rects.append_array(partition_rect(tmpRect, Vector2i(0, cutLoc.y)))
-	elif cutLoc.y > 0 and cutLoc.y < rect.size.y:
-		new_rects.append(Rect2i(\
-		rect.position, Vector2i(rect.size.x, cutLoc.y)))
-		
-		new_rects.append(Rect2i(\
-		rect.position.x, rect.position.y + cutLoc.y, \
-		rect.size.x, rect.size.y - cutLoc.y))
-	else:
-		new_rects.append(rect)
+	var new_rects_x : Array[Rect2i] = partition_rect_x(rect, cutLoc.x)
+	var new_rects: Array[Rect2i]
+	for rect_x in new_rects_x:
+		new_rects.append_array(partition_rect_y(rect_x, cutLoc.y))
 	return new_rects
