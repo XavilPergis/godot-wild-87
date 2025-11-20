@@ -173,34 +173,26 @@ func generate_hallways(hallway_room : BSPNodeI, recurse: int):
 	if recurse > 0 and hallway_room.bounds.get_area() >= 20\
 	and hallway_room.size.x >3 and hallway_room.size.y > 3:	
 		
+		var slice_size: int
+		var slice_direction: BSPNodeI.PartitionDirection
 		if hallway_room.size.x > hallway_room.size.y:
-			# vertical hallway
-			
-			if recurse < HALLWAY_COUNT:
-				cutloc = (randi() % int(hallway_room.size.x -2)) + 1
-			else:
-				cutloc = randi() % int(hallway_room.size.x)
-				
-			hallway_partitions.append_array(\
-			hallway_partitions.pop_front().partition(BSPNodeI.PartitionDirection.VERTICAL, cutloc))
-			#partition_rect_x(hallway_partitions.pop_front(), cutloc))
-			hallway_partitions.append_array(\
-			hallway_partitions.pop_back().partition(BSPNodeI.PartitionDirection.VERTICAL, 1))
-			#partition_rect_x(hallway_partitions.pop_back(), 1))
+			slice_size = hallway_room.size.x
+			slice_direction = BSPNodeI.PartitionDirection.VERTICAL
 		else:
-			# horizontal hallway
+			slice_size = hallway_room.size.y
+			slice_direction = BSPNodeI.PartitionDirection.HORIZONTAL
+		
+		# vertical hallway
+		if recurse < HALLWAY_COUNT:
+			cutloc = (randi() % int(slice_size -2)) + 1
+		else:
+			cutloc = randi() % int(slice_size)
 			
-			if recurse < HALLWAY_COUNT:
-				cutloc = (randi() % int(hallway_room.size.y -2)) + 1
-			else:
-				cutloc = randi() % int(hallway_room.size.y)
-				
-			hallway_partitions.append_array(\
-			hallway_partitions.pop_front().partition(BSPNodeI.PartitionDirection.HORIZONTAL, cutloc))
-			#partition_rect_y(hallway_partitions.pop_front(), cutloc))
-			hallway_partitions.append_array(\
-			hallway_partitions.pop_back().partition(BSPNodeI.PartitionDirection.HORIZONTAL, 1))
-			#partition_rect_y(hallway_partitions.pop_back(), 1))
+		hallway_partitions.append_array(\
+		hallway_partitions.pop_front().partition(slice_direction, cutloc, true, true))
+		hallway_partitions.append_array(\
+		hallway_partitions.pop_back().partition(slice_direction, 1, true, true))
+		#partition_rect_x(hallway_partitions.pop_back(), 1))
 			
 		# place hallway into correct area
 		if hallway_partitions.size() == 2 and cutloc != 0:
