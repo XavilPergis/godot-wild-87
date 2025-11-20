@@ -5,11 +5,6 @@ static func make_shape(quads: Array[Rect2]) -> ConcavePolygonShape3D:
 	var triangles = PackedVector3Array()
 	
 	for quad in quads:
-		var x0 = quad.position.x
-		var x1 = quad.end.x
-		var y0 = quad.position.y
-		var y1 = quad.end.y
-		
 		var verts = _quad_to_vertices(quad)
 		
 		triangles.append_array([
