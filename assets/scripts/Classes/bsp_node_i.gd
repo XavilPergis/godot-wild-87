@@ -1,6 +1,18 @@
 extends RefCounted
 class_name BSPNodeI
 
+var size: Vector2i:
+	set(_p_size):
+		bounds.size = _p_size
+	get():
+		return bounds.size
+
+var position: Vector2i:
+	set(_p_pos):
+		bounds.position = _p_pos
+	get():
+		return bounds.position
+
 var bounds: Rect2i
 var parent: WeakRef = null
 var data = null
@@ -44,7 +56,14 @@ func collect() -> Array[BSPNodeI]:
 		var collection = _left_child.collect()
 		collection.append(_right_child.collect())
 		return collection
-	
+
+func count_descendants() -> int:
+	if not _left_child:
+		return 0
+	else:
+		return _left_child.count_descendants() +\
+			_right_child.count_descendants() + 2
+
 func partition(direction: PartitionDirection, dimension: int, relative: bool = true) -> Array[BSPNodeI]:
 	assert(not _left_child and not _right_child, "Cannot partition: already has children!!")
 	
