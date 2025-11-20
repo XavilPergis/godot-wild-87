@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://eyteoc56cwfa"]
+
+[ext_resource type="Script" uid="uid://c55cex4bgksae" path="res://assets/scripts/dungeon_room.gd" id="1_vf643"]
+[ext_resource type="Script" uid="uid://d3hd67kjhjaa" path="res://assets/scripts/connection.gd" id="2_i34i4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vf643"]
+size = Vector3(4, 0.2, 4)
+
+[node name="DungeonRoom" type="Node3D"]
+script = ExtResource("1_vf643")
+size = Vector2(4, 4)
+metadata/_custom_type_script = "uid://c55cex4bgksae"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+mesh = SubResource("BoxMesh_vf643")
+
+[node name="East1" type="Node" parent="."]
+script = ExtResource("2_i34i4")
+position = Vector2i(3, 1)
+direction = 1
+metadata/_custom_type_script = "uid://d3hd67kjhjaa"
+
+[node name="East2" type="Node" parent="."]
+script = ExtResource("2_i34i4")
+position = Vector2i(3, 2)
+direction = 1
+metadata/_custom_type_script = "uid://d3hd67kjhjaa"
+
+[node name="North1" type="Node" parent="."]
+script = ExtResource("2_i34i4")
+position = Vector2i(1, 0)
+metadata/_custom_type_script = "uid://d3hd67kjhjaa"
+
+[node name="North2" type="Node" parent="."]
+script = ExtResource("2_i34i4")
+position = Vector2i(1, 2)
+metadata/_custom_type_script = "uid://d3hd67kjhjaa"
+
+[node name="West1" type="Node" parent="."]
+script = ExtResource("2_i34i4")
+position = Vector2i(0, 2)
+direction = 3
+metadata/_custom_type_script = "uid://d3hd67kjhjaa"
+
+[node name="West2" type="Node" parent="."]
+script = ExtResource("2_i34i4")
+position = Vector2i(0, 1)
+direction = 3
+metadata/_custom_type_script = "uid://d3hd67kjhjaa"

@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://7ufk06n8hkjf"]
+
+[ext_resource type="Script" uid="uid://c55cex4bgksae" path="res://assets/scripts/dungeon_room.gd" id="1_edl51"]
+[ext_resource type="Script" uid="uid://d3hd67kjhjaa" path="res://assets/scripts/connection.gd" id="2_58v6o"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_58v6o"]
+size = Vector3(1, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6mfiv"]
+albedo_color = Color(1, 0.5294118, 1, 1)
+
+[node name="DungeonRoom" type="Node3D"]
+script = ExtResource("1_edl51")
+size = Vector2(1, 1)
+metadata/_custom_type_script = "uid://c55cex4bgksae"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+mesh = SubResource("BoxMesh_58v6o")
+surface_material_override/0 = SubResource("StandardMaterial3D_6mfiv")
+
+[node name="North" type="Node" parent="."]
+script = ExtResource("2_58v6o")
+metadata/_custom_type_script = "uid://d3hd67kjhjaa"
+
+[node name="East" type="Node" parent="."]
+script = ExtResource("2_58v6o")
+direction = 1
+metadata/_custom_type_script = "uid://d3hd67kjhjaa"
+
+[node name="South" type="Node" parent="."]
+script = ExtResource("2_58v6o")
+direction = 2
+metadata/_custom_type_script = "uid://d3hd67kjhjaa"
+
+[node name="West" type="Node" parent="."]
+script = ExtResource("2_58v6o")
+direction = 3
+metadata/_custom_type_script = "uid://d3hd67kjhjaa"
