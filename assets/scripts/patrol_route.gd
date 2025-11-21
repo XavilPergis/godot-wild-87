@@ -47,7 +47,7 @@ func target_nearest_point():
 	patrol_index = nearest_point_index
 	navigation_agent.set_target_position(points[patrol_index].global_position)
 	set_target.emit(points[patrol_index])
-	print("targeting #", patrol_index, " at ", points[patrol_index].global_position)
+	#print("targeting #", patrol_index, " at ", points[patrol_index].global_position)
 	pass
 
 # Move onto the next point in the list
@@ -60,7 +60,7 @@ func target_next_point():
 			patrol_index = 0
 		navigation_agent.set_target_position(points[patrol_index].global_position)
 		set_target.emit(points[patrol_index])
-		print("targeting #", patrol_index, " at ", points[patrol_index].global_position)
+		#print("targeting #", patrol_index, " at ", points[patrol_index].global_position)
 	pass
 	
 # Suspends the patrol route

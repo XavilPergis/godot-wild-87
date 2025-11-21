@@ -77,7 +77,7 @@ func _physics_process(delta: float) -> void:
 
 	var input_dir = Input.get_vector("move_west", "move_east", "move_north", "move_south")
 	var movement = Vector3(input_dir.x, 0, input_dir.y)
-	movement = movement.rotated(Vector3.UP, GameState.camera_angle)
+	movement = movement.rotated(Vector3.UP, GameState.instance.camera_angle)
 	if not movement.is_zero_approx():
 		if not is_crawling:
 			look_at(global_position + movement)
@@ -98,10 +98,26 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	_tick_wall_lookaround()
 
+	# im not worrying about overlapping interactables rn. this code just
+	# interacts will all interaction areas the player is touching
+	# concurrently, which is probably not what we want.
+	for intr in $InteractionArea.get_overlapping_areas():
+		if intr is Interactable:
+			intr.interacting = Input.is_action_pressed("interact")
+
+func _ready() -> void:
+	GameState.instance.game_lost.connect(_on_game_lost)
+	GameState.instance.game_won.connect(_on_game_won)
+
 func _on_health_component_took_damage(damage_amount: int) -> void:
 	print(damage_amount, " damage!! ow!!")
 
-
 func _on_health_component_died() -> void:
 	print("died! bleh!")
+	GameState.instance.game_lost.emit()
+
+func _on_game_won() -> void:
+	remove_child($HealthComponent)
+
+func _on_game_lost() -> void:
 	queue_free()

@@ -47,7 +47,7 @@ func _ready() -> void:
 		push_warning("patrol agent '", name, "' does not have a child PatrolRoute")
 
 func set_state(new_state: State) -> void:
-	print("new state: ", State.keys()[new_state])
+	#print("new state: ", State.keys()[new_state])
 	state = new_state
 	match new_state:
 		State.SCAN:
