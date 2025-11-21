@@ -183,7 +183,3 @@ func get_touching_leafs(region: Rect2i) -> Array[BSPNodeI]:
 	collect_in_region(Rect2i(Vector2i(region.position.x, region.position.y + region.size.y),\
 	Vector2i(region.size.x, 1))))
 	return touching_leafs
-	
-func collect_in_region(region: Rect2i) -> Array[BSPNodeI]:
-	var touching_leafs : Array[BSPNodeI]
-	return touching_leafs
