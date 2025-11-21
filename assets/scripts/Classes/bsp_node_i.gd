@@ -53,8 +53,18 @@ func collect() -> Array[BSPNodeI]:
 	if is_leaf():
 		return [self]
 	else:
-		var collection = _left_child.collect()
-		collection.append(_right_child.collect())
+		var collection: Array[BSPNodeI] = _left_child.collect()
+		collection.append_array(_right_child.collect())
+		return collection
+
+func collect_in_region(region: Rect2i) -> Array[BSPNodeI]:
+	if not region.intersects(self.bounds):
+		return []
+	elif is_leaf():
+		return [self]
+	else:
+		var collection: Array[BSPNodeI] = _left_child.collect_in_region(region)
+		collection.append_array(_right_child.collect_in_region(region))
 		return collection
 
 func count_leafs() -> int:
