@@ -110,6 +110,7 @@ static func _partition_recti(rect: Rect2i, direction: PartitionDirection,\
 			assert(false, "Invalid partition direction!!")
 			return []
 
+# evaluates expression on all nodes that intersect with the given region
 func evaluate_in_region(region: Rect2i, expression: Callable, leafs_only = true, accum = null):
 	if not region.intersects(bounds):
 		return null
@@ -131,6 +132,7 @@ func _evaluate_in_region_recurse(region: Rect2i, expression: Callable, leafs_onl
 			accum = _right_child._evaluate_in_region_recurse(region, expression, leafs_only, accum)
 		return accum
 
+# Assumes you pass head of tree
 func evaluate_tree(expression: Callable, leafs_only = true, accum = null):
 	if not _left_child:
 		# leaf
@@ -147,3 +149,31 @@ func remove_children():
 	_right_child.parent = null
 	_left_child = null
 	_right_child = null
+	
+func get_touching_leafs(region: Rect2i) -> Array[BSPNodeI]:
+	var touching_leafs : Array[BSPNodeI]
+	
+	# West Leaves
+	touching_leafs.append_array(\
+	collect_in_region(Rect2i(Vector2i(region.position.x - 1, region.position.y),
+	Vector2i(1, region.size.y))))
+	
+	# North Leaves
+	touching_leafs.append_array(\
+	collect_in_region(Rect2i(Vector2i(region.position.x, region.position.y - 1),\
+	Vector2i(region.size.x, 1))))
+	
+	# East Leaves
+	touching_leafs.append_array(\
+	collect_in_region(Rect2i(Vector2i(region.position.x + region.size.x, region.position.y),\
+	Vector2i(1, region.size.y))))
+	
+	# South Leaves
+	touching_leafs.append_array(\
+	collect_in_region(Rect2i(Vector2i(region.position.x, region.position.y + region.size.y),\
+	Vector2i(region.size.x, 1))))
+	return touching_leafs
+	
+func collect_in_region(region: Rect2i) -> Array[BSPNodeI]:
+	var touching_leafs : Array[BSPNodeI]
+	return touching_leafs
