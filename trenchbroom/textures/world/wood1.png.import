@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqrtfhvsrj12n"
-path.s3tc="res://.godot/imported/wood1_albedo.png-639562ab26cf91fe978497bcc91c40b6.s3tc.ctex"
+uid="uid://b1qc5bbcjaph6"
+path.s3tc="res://.godot/imported/wood1.png-c3600bbe2c1bd7571b3852ee5fc2c76e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/materials/wood1_albedo.png"
-dest_files=["res://.godot/imported/wood1_albedo.png-639562ab26cf91fe978497bcc91c40b6.s3tc.ctex"]
+source_file="res://trenchbroom/textures/world/wood1.png"
+dest_files=["res://.godot/imported/wood1.png-c3600bbe2c1bd7571b3852ee5fc2c76e.s3tc.ctex"]
 
 [params]
 

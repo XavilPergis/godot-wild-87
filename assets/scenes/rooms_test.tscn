@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://lxq7mrgihdin"]
 
 [ext_resource type="Script" uid="uid://bgyd5xp4ckga0" path="res://assets/scripts/room/room_floor.gd" id="1_27x3a"]
-[ext_resource type="Material" uid="uid://b00kop4b1j5r7" path="res://assets/materials/wood1.tres" id="2_q7aek"]
+[ext_resource type="Material" uid="uid://b00kop4b1j5r7" path="res://assets/materials/world/wood1.tres" id="2_q7aek"]
 [ext_resource type="Script" uid="uid://dpxygei5fi650" path="res://assets/scripts/room/room_wall.gd" id="3_ufx16"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ufx16"]

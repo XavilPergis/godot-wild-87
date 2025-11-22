@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://oas4ikx153f1"]
 
-[ext_resource type="Texture2D" uid="uid://du1ksart2vj2l" path="res://assets/textures/prototype_grid.png" id="1_be268"]
+[ext_resource type="Texture2D" uid="uid://du1ksart2vj2l" path="res://assets/textures/world/prototype_grid.png" id="1_be268"]
 [ext_resource type="Script" uid="uid://benprqm3fuefu" path="res://assets/scripts/GameState.gd" id="1_lirhm"]
 [ext_resource type="PackedScene" uid="uid://c6dxdh2j650h2" path="res://assets/scenes/player.tscn" id="2_fj761"]
 [ext_resource type="Script" uid="uid://dyjtvgodvnfei" path="res://assets/scripts/patrol_route.gd" id="2_tbqko"]
