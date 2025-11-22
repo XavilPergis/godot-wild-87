@@ -24,6 +24,10 @@ version_control/autoload_on_startup=true
 
 enabled=PackedStringArray("res://addons/func_godot/plugin.cfg")
 
+[func_godot]
+
+default_map_settings="uid://bso3tmlujp6bq"
+
 [input]
 
 move_west={

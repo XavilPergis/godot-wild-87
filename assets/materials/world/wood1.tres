@@ -1,0 +1,27 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://b00kop4b1j5r7"]
+
+[ext_resource type="Texture2D" uid="uid://dqrtfhvsrj12n" path="res://assets/textures/world/wood1_albedo.png" id="1_vnq8n"]
+[ext_resource type="Texture2D" uid="uid://b73ndgvggsm2r" path="res://assets/textures/world/wood1_orm.png" id="2_35ryj"]
+[ext_resource type="Texture2D" uid="uid://bjm4pg1bp2dsu" path="res://assets/textures/world/wood1_heightmap.png" id="3_v6kce"]
+[ext_resource type="Texture2D" uid="uid://dabp7dhe73upg" path="res://assets/textures/world/wood1_normal.png" id="4_yjc1g"]
+
+[resource]
+albedo_texture = ExtResource("1_vnq8n")
+metallic = 0.08
+roughness = 0.25
+roughness_texture = ExtResource("2_35ryj")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_scale = 0.25
+normal_texture = ExtResource("4_yjc1g")
+ao_enabled = true
+ao_texture = ExtResource("2_35ryj")
+heightmap_enabled = true
+heightmap_scale = 0.75
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+heightmap_texture = ExtResource("3_v6kce")
+uv1_scale = Vector3(4, 4, 4)
+uv1_world_triplanar = true
+texture_filter = 2

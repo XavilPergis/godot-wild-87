@@ -87,6 +87,9 @@ var scale_factor: float = 0.03125
 ## File extension to search for [Material] definitions
 @export var material_file_extension: String = "tres"
 
+## Use custom material definitions instead of generating them
+@export var material_definition_override: bool = false
+
 ## [Material] used as template when generating missing materials.
 @export var default_material: Material = preload("res://addons/func_godot/textures/default_material.tres")
 

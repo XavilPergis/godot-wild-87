@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b73ndgvggsm2r"
-path.s3tc="res://.godot/imported/wood1_orm.png-5fa769158f4266c1f09c014ee9034f8f.s3tc.ctex"
+uid="uid://bjm4pg1bp2dsu"
+path.s3tc="res://.godot/imported/wood1_heightmap.png-9b93f8670dd63678767e1253e89cd824.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/materials/wood1_orm.png"
-dest_files=["res://.godot/imported/wood1_orm.png-5fa769158f4266c1f09c014ee9034f8f.s3tc.ctex"]
+source_file="res://assets/textures/world/wood1_heightmap.png"
+dest_files=["res://.godot/imported/wood1_heightmap.png-9b93f8670dd63678767e1253e89cd824.s3tc.ctex"]
 
 [params]
 
@@ -26,7 +26,7 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=8
+roughness/mode=7
 roughness/src_normal="res://assets/materials/wood1_normal.png"
 process/channel_remap/red=0
 process/channel_remap/green=1

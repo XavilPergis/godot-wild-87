@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=4 uid="uid://lpkmqxstti8h"]
+
+[ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_p53vp"]
+[ext_resource type="Resource" uid="uid://bso3tmlujp6bq" path="res://default_map_settings.tres" id="2_20wt0"]
+[ext_resource type="Material" uid="uid://b00kop4b1j5r7" path="res://assets/materials/world/wood1.tres" id="3_v35xd"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_g8ms3"]
+_surfaces = [{
+"aabb": AABB(-1.000061, 0, -1.000061, 2.000061, 1e-05, 2.000061),
+"attribute_data": PackedByteArray("AAAAPgACAD4AAgC+AAIAPgACAL4AAAC+AAAAPgAAAL4="),
+"format": 34359742487,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAACAAMA"),
+"material": ExtResource("3_v35xd"),
+"name": "world/wood1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAKAvwAAAAAAAIA/AAKAvwAAAAAAAoC/AACAPwAAAAAAAoC/AACAPwAAAAAAAIA//3////9//7//f////3//v/9/////f/+//3////9//78=")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_g7gp8"]
+points = PackedVector3Array(1, 0, 1, 1, -0.5, 1, -1, 0, 1, -1, -0.5, 1, 1, 0, -1, 1, -0.5, -1, -1, 0, -1, -1, -0.5, -1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="FuncGodotMap" type="Node3D" parent="."]
+script = ExtResource("1_p53vp")
+local_map_file = "uid://cf0jgf0g1ggo3"
+map_settings = ExtResource("2_20wt0")
+metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
+
+[node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap"]
+collision_mask = 0
+
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn"]
+mesh = SubResource("ArrayMesh_g8ms3")
+
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_g7gp8")
