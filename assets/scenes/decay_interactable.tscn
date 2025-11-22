@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://s7triaq0in7t"]
+
+[ext_resource type="PackedScene" uid="uid://c28a4dfcqt14h" path="res://assets/scenes/interactable_with_progress.tscn" id="1_0vwdo"]
+[ext_resource type="Script" uid="uid://bmqw3j75u28ul" path="res://assets/scripts/basic_gameplay/decay_interactable.gd" id="2_nj6ei"]
+[ext_resource type="Shader" uid="uid://oev1p0s7krfo" path="res://assets/shaders/interactable_marker.gdshader" id="3_nj6ei"]
+[ext_resource type="Script" uid="uid://c1bgy7x1otluk" path="res://assets/scripts/material_scroller.gd" id="4_r7e36"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0vwdo"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nj6ei"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_nj6ei")
+shader_parameter/color = Color(0.8235294, 0, 0.65882355, 1)
+shader_parameter/height = 2.0
+shader_parameter/emission_strength = 10.0
+shader_parameter/scroll_offset = 0.0
+shader_parameter/frequency = 30.0
+shader_parameter/disabled = false
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ywkg0"]
+material = SubResource("ShaderMaterial_nj6ei")
+top_radius = 1.0
+bottom_radius = 1.0
+cap_top = false
+cap_bottom = false
+
+[node name="DecayInteractable" instance=ExtResource("1_0vwdo")]
+script = ExtResource("2_nj6ei")
+marker_height = 2.0
+interact_amount = 5.0
+
+[node name="InteractionShape" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="ProgressBarSprite" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+texture = SubResource("ViewportTexture_0vwdo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CylinderMesh_ywkg0")
+
+[node name="MaterialScroller" type="Node" parent="." index="4"]
+script = ExtResource("4_r7e36")
+material = SubResource("ShaderMaterial_nj6ei")
+scroll_speed = 4.0

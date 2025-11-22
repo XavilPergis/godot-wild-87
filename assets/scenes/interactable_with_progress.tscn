@@ -15,10 +15,10 @@ collision_mask = 0
 script = ExtResource("1_8ethm")
 metadata/_custom_type_script = "uid://cskocfhmfvnwq"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="InteractionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_4b6o8")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="ProgressBarSprite" type="Sprite3D" parent="."]
 billboard = 1
 no_depth_test = true
 texture = SubResource("ViewportTexture_qfusl")

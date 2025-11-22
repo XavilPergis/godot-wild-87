@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://oas4ikx153f1"]
+[gd_scene load_steps=17 format=3 uid="uid://oas4ikx153f1"]
 
 [ext_resource type="Texture2D" uid="uid://du1ksart2vj2l" path="res://assets/textures/prototype_grid.png" id="1_be268"]
 [ext_resource type="Script" uid="uid://benprqm3fuefu" path="res://assets/scripts/GameState.gd" id="1_lirhm"]
@@ -9,9 +9,8 @@
 [ext_resource type="Script" uid="uid://da0ks6d670vv" path="res://assets/scripts/basic_gameplay/basic_camera.gd" id="5_4b6o8"]
 [ext_resource type="PackedScene" uid="uid://cohuq3mecb8qx" path="res://assets/scenes/patrol_agent.tscn" id="7_fj761"]
 [ext_resource type="Script" uid="uid://cm3jwmlpkg0oo" path="res://assets/scripts/camera_anchor.gd" id="8_fj761"]
-[ext_resource type="Script" uid="uid://bmqw3j75u28ul" path="res://assets/scripts/basic_gameplay/decay_interactable.gd" id="9_d428f"]
-[ext_resource type="PackedScene" uid="uid://c28a4dfcqt14h" path="res://assets/scenes/interactable_with_progress.tscn" id="10_lirhm"]
-[ext_resource type="Script" uid="uid://c4v6rkdqqdk7c" path="res://assets/scripts/basic_gameplay/exit_interactable.gd" id="11_5wt7k"]
+[ext_resource type="PackedScene" uid="uid://s7triaq0in7t" path="res://assets/scenes/decay_interactable.tscn" id="9_5wt7k"]
+[ext_resource type="PackedScene" uid="uid://dekl4utr4d53r" path="res://assets/scenes/exit_interactable.tscn" id="10_lirhm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fj761"]
 energy_multiplier = 4.0
@@ -196,6 +195,17 @@ script = ExtResource("8_fj761")
 height = 4.0
 horizontal_offset = 6.0
 
+[node name="DecayInteractable" parent="." instance=ExtResource("9_5wt7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.651227, 0, 6.981943)
+marker_height = 0.5
+
+[node name="DecayInteractable2" parent="." instance=ExtResource("9_5wt7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.696097, 0, 1.5641003)
+marker_height = 0.5
+
+[node name="ExitInteractable" parent="." instance=ExtResource("10_lirhm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.693298, 0, -20.82436)
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008850098, -3.8146973e-06, 0.091667175)
 navigation_mesh = SubResource("NavigationMesh_qtayb")
@@ -324,20 +334,3 @@ size = Vector3(3, 5, 3)
 [node name="CSGBox3D12" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.5, 11.5)
 size = Vector3(3, 5, 3)
-
-[node name="Area3D" parent="." instance=ExtResource("10_lirhm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.696089, 1, 3.250997)
-script = ExtResource("9_d428f")
-interact_amount = 10.0
-interact_decay_rate = 0.1
-
-[node name="Area3D2" parent="." instance=ExtResource("10_lirhm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.696089, 1, 11.134945)
-script = ExtResource("9_d428f")
-interact_amount = 10.0
-interact_decay_rate = 0.1
-
-[node name="Area3D3" parent="." instance=ExtResource("10_lirhm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.696089, 1, 22.47889)
-script = ExtResource("11_5wt7k")
-interact_amount = 3.0

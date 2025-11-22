@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://dekl4utr4d53r"]
+
+[ext_resource type="PackedScene" uid="uid://c28a4dfcqt14h" path="res://assets/scenes/interactable_with_progress.tscn" id="1_ydet3"]
+[ext_resource type="Script" uid="uid://c4v6rkdqqdk7c" path="res://assets/scripts/basic_gameplay/exit_interactable.gd" id="2_kpshx"]
+[ext_resource type="Shader" uid="uid://oev1p0s7krfo" path="res://assets/shaders/interactable_marker.gdshader" id="3_kpshx"]
+[ext_resource type="Script" uid="uid://c1bgy7x1otluk" path="res://assets/scripts/material_scroller.gd" id="4_0foxp"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0foxp"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kpshx"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_kpshx")
+shader_parameter/color = Color(0.12588671, 0.5825577, 0, 1)
+shader_parameter/height = 2.0
+shader_parameter/emission_strength = 10.0
+shader_parameter/scroll_offset = 0.0
+shader_parameter/frequency = 30.0
+shader_parameter/disabled = false
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0foxp"]
+material = SubResource("ShaderMaterial_kpshx")
+top_radius = 1.0
+bottom_radius = 1.0
+cap_top = false
+cap_bottom = false
+
+[node name="ExitInteractable" instance=ExtResource("1_ydet3")]
+script = ExtResource("2_kpshx")
+marker_height = 0.5
+
+[node name="InteractionShape" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="ProgressBarSprite" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+texture = SubResource("ViewportTexture_0foxp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CylinderMesh_0foxp")
+
+[node name="MaterialScroller" type="Node" parent="." index="4"]
+script = ExtResource("4_0foxp")
+material = SubResource("ShaderMaterial_kpshx")
+scroll_speed = 4.0
