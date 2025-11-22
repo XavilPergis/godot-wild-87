@@ -14,7 +14,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if not _is_main_instance: return
-	_scroll_offset += scroll_speed * delta
-	if _scroll_offset > material.get_shader_parameter("frequency"):
-		_scroll_offset = 0.0
+	var freq = material.get_shader_parameter("frequency")
+	_scroll_offset = fmod(_scroll_offset + scroll_speed * delta, freq)
 	material.set_shader_parameter("scroll_offset", _scroll_offset)

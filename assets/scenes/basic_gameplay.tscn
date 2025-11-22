@@ -43,6 +43,7 @@ environment = SubResource("Environment_4b6o8")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.8167624, 0.4436727, -0.3688546, 0, 0.6392914, 0.7689645, 0.57697415, -0.62806135, 0.5221492, 0, 13, 0)
+visible = false
 shadow_enabled = true
 
 [node name="Patrols" type="Node3D" parent="."]
@@ -199,12 +200,19 @@ horizontal_offset = 6.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.651227, 0, 6.981943)
 marker_height = 0.5
 
+[node name="DecayInteractable3" parent="." instance=ExtResource("9_5wt7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.50064, 0, 20.6056)
+marker_height = 0.5
+
 [node name="DecayInteractable2" parent="." instance=ExtResource("9_5wt7k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.696097, 0, 1.5641003)
 marker_height = 0.5
 
 [node name="ExitInteractable" parent="." instance=ExtResource("10_lirhm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.693298, 0, -20.82436)
+
+[node name="ExitInteractable2" parent="." instance=ExtResource("10_lirhm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.538574, 0, 23.378864)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008850098, -3.8146973e-06, 0.091667175)

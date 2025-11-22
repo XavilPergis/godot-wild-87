@@ -9,15 +9,16 @@
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kpshx"]
-resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_kpshx")
-shader_parameter/color = Color(0.12588671, 0.5825577, 0, 1)
+shader_parameter/color = Color(0.19283336, 0.89, 0, 1)
 shader_parameter/height = 2.0
-shader_parameter/emission_strength = 10.0
 shader_parameter/scroll_offset = 0.0
-shader_parameter/frequency = 30.0
 shader_parameter/disabled = false
+shader_parameter/emission_strength = 10.0
+shader_parameter/frequency = 30.0
+shader_parameter/band_power = 1.0
+shader_parameter/alpha_power = 2.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_0foxp"]
 material = SubResource("ShaderMaterial_kpshx")
