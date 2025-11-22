@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://lxq7mrgihdin"]
+
+[ext_resource type="Script" uid="uid://bgyd5xp4ckga0" path="res://assets/scripts/room/room_floor.gd" id="1_27x3a"]
+[ext_resource type="Material" uid="uid://b00kop4b1j5r7" path="res://assets/materials/wood1.tres" id="2_q7aek"]
+[ext_resource type="Script" uid="uid://dpxygei5fi650" path="res://assets/scripts/room/room_wall.gd" id="3_ufx16"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ufx16"]
+size = Vector3(7, 3, 5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_13sbf"]
+size = Vector2(7, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nd1jd"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0dwa5"]
+size = Vector2(5, 3)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Room1" type="Node3D" parent="."]
+
+[node name="Area" type="Area3D" parent="Room1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_ufx16")
+
+[node name="Wall_North" type="MeshInstance3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.5, -2.5)
+mesh = SubResource("PlaneMesh_13sbf")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_nd1jd")
+
+[node name="Wall_West" type="MeshInstance3D" parent="Room1"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -3.5, 1.5, 0)
+mesh = SubResource("PlaneMesh_0dwa5")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_nd1jd")
+
+[node name="Wall_East" type="MeshInstance3D" parent="Room1"]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 3.5, 1.5, 0)
+mesh = SubResource("PlaneMesh_0dwa5")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_nd1jd")
+
+[node name="Wall_South" type="MeshInstance3D" parent="Room1"]
+transform = Transform3D(-1, 8.742278e-08, -3.821371e-15, 0, -4.371139e-08, -1, -8.742278e-08, -1, 4.371139e-08, 0, 1.5, 2.5)
+mesh = SubResource("PlaneMesh_13sbf")
+skeleton = NodePath("../..")
+
+[node name="Floor" type="Node3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -2.5)
+script = ExtResource("1_27x3a")
+width = 7.0
+length = 5.0
+material = ExtResource("2_q7aek")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 3.8787398, 1.4221251, 4.1282134)
+
+[node name="RoomWall" type="Node3D" parent="."]
+script = ExtResource("3_ufx16")
+width = 2.0
+height = 3.0
+direction = 1
+metadata/_custom_type_script = "uid://dpxygei5fi650"
