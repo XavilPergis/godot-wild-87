@@ -85,7 +85,7 @@ func _physics_process(delta: float) -> void:
 
 	var input_dir = Input.get_vector("move_west", "move_east", "move_north", "move_south")
 	var movement = Vector3(input_dir.x, 0, input_dir.y)
-	movement = movement.rotated(Vector3.UP, GameState.instance.camera_angle)
+	movement = movement.rotated(Vector3.UP, GameState.instance.coyote_angle)
 	if not movement.is_zero_approx():
 		look_at(global_position + movement)
 		if is_crawling:
