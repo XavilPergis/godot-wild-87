@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 @export var camera: MovableCamera
 @export var camera_anchor: Node3D
@@ -11,6 +11,7 @@ extends CharacterBody3D
 var is_crawling: bool = false
 var is_looking_behind_wall: bool = false
 var use_camera_angle: bool = false
+var is_invisible_to_agents: bool = false
 
 @onready var standing_allowed_cast: ShapeCast3D = $StandingAllowedCast
 @onready var left_visibility: RayCast3D = $LeftVisibility
@@ -75,6 +76,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	var can_stand = not standing_allowed_cast.is_colliding()
+	is_invisible_to_agents = not can_stand
 	set_crawling(Input.is_action_pressed("crawl") or (is_crawling and not can_stand))
 	var real_speed = crawling_speed if is_crawling else speed
 

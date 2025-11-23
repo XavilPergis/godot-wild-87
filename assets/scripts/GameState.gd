@@ -19,6 +19,7 @@ var remaining_decay_interactables: Array[Interactable] = []
 func _ready() -> void:
 	instance = self
 	game_lost.connect(_on_game_lost)
+	game_won.connect(_on_game_won)
 
 func _on_game_lost() -> void:
 	var scene = lose_screen_scene.instantiate()

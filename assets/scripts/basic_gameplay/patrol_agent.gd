@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var player: Node3D
+@export var player: Player
 @export_group("Gameplay")
 @export var movement_speed: float = 5.0
 # TODO: this should probably be controlled by an animation
@@ -47,7 +47,6 @@ func _ready() -> void:
 		push_warning("patrol agent '", name, "' does not have a child PatrolRoute")
 
 func set_state(new_state: State) -> void:
-	#print("new state: ", State.keys()[new_state])
 	state = new_state
 	match new_state:
 		State.SCAN:
@@ -60,7 +59,8 @@ func look_at_horiz(target: Vector3) -> void:
 		look_at(target, Vector3.UP)
 
 func can_see(target: Vector3) -> bool:
-	target = Vector3(target.x, eyes.global_position.y, target.z)
+	if player.is_invisible_to_agents: return false
+	#target = Vector3(target.x, eyes.global_position.y, target.z)
 	var to_target = target - eyes.global_position
 	var facing = global_basis * Vector3.FORWARD
 	var facing_alignment = to_target.normalized().dot(facing)

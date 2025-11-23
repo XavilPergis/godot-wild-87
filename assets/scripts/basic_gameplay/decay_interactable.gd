@@ -5,6 +5,7 @@ extends Interactable
 @onready var interaction_shape: CollisionShape3D = $InteractionShape
 @onready var progress_bar_sprite: Sprite3D = $ProgressBarSprite
 
+@export var radius: float = 0.8
 @export var marker_height: float = 0.5
 
 func _process(_delta: float) -> void:
@@ -20,8 +21,9 @@ func _ready() -> void:
 	var shape = interaction_shape.shape as CylinderShape3D
 	mesh_instance.transform = interaction_shape.transform
 	mesh.height = marker_height
-	mesh.top_radius = shape.radius
-	mesh.bottom_radius = shape.radius
+	shape.radius = radius
+	mesh.top_radius = radius
+	mesh.bottom_radius = radius
 	mesh.material.set_shader_parameter("height", mesh.height)
 	mesh_instance.position.y -= 0.5 * (shape.height - mesh.height)
 
