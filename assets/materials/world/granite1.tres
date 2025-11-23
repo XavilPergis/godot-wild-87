@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bk0lre53l65cj"]
+
+[ext_resource type="Texture2D" uid="uid://dxc7eupfrrsa" path="res://assets/textures/world/granite1_albedo.png" id="1_p7m86"]
+[ext_resource type="Texture2D" uid="uid://cggpqna2iuwbf" path="res://assets/textures/world/granite1_normal.png" id="2_ipumu"]
+
+[resource]
+albedo_texture = ExtResource("1_p7m86")
+metallic = 0.67
+roughness = 0.17
+normal_enabled = true
+normal_scale = 0.21
+normal_texture = ExtResource("2_ipumu")
+uv1_scale = Vector3(16, 16, 16)
