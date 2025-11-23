@@ -1,0 +1,22 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://dt2g2kgniu0un"]
+
+[ext_resource type="Texture2D" uid="uid://bi0xiw64coqu6" path="res://assets/textures/world/shrub1_albedo.png" id="1_1rjs4"]
+[ext_resource type="Texture2D" uid="uid://dj1lpwogxsgsh" path="res://assets/textures/world/shrub1_orm.png" id="2_1yvsb"]
+[ext_resource type="Texture2D" uid="uid://c4rrxtj7bdjba" path="res://assets/textures/world/shrub1_heightmap.png" id="3_qt0wg"]
+[ext_resource type="Texture2D" uid="uid://y34e4ab7qs33" path="res://assets/textures/world/shrub1_normal.png" id="4_k383h"]
+
+[resource]
+albedo_texture = ExtResource("1_1rjs4")
+roughness_texture = ExtResource("2_1yvsb")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("4_k383h")
+ao_enabled = true
+ao_texture = ExtResource("2_1yvsb")
+heightmap_enabled = true
+heightmap_scale = 0.75
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+heightmap_texture = ExtResource("3_qt0wg")
+uv1_scale = Vector3(4, 4, 4)

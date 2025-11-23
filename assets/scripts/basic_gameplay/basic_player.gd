@@ -69,7 +69,10 @@ func _tick_wall_lookaround() -> void:
 			anchor.position.x += xoffset
 			camera.set_target(anchor, null, 0.5)
 	elif was_looking_behind_wall and not is_looking_behind_wall:
-		camera.set_target(camera_anchor, self, 0.5)
+		if $CameraTarget:
+			camera.set_target(camera_anchor, $CameraTarget, 0.5)
+		else:
+			camera.set_target(camera_anchor, self, 0.5)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
