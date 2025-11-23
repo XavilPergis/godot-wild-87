@@ -200,7 +200,7 @@ label_settings = SubResource("LabelSettings_j5jn4")
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 bbcode_enabled = true
-[url=https://github.com/XavilPergis]Rigel[/url]: Gameplay Code
+text = "[url=https://github.com/XavilPergis]Rigel[/url]: Gameplay Code
 [url=https://github.com/fionasoft]Fifi[/url]: Gameplay Code, Map Design, Textures
 [url=https://novaprowler.carrd.co/]@nova-prowler (18+)[/url]: Character and Enemy sprites
 
