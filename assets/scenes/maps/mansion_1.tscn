@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=4 uid="uid://cin88rgxldyvm"]
+[gd_scene load_steps=105 format=4 uid="uid://cin88rgxldyvm"]
 
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_dqipo"]
 [ext_resource type="Resource" uid="uid://bso3tmlujp6bq" path="res://default_map_settings.tres" id="2_0guhe"]
@@ -15,6 +15,9 @@
 [ext_resource type="Material" uid="uid://yfy352c3yq0c" path="res://assets/materials/world/tile1.tres" id="9_hvb2g"]
 [ext_resource type="Material" uid="uid://ylrs21os7a8x" path="res://assets/materials/world/wall_white.tres" id="12_60ot3"]
 [ext_resource type="Material" uid="uid://bocusuuj744wq" path="res://assets/materials/world/carpet1.tres" id="13_h7t24"]
+[ext_resource type="PackedScene" uid="uid://c6dxdh2j650h2" path="res://assets/scenes/player.tscn" id="16_pqfom"]
+[ext_resource type="Script" uid="uid://da0ks6d670vv" path="res://assets/scripts/basic_gameplay/basic_camera.gd" id="18_lqhm4"]
+[ext_resource type="Script" uid="uid://benprqm3fuefu" path="res://assets/scripts/GameState.gd" id="18_xp6cq"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_6ctdf"]
 _surfaces = [{
@@ -621,6 +624,10 @@ _surfaces = [{
 
 [node name="Mansion1" type="Node3D"]
 
+[node name="GameState" type="Node" parent="."]
+script = ExtResource("18_xp6cq")
+metadata/_custom_type_script = "uid://benprqm3fuefu"
+
 [node name="FuncGodotMap" type="Node3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 script = ExtResource("1_dqipo")
@@ -936,3 +943,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.4375, -10)
 
 [node name="entity_16_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_16_func_detail_illusionary"]
 mesh = SubResource("ArrayMesh_qkjdo")
+
+[node name="Player" parent="." node_paths=PackedStringArray("camera", "camera_anchor") instance=ExtResource("16_pqfom")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012802943, -1.8505702, 12.5853195)
+camera = NodePath("../MovableCamera")
+camera_anchor = NodePath("../PlayerPosReciever/CameraAnchor")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Player"]
+remote_path = NodePath("../../PlayerPosReciever")
+update_rotation = false
+
+[node name="CameraTarget" type="Node3D" parent="Player"]
+
+[node name="MovableCamera" type="Camera3D" parent="." node_paths=PackedStringArray("anchor", "look_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16.080948)
+script = ExtResource("18_lqhm4")
+anchor = NodePath("../PlayerPosReciever/CameraAnchor")
+look_target = NodePath("../Player/CameraTarget")
+metadata/_custom_type_script = "uid://hsuw4phgcjns"
+
+[node name="PlayerPosReciever" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012802943, -1.8505702, 12.5853195)
+
+[node name="CameraAnchor" type="Marker3D" parent="PlayerPosReciever"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.257188, 3.541113)
