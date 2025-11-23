@@ -138,7 +138,7 @@ label_settings = SubResource("LabelSettings_j5jn4")
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 bbcode_enabled = true
-text = "Plant mold in each spot marked by the purple indicators using [E] or [Circle], then abscond at the green one. Try to avoid detection by the robots on patrol; they will chase you down if they spot you. Crouch under objects with [Left Control] or [Left Shoulder] to avoid detection."
+text = "Plant mold/termites in each spot marked by the purple indicators using [E] or [Circle], then abscond at the green one. Try to avoid detection by the robots on patrol; they will chase you down if they spot you. Crouch under objects with [Left Control] or [Left Shoulder] to avoid detection."
 fit_content = true
 
 [node name="PanelContainer" type="PanelContainer" parent="HowToPlayModal/VBoxContainer"]
