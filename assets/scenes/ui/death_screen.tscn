@@ -11,6 +11,7 @@ font_color = Color(0.6673147, 0.0006266624, 0.72546434, 1)
 outline_size = 8
 
 [node name="DeathScreen" type="Control"]
+process_mode = 3
 z_index = 100
 layout_mode = 3
 anchors_preset = 15

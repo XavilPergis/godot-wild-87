@@ -11,6 +11,7 @@ signal game_won()
 @export var camera_coyote_time: float = 0.5
 
 var _coyote_timer: Timer
+var can_quit: bool = true
 
 var camera_angle: float = 0.0:
 	get(): return camera_angle
@@ -36,6 +37,9 @@ func _on_coyote_timeup():
 
 func _input(event):
 	if event.is_action_pressed("Quit"):
+		if not can_quit:
+			return
+		
 		for child in get_tree().current_scene.get_children():
 			if child is AskQuitScreen:
 				child.queue_free()
@@ -55,9 +59,11 @@ func _ready() -> void:
 	_coyote_timer.one_shot = true
 
 func _on_game_lost() -> void:
+	can_quit = false
 	var scene = lose_screen_scene.instantiate()
 	get_tree().current_scene.add_child(scene)
 
 func _on_game_won() -> void:
+	can_quit = false
 	var scene = win_screen_scene.instantiate()
 	get_tree().current_scene.add_child(scene)

@@ -9,7 +9,7 @@
 [ext_resource type="Material" uid="uid://bpuax3xkybyf6" path="res://assets/materials/world/checkered_marble.tres" id="4_q7sg0"]
 [ext_resource type="PackedScene" uid="uid://cohuq3mecb8qx" path="res://assets/scenes/patrol_agent.tscn" id="4_t37eh"]
 [ext_resource type="Material" uid="uid://b00kop4b1j5r7" path="res://assets/materials/world/wood1.tres" id="5_2f1wa"]
-[ext_resource type="PackedScene" uid="uid://xh4klxe5ap2k" path="res://assets/scenes/ui/ask_quit_screen.tscn" id="5_7xcg8"]
+[ext_resource type="PackedScene" uid="uid://xh4klxe5ap2k" path="res://assets/scenes/ui/pause_screen.tscn" id="5_7xcg8"]
 [ext_resource type="Material" uid="uid://0y3lh4deyrg" path="res://assets/materials/world/wall_olive.tres" id="5_bv3d4"]
 [ext_resource type="Script" uid="uid://dyjtvgodvnfei" path="res://assets/scripts/patrol_route.gd" id="5_icbtq"]
 [ext_resource type="Material" uid="uid://sjf3dogf3ei5" path="res://assets/materials/world/wall_red.tres" id="5_tvmvi"]
@@ -955,6 +955,7 @@ _surfaces = [{
 [node name="Hud" parent="." instance=ExtResource("1_7xcg8")]
 
 [node name="GameState" type="Node" parent="." node_paths=PackedStringArray("player")]
+process_mode = 3
 script = ExtResource("18_xp6cq")
 lose_screen_scene = ExtResource("2_l67w6")
 win_screen_scene = ExtResource("3_jw52q")
