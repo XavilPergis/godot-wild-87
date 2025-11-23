@@ -119,7 +119,7 @@ grow_vertical = 2
 script = SubResource("GDScript_75pbp")
 
 [node name="ColorRect" type="ColorRect" parent="HowToPlayModal"]
-custom_minimum_size = Vector2(550, 300)
+custom_minimum_size = Vector2(550, 450)
 layout_mode = 2
 color = Color(0.124800004, 0.26, 0.22169332, 1)
 
@@ -138,7 +138,15 @@ label_settings = SubResource("LabelSettings_j5jn4")
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 bbcode_enabled = true
-text = "Plant mold/termites in each spot marked by the purple indicators using [E] or [Circle], then abscond at the green one. Try to avoid detection by the robots on patrol; they will chase you down if they spot you. Crouch under objects with [Left Control] or [Left Shoulder] to avoid detection."
+text = "An ostentatious tech millionaire has bought your favorite park and built a mansion where it once stood. You've been selectively breeding termites and mold spores in response.
+
+Place your prodigious pests in the spots marked by the purple indicators, then escape back out to the green zone. Try to evade detection by his fleet of glorified roombas. If they spot you, try crawling under something; they are very busy and do not have time to wait for you to crawl back out.
+
+[E]/(Circle): Interact
+[WASD]/(Left Stick): Move
+[Left/Right]/(D-Pad Left/Right): Move Camera
+[Z]/(D-Pad Up): Look Around Wall
+[Ctrl]/(Left Shoulder): Crawl"
 fit_content = true
 
 [node name="PanelContainer" type="PanelContainer" parent="HowToPlayModal/VBoxContainer"]
