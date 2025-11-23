@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c6dxdh2j650h2"]
+[gd_scene load_steps=17 format=3 uid="uid://c6dxdh2j650h2"]
 
 [ext_resource type="Script" uid="uid://j7ivnt71yxbe" path="res://assets/scripts/basic_gameplay/basic_player.gd" id="1_s027a"]
 [ext_resource type="Script" uid="uid://gi1wna232m0o" path="res://assets/scripts/components/HealthComponent.gd" id="2_14505"]
@@ -22,9 +22,6 @@ radius = 0.4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d428f"]
 size = Vector3(0.95, 0.25, 0.95)
-
-[sub_resource type="BoxMesh" id="BoxMesh_4wcc8"]
-size = Vector3(0.1, 0.1, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0e2pd"]
 animations = [{
@@ -123,10 +120,6 @@ shape = SubResource("BoxShape3D_d428f")
 target_position = Vector3(0, 1.2, 0)
 max_results = 1
 debug_shape_custom_color = Color(0.083333254, 1, 0, 0.4509804)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6857779, -0.5169332)
-mesh = SubResource("BoxMesh_4wcc8")
 
 [node name="BillboardSprite" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0.8279698, 0)
