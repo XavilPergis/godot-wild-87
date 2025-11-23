@@ -1,11 +1,20 @@
-[gd_scene load_steps=15 format=3 uid="uid://cohuq3mecb8qx"]
+[gd_scene load_steps=24 format=3 uid="uid://cohuq3mecb8qx"]
 
 [ext_resource type="Script" uid="uid://dkejpngnf7dq1" path="res://assets/scripts/basic_gameplay/patrol_agent.gd" id="1_84a1w"]
+[ext_resource type="AudioStream" uid="uid://cnfptqv2qofa4" path="res://assets/sounds/enemy_alert1.ogg" id="2_o2c1r"]
 [ext_resource type="Texture2D" uid="uid://cyns8wgvp2nwa" path="res://assets/sprites/robot/face_N.png" id="2_se2u6"]
+[ext_resource type="AudioStream" uid="uid://cxs2rdphe4ywn" path="res://assets/sounds/enemy_alert2.ogg" id="3_76l6v"]
 [ext_resource type="Texture2D" uid="uid://d1caxqwkc6d3c" path="res://assets/sprites/robot/face_W.png" id="3_sbhf5"]
 [ext_resource type="Script" uid="uid://ck0vjtfvp7vih" path="res://assets/scripts/billboard_sprite_rotator.gd" id="3_se2u6"]
+[ext_resource type="AudioStream" uid="uid://cqq7lad4yx1uh" path="res://assets/sounds/enemy_alert3.ogg" id="4_b4t8j"]
 [ext_resource type="Texture2D" uid="uid://b3g7c1rwfjtj5" path="res://assets/sprites/robot/face_S.png" id="4_s6fav"]
+[ext_resource type="AudioStream" uid="uid://buhssl80r5puq" path="res://assets/sounds/enemy_shrug1.ogg" id="5_v4r11"]
 [ext_resource type="AudioStream" uid="uid://em6ejes3s6mu" path="res://assets/sounds/788687__lakorpsound__vacuum-cleaner-nilfisk.ogg" id="6_s6fav"]
+[ext_resource type="AudioStream" uid="uid://c3rmiw7hoipei" path="res://assets/sounds/enemy_shrug2.ogg" id="6_xswv5"]
+[ext_resource type="AudioStream" uid="uid://csgj6pieouhfg" path="res://assets/sounds/enemy_shrug3.ogg" id="7_0150i"]
+[ext_resource type="AudioStream" uid="uid://db7igt8chuoy5" path="res://assets/sounds/enemy_zap1.ogg" id="8_0vyos"]
+[ext_resource type="AudioStream" uid="uid://ea0xoxwstmot" path="res://assets/sounds/enemy_zap2.ogg" id="9_p05kr"]
+[ext_resource type="AudioStream" uid="uid://cna3y6silqtfe" path="res://assets/sounds/enemy_zap3.ogg" id="10_1lo2t"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kugwo"]
 animations = [{
@@ -72,6 +81,9 @@ size = Vector3(0.5, 0.25, 0.25)
 [node name="PatrolAgent" type="CharacterBody3D"]
 script = ExtResource("1_84a1w")
 player_tracking_cutoff = 1.0
+alert_sounds = Array[AudioStream]([ExtResource("2_o2c1r"), ExtResource("3_76l6v"), ExtResource("4_b4t8j")])
+shrug_sounds = Array[AudioStream]([ExtResource("5_v4r11"), ExtResource("6_xswv5"), ExtResource("7_0150i")])
+zap_sounds = Array[AudioStream]([ExtResource("8_0vyos"), ExtResource("9_p05kr"), ExtResource("10_1lo2t")])
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.86074024, 0)
@@ -124,8 +136,17 @@ mesh = SubResource("BoxMesh_oj3l8")
 [node name="sfx_move" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 stream = ExtResource("6_s6fav")
-volume_db = -6.0
+volume_db = -11.0
 playback_type = 1
+
+[node name="sfx_voice" type="AudioStreamPlayer3D" parent="."]
+
+[node name="BarkTimer" type="Timer" parent="."]
+wait_time = 6.118
+
+[node name="sfx_zap" type="AudioStreamPlayer3D" parent="."]
+volume_db = -7.5
 
 [connection signal="body_entered" from="PhysicalHurtbox" to="." method="_on_physical_hurtbox_body_entered"]
 [connection signal="body_exited" from="PhysicalHurtbox" to="." method="_on_physical_hurtbox_body_exited"]
+[connection signal="timeout" from="BarkTimer" to="." method="_on_bark_timer_timeout"]

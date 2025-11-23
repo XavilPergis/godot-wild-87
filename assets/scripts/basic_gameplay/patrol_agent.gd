@@ -26,6 +26,10 @@ var patrol_route: PatrolRoute
 @export var move_sound_loop_start: float = 5.488
 @export var move_sound_end_point: float = 58.219
 
+@export var alert_sounds: Array[AudioStream]
+@export var shrug_sounds: Array[AudioStream]
+@export var zap_sounds: Array[AudioStream]
+
 enum State { IDLE, MOVE_TO_TARGET, CHASE, SCAN, }
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -49,11 +53,37 @@ func _ready() -> void:
 	if not patrol_route:
 		push_warning("patrol agent '", name, "' does not have a child PatrolRoute")
 
+func play_alert_sound():
+	randomize()
+	$sfx_voice.stream = alert_sounds[randi_range(0, alert_sounds.size()-1)]
+	$sfx_voice.play()
+	
+func play_shrug_sound():
+	randomize()
+	$sfx_voice.stream = shrug_sounds[randi_range(0, alert_sounds.size()-1)]
+	$sfx_voice.play()
+	
+func play_zap_sound():
+	randomize()
+	$sfx_zap.stream = zap_sounds[randi_range(0, alert_sounds.size()-1)]
+	$sfx_zap.play()
+	
+func _on_bark_timer_timeout() -> void:
+	if state == State.CHASE:
+		play_alert_sound()
+	else:
+		$BarkTimer.stop()
+
 func set_state(new_state: State) -> void:
+	if state == State.CHASE and new_state != State.CHASE:
+		play_shrug_sound()
 	state = new_state
 	match new_state:
 		State.SCAN:
 			scan_time_remaining = scan_time
+		State.CHASE:
+			play_alert_sound()
+			$BarkTimer.start()
 
 func look_at_horiz(target: Vector3) -> void:
 	target = Vector3(target.x, global_position.y, target.z)
@@ -96,6 +126,7 @@ func tick_pursuit(delta: float) -> void:
 			if target.has_meta(Components.HEALTH):
 				var health = target.get_meta(Components.HEALTH) as HealthComponent
 				health.damage(attack_strength)
+				play_zap_sound()
 				attack_timeout_remaining = attack_timeout
 	# otherwise, we should try to close the distance between the agent and the
 	# player. we wait until the attack timeout timer is done, so the agent will
