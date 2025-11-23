@@ -100,6 +100,14 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_75pbp")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hyerr")
 text = "About"
 
+[node name="CreditsButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_75pbp")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_75pbp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hyerr")
+text = "Credits"
+
 [node name="HowToPlayModal" type="CenterContainer" parent="."]
 visible = false
 layout_mode = 1
@@ -143,7 +151,57 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("4_75pbp")
 text = "Close"
 
+[node name="CreditsModal" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_75pbp")
+
+[node name="ColorRect" type="ColorRect" parent="CreditsModal"]
+custom_minimum_size = Vector2(550, 300)
+layout_mode = 2
+color = Color(0.124800004, 0.26, 0.22169332, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsModal"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CreditsModal/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CreditsModal/VBoxContainer/CenterContainer"]
+layout_mode = 2
+text = "Credits"
+label_settings = SubResource("LabelSettings_j5jn4")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CreditsModal/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=https://bsky.app/profile/nova-prowler.bsky.social]@nova-prowler[/url]: Character and Enemy sprites
+[url=https://github.com/XavilPergis]Rigel[/url]: Gameplay Code
+[url=https://github.com/fionasoft]Fifi[/url]: Gameplay Code, Map Design, Textures
+
+\"Free Cheese\" Font by [url=https://ggbot.itch.io/]GGBotNet[/url]
+"
+fit_content = true
+
+[node name="PanelContainer" type="PanelContainer" parent="CreditsModal/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CloseButton" type="Button" parent="CreditsModal/VBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_75pbp")
+text = "Close"
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/AboutButton" to="." method="_on_how_to_play_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="HowToPlayModal/VBoxContainer/PanelContainer/CloseButton" to="HowToPlayModal" method="_on_close_button_pressed"]
+[connection signal="pressed" from="CreditsModal/VBoxContainer/PanelContainer/CloseButton" to="CreditsModal" method="_on_close_button_pressed"]
