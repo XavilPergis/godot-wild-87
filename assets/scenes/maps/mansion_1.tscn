@@ -1,4 +1,4 @@
-[gd_scene load_steps=175 format=4 uid="uid://cin88rgxldyvm"]
+[gd_scene load_steps=167 format=4 uid="uid://cin88rgxldyvm"]
 
 [ext_resource type="PackedScene" uid="uid://b3ybwjbf4pkaa" path="res://assets/scenes/ui/hud.tscn" id="1_7xcg8"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_dqipo"]
@@ -31,7 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://dekl4utr4d53r" path="res://assets/scenes/exit_interactable.tscn" id="21_jjrif"]
 [ext_resource type="Material" uid="uid://dfrr5dbd2wokk" path="res://assets/materials/world/rocks1.tres" id="25_bo1w6"]
 [ext_resource type="Material" uid="uid://dt2g2kgniu0un" path="res://assets/materials/world/shrub1.tres" id="27_5k0cn"]
-[ext_resource type="Script" path="res://assets/scripts/CameraHintArea.gd" id="31_5k0cn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lqhm4"]
 
@@ -950,27 +949,6 @@ _surfaces = [{
 "vertex_data": PackedByteArray("/v/3P/7//zwA/m+/AAD4v/7//zwA/m+/AAAAwAAAAL0A/n+//v/3P/7//zwA/m+/AAAAwAAAAL0A/n+/AAAAQAAAAL0A/n+/AAAAwAAAAL0AAYA/AAAAwAAAAL0AAYC/AAD4vwAAAD0AAnC/AAAAwAAAAL0AAYA/AAD4vwAAAD0AAnC/AAD4vwAAAD0AAnA/AAAAwAAAAL0AAYA/AAAAQAAAAL0AAYA/AAAAQAAAAL0AAYC/AAAAwAAAAL0AAYA/AAAAQAAAAL0AAYC/AAAAwAAAAL0AAYC/AAD4vwAAAD0AAnA/AAD4vwAAAD0A+m+//v/3PwAAAD0A+m+/AAD4vwAAAD0AAnA//v/3PwAAAD0A+m+//v/3PwAAAD0AAnA/AAD4PwAAAD0AAnA/AAD4PwAAAD0AAnC/AAAAQAAAAL0AAYC/AAD4PwAAAD0AAnA/AAAAQAAAAL0AAYC/AAAAQAAAAL0AAYA/AAAAQOD//7wAAYA/AAAAwOD//7wAAYA/AAD4vwAAAD0AAnA/AAAAQOD//7wAAYA/AAD4vwAAAD0AAnA//v/3PwAAAD0AAnA/R69a6P9//7+2UFro/3//v/8//t//f/+/R69a6P9//7//P/7f/3//v/+//9//f/+//1//v/9//7//PyXR/3//v85WvN//f/+//1//v/9//7/OVrzf/3//v1pottD/f/+/AIAAAP9//z8AgAAA/3//PwCAAAD/f/8/AIAAAP9//z8AgAAA/3//PwCAAAD/f/8/EXfO1v9//781X2zr/3//vy+pvN//f/+/EXfO1v9//78vqbzf/3//v6OXttD/f/+/JZ2zxf9//7/dsifY/3//v/+/JdH/f/+/JZ2zxf9//7//vyXR/3//v/+f/7//f/+/JZH/v/9//7/Zbv+//3//v/h0IM3/f/+/JZH/v/9//7/4dCDN/3//vxeSgsf/f/+/")
 }]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5k0cn"]
-size = Vector3(8.4991, 4.5039673, 6.50972)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7xcg8"]
-size = Vector3(8.411194, 3.968811, 6.520462)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_mvn13"]
-size = Vector3(8.287903, 3.987854, 6.921829)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_385a1"]
-size = Vector3(7.437439, 4.208069, 6.4169464)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_22jji"]
-size = Vector3(3.9156494, 3.25885, 6.034134)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ogjj4"]
-size = Vector3(4.218994, 3.5479126, 5.9794006)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_f3332"]
-size = Vector3(7.7472076, 3.0786743, 6.360672)
-
 [node name="Mansion1" type="Node3D"]
 
 [node name="Hud" parent="." instance=ExtResource("1_7xcg8")]
@@ -1742,71 +1720,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.03125, -3.0517578e-05)
 
 [node name="entity_22_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_22_func_detail_illusionary"]
 mesh = SubResource("ArrayMesh_jjde7")
-
-[node name="CameraHintarea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.549441, 0, 0)
-collision_layer = 32
-script = ExtResource("31_5k0cn")
-camera_angle = -45.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraHintarea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26080894, 0.6823071, -1.0681686)
-shape = SubResource("BoxShape3D_5k0cn")
-
-[node name="CameraHintarea3" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28835845, 0, -8.222338)
-collision_layer = 32
-script = ExtResource("31_5k0cn")
-camera_angle = -45.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraHintarea3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42912102, 0.94988525, -0.53247833)
-shape = SubResource("BoxShape3D_7xcg8")
-
-[node name="CameraHintarea5" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28835845, 0, 0.5111053)
-collision_layer = 32
-script = ExtResource("31_5k0cn")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraHintarea5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2441845, 0.94036376, -1.2742233)
-shape = SubResource("BoxShape3D_mvn13")
-
-[node name="CameraHintarea4" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.18256, 0, -8.222338)
-collision_layer = 32
-script = ExtResource("31_5k0cn")
-camera_angle = 135.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraHintarea4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.72068596, 0.83025634, -0.58423615)
-shape = SubResource("BoxShape3D_385a1")
-
-[node name="CameraHintarea6" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.202078, 0, -0.5930433)
-collision_layer = 32
-script = ExtResource("31_5k0cn")
-camera_angle = 45.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraHintarea6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6379528, 1.3048657, -0.725441)
-shape = SubResource("BoxShape3D_22jji")
-
-[node name="CameraHintarea7" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.211132, 0, -0.5930433)
-collision_layer = 32
-script = ExtResource("31_5k0cn")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraHintarea7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.78962517, 1.1603345, -0.69807434)
-shape = SubResource("BoxShape3D_ogjj4")
-
-[node name="CameraHintarea2" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.549441, 0, -8.198241)
-collision_layer = 32
-script = ExtResource("31_5k0cn")
-camera_angle = 225.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraHintarea2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029870987, 1.3949536, -0.61237335)
-shape = SubResource("BoxShape3D_f3332")
