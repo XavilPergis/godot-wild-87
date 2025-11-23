@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://xh4klxe5ap2k"]
+
+[ext_resource type="Script" uid="uid://n71jv4spmbj" path="res://assets/scenes/ui/ask_quit_screen.gd" id="1_1jy16"]
+[ext_resource type="PackedScene" uid="uid://biaoa087sxvd5" path="res://assets/scenes/ui/scene_transition_animation.tscn" id="2_rf3l3"]
+[ext_resource type="FontFile" uid="uid://3lpnv6thqa67" path="res://assets/fonts/FreeCheese-Italic.ttf" id="3_mnspc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l5c4b"]
+font = ExtResource("3_mnspc")
+font_size = 72
+font_color = Color(0.33357495, 0.41552517, 0.601845, 1)
+outline_size = 8
+
+[node name="DeathScreen" type="Control"]
+z_index = 100
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1jy16")
+
+[node name="SceneTransition" parent="." instance=ExtResource("2_rf3l3")]
+layout_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -120.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4627451)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 50
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Quit the game?"
+label_settings = SubResource("LabelSettings_l5c4b")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
+
+[node name="DontQuitButton" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Don't Quit"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/VBoxContainer/DontQuitButton" to="." method="_on_dont_quit_button_pressed"]

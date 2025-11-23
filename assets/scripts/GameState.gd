@@ -7,6 +7,7 @@ signal game_won()
 
 @export var lose_screen_scene: PackedScene
 @export var win_screen_scene: PackedScene
+@export var ask_quit_scene: PackedScene
 @export var camera_coyote_time: float = 0.5
 
 var _coyote_timer: Timer
@@ -32,6 +33,16 @@ var remaining_decay_interactables: Array[Interactable] = []
 func _on_coyote_timeup():
 	coyote_angle = camera_angle
 	pass
+
+func _input(event):
+	if event.is_action_pressed("Quit"):
+		for child in get_tree().current_scene.get_children():
+			if child is AskQuitScreen:
+				child.queue_free()
+				return
+		
+		var scene = ask_quit_scene.instantiate()
+		get_tree().current_scene.add_child(scene)
 
 func _ready() -> void:
 	instance = self
