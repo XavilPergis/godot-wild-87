@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://oas4ikx153f1"]
+[gd_scene load_steps=18 format=3 uid="uid://oas4ikx153f1"]
 
 [ext_resource type="Texture2D" uid="uid://du1ksart2vj2l" path="res://assets/textures/world/prototype_grid.png" id="1_be268"]
 [ext_resource type="Script" uid="uid://benprqm3fuefu" path="res://assets/scripts/GameState.gd" id="1_lirhm"]
+[ext_resource type="PackedScene" uid="uid://ccvlalddoddjt" path="res://assets/scenes/ui/death_screen.tscn" id="2_5wt7k"]
 [ext_resource type="PackedScene" uid="uid://c6dxdh2j650h2" path="res://assets/scenes/player.tscn" id="2_fj761"]
 [ext_resource type="Script" uid="uid://dyjtvgodvnfei" path="res://assets/scripts/patrol_route.gd" id="2_tbqko"]
 [ext_resource type="Script" uid="uid://d3wr3c5sj2lfr" path="res://assets/scripts/patrol_point.gd" id="3_fj761"]
@@ -36,6 +37,7 @@ uv1_triplanar = true
 
 [node name="GameState" type="Node" parent="."]
 script = ExtResource("1_lirhm")
+lose_screen_scene = ExtResource("2_5wt7k")
 metadata/_custom_type_script = "uid://benprqm3fuefu"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
