@@ -31,3 +31,11 @@ func _on_how_to_play_button_pressed() -> void:
 
 func _on_credits_button_pressed() -> void:
 	credits_modal.visible = true
+
+func _on_fullscreen_button_pressed() -> void:
+	var mode := DisplayServer.window_get_mode()
+	if mode == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	pass # Replace with function body.

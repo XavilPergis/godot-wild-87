@@ -6,8 +6,9 @@
 [ext_resource type="FontFile" uid="uid://dx73f241dtx61" path="res://assets/fonts/FreeCheese-Regular.ttf" id="4_75pbp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hyerr"]
+line_spacing = -8.0
 font = ExtResource("4_75pbp")
-font_size = 100
+font_size = 86
 font_color = Color(0.3984, 0.83, 0.7077133, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75pbp"]
@@ -97,6 +98,16 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_75pbp")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hyerr")
 text = "Credits"
+
+[node name="FullscreenButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../PlayButton")
+accessibility_name = "Quit"
+theme_override_fonts/font = ExtResource("4_75pbp")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_75pbp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hyerr")
+text = "Toggle Fullscreen"
 
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -211,6 +222,7 @@ text = "Close"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="HowToPlayModal/VBoxContainer/PanelContainer/CloseButton" to="HowToPlayModal" method="_on_close_button_pressed"]
 [connection signal="pressed" from="CreditsModal/VBoxContainer/PanelContainer/CloseButton" to="CreditsModal" method="_on_close_button_pressed"]
