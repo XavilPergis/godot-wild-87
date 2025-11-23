@@ -1,11 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://oas4ikx153f1"]
+[gd_scene load_steps=20 format=3 uid="uid://oas4ikx153f1"]
 
 [ext_resource type="Texture2D" uid="uid://du1ksart2vj2l" path="res://assets/textures/world/prototype_grid.png" id="1_be268"]
 [ext_resource type="Script" uid="uid://benprqm3fuefu" path="res://assets/scripts/GameState.gd" id="1_lirhm"]
 [ext_resource type="PackedScene" uid="uid://ccvlalddoddjt" path="res://assets/scenes/ui/death_screen.tscn" id="2_5wt7k"]
 [ext_resource type="PackedScene" uid="uid://c6dxdh2j650h2" path="res://assets/scenes/player.tscn" id="2_fj761"]
 [ext_resource type="Script" uid="uid://dyjtvgodvnfei" path="res://assets/scripts/patrol_route.gd" id="2_tbqko"]
+[ext_resource type="PackedScene" uid="uid://b3ybwjbf4pkaa" path="res://assets/scenes/ui/hud.tscn" id="3_5xaot"]
 [ext_resource type="Script" uid="uid://d3wr3c5sj2lfr" path="res://assets/scripts/patrol_point.gd" id="3_fj761"]
+[ext_resource type="PackedScene" uid="uid://0qeo6m0edgpk" path="res://assets/scenes/ui/win_screen.tscn" id="3_qfusl"]
 [ext_resource type="Script" uid="uid://bfh2xs3pq2bj3" path="res://assets/scripts/patrol_point_holder.gd" id="4_be268"]
 [ext_resource type="Script" uid="uid://da0ks6d670vv" path="res://assets/scripts/basic_gameplay/basic_camera.gd" id="5_4b6o8"]
 [ext_resource type="PackedScene" uid="uid://cohuq3mecb8qx" path="res://assets/scenes/patrol_agent.tscn" id="7_fj761"]
@@ -35,10 +37,14 @@ uv1_triplanar = true
 
 [node name="Node3D" type="Node3D"]
 
-[node name="GameState" type="Node" parent="."]
+[node name="GameState" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("1_lirhm")
 lose_screen_scene = ExtResource("2_5wt7k")
+win_screen_scene = ExtResource("3_qfusl")
+player = NodePath("../Player")
 metadata/_custom_type_script = "uid://benprqm3fuefu"
+
+[node name="Hud" parent="." instance=ExtResource("3_5xaot")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_4b6o8")
@@ -47,6 +53,41 @@ environment = SubResource("Environment_4b6o8")
 transform = Transform3D(0.8167624, 0.4436727, -0.3688546, 0, 0.6392914, 0.7689645, 0.57697415, -0.62806135, 0.5221492, 0, 13, 0)
 visible = false
 shadow_enabled = true
+
+[node name="Player" parent="." node_paths=PackedStringArray("camera", "camera_anchor") instance=ExtResource("2_fj761")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.60457, 0, 0)
+camera = NodePath("../MovableCamera")
+camera_anchor = NodePath("../PlayerPosReceiver/CameraAnchor")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Player"]
+remote_path = NodePath("../../PlayerPosReceiver")
+update_rotation = false
+update_scale = false
+
+[node name="MovableCamera" type="Camera3D" parent="." node_paths=PackedStringArray("anchor", "look_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+script = ExtResource("5_4b6o8")
+anchor = NodePath("../PlayerPosReceiver/CameraAnchor")
+look_target = NodePath("../Player")
+metadata/_custom_type_script = "uid://hsuw4phgcjns"
+
+[node name="PlayerPosReceiver" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.60457, 0, 0)
+
+[node name="CameraAnchor" type="Marker3D" parent="PlayerPosReceiver"]
+script = ExtResource("8_fj761")
+height = 4.0
+horizontal_offset = 6.0
+
+[node name="DecayInteractable3" parent="." instance=ExtResource("9_5wt7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.50064, 0, 20.6056)
+marker_height = 0.5
+
+[node name="ExitInteractable" parent="." instance=ExtResource("10_lirhm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.693298, 0, -20.82436)
+
+[node name="ExitInteractable2" parent="." instance=ExtResource("10_lirhm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.538574, 0, 23.378864)
 
 [node name="Patrols" type="Node3D" parent="."]
 
@@ -172,49 +213,6 @@ player = NodePath("../../Player")
 script = ExtResource("2_tbqko")
 holder = NodePath("../../Route4")
 metadata/_custom_type_script = "uid://dyjtvgodvnfei"
-
-[node name="Player" parent="." node_paths=PackedStringArray("camera", "camera_anchor") instance=ExtResource("2_fj761")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.60457, 0, 0)
-camera = NodePath("../MovableCamera")
-camera_anchor = NodePath("../PlayerPosReceiver/CameraAnchor")
-
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Player"]
-remote_path = NodePath("../../PlayerPosReceiver")
-update_rotation = false
-update_scale = false
-
-[node name="MovableCamera" type="Camera3D" parent="." node_paths=PackedStringArray("anchor", "look_target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
-script = ExtResource("5_4b6o8")
-anchor = NodePath("../PlayerPosReceiver/CameraAnchor")
-look_target = NodePath("../Player")
-metadata/_custom_type_script = "uid://hsuw4phgcjns"
-
-[node name="PlayerPosReceiver" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.60457, 0, 0)
-
-[node name="CameraAnchor" type="Marker3D" parent="PlayerPosReceiver"]
-script = ExtResource("8_fj761")
-height = 4.0
-horizontal_offset = 6.0
-
-[node name="DecayInteractable" parent="." instance=ExtResource("9_5wt7k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.651227, 0, 6.981943)
-marker_height = 0.5
-
-[node name="DecayInteractable3" parent="." instance=ExtResource("9_5wt7k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.50064, 0, 20.6056)
-marker_height = 0.5
-
-[node name="DecayInteractable2" parent="." instance=ExtResource("9_5wt7k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.696097, 0, 1.5641003)
-marker_height = 0.5
-
-[node name="ExitInteractable" parent="." instance=ExtResource("10_lirhm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.693298, 0, -20.82436)
-
-[node name="ExitInteractable2" parent="." instance=ExtResource("10_lirhm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.538574, 0, 23.378864)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008850098, -3.8146973e-06, 0.091667175)
@@ -344,3 +342,5 @@ size = Vector3(3, 5, 3)
 [node name="CSGBox3D12" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.5, 11.5)
 size = Vector3(3, 5, 3)
+
+[connection signal="game_won" from="GameState" to="GameState" method="_on_game_won"]

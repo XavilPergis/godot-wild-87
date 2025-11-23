@@ -14,6 +14,7 @@ func _process(_delta: float) -> void:
 
 func _ready() -> void:
 	GameState.instance.remaining_decay_interactables.push_back(self)
+	GameState.instance.decay_interactables.push_back(self)
 
 	var mesh = mesh_instance.mesh as CylinderMesh
 	var shape = interaction_shape.shape as CylinderShape3D
