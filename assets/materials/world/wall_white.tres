@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ylrs21os7a8x"]
+
+[ext_resource type="Texture2D" uid="uid://denauf5fsafbc" path="res://assets/textures/gentle_noise_normal_normal.png" id="1_clj3v"]
+
+[resource]
+albedo_color = Color(0.92941177, 0.93333334, 0.92156863, 1)
+roughness = 0.85
+normal_enabled = true
+normal_scale = 0.1
+normal_texture = ExtResource("1_clj3v")

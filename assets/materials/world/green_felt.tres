@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cfy72xtonbw06"]
+
+[ext_resource type="Texture2D" uid="uid://dl45pcfq0ghew" path="res://assets/textures/world/green_felt_albedo.png" id="1_4fpmt"]
+
+[resource]
+albedo_texture = ExtResource("1_4fpmt")
+uv1_scale = Vector3(4, 4, 4)
