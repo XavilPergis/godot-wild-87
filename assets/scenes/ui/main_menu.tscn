@@ -189,9 +189,9 @@ label_settings = SubResource("LabelSettings_j5jn4")
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 bbcode_enabled = true
-text = "[url=https://bsky.app/profile/nova-prowler.bsky.social]@nova-prowler[/url]: Character and Enemy sprites
-[url=https://github.com/XavilPergis]Rigel[/url]: Gameplay Code
+text = "[url=https://github.com/XavilPergis]Rigel[/url]: Gameplay Code
 [url=https://github.com/fionasoft]Fifi[/url]: Gameplay Code, Map Design, Textures
+[url=https://novaprowler.carrd.co/]@nova-prowler (18+)[/url]: Character and Enemy sprites
 
 \"Free Cheese\" Font by [url=https://ggbot.itch.io/]GGBotNet[/url]
 \"[url=https://freesound.org/people/Wakerone/sounds/393823/]Electric Zap Light[/url]\" Sound by Wakerone
