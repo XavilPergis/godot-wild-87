@@ -125,6 +125,7 @@ process_material = SubResource("ParticleProcessMaterial_gy0rp")
 draw_pass_1 = SubResource("QuadMesh_jk35i")
 
 [node name="PlantedTermiteParticles" type="GPUParticles3D" parent="." index="6"]
+visible = false
 amount = 50
 transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_5mixr")
