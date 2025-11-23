@@ -22,6 +22,9 @@ var patrol_route: PatrolRoute
 @onready var eyes: Node3D = $Eyes
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent
 
+@export var move_sound_start_point: float = 2.386
+@export var move_sound_loop_start: float = 5.488
+@export var move_sound_end_point: float = 58.219
 
 enum State { IDLE, MOVE_TO_TARGET, CHASE, SCAN, }
 
@@ -121,6 +124,17 @@ func tick_pursuit(delta: float) -> void:
 				set_state(State.MOVE_TO_TARGET)
 		else:
 			pursuit_timeout_remaining = pursuit_timeout
+
+func _process(_delta: float) -> void:
+	if state == State.MOVE_TO_TARGET || state == State.CHASE:
+		if $sfx_move.has_stream_playback():
+			if $sfx_move.get_playback_position() > move_sound_end_point:
+				$sfx_move.seek(move_sound_loop_start)
+		else:
+			$sfx_move.play(move_sound_start_point)
+	elif $sfx_move.has_stream_playback():
+		if $sfx_move.get_playback_position() < move_sound_end_point:
+				$sfx_move.seek(move_sound_end_point)
 
 func _physics_process(delta: float) -> void:
 	if not patrol_route: return

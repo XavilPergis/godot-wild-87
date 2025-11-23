@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://cohuq3mecb8qx"]
+[gd_scene load_steps=15 format=3 uid="uid://cohuq3mecb8qx"]
 
 [ext_resource type="Script" uid="uid://dkejpngnf7dq1" path="res://assets/scripts/basic_gameplay/patrol_agent.gd" id="1_84a1w"]
 [ext_resource type="Texture2D" uid="uid://cyns8wgvp2nwa" path="res://assets/sprites/robot/face_N.png" id="2_se2u6"]
 [ext_resource type="Texture2D" uid="uid://d1caxqwkc6d3c" path="res://assets/sprites/robot/face_W.png" id="3_sbhf5"]
 [ext_resource type="Script" uid="uid://ck0vjtfvp7vih" path="res://assets/scripts/billboard_sprite_rotator.gd" id="3_se2u6"]
 [ext_resource type="Texture2D" uid="uid://b3g7c1rwfjtj5" path="res://assets/sprites/robot/face_S.png" id="4_s6fav"]
+[ext_resource type="AudioStream" uid="uid://em6ejes3s6mu" path="res://assets/sounds/788687__lakorpsound__vacuum-cleaner-nilfisk.ogg" id="6_s6fav"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kugwo"]
 animations = [{
@@ -119,6 +120,12 @@ mesh = SubResource("CapsuleMesh_jj7vq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4602675, -0.4480672)
 visible = false
 mesh = SubResource("BoxMesh_oj3l8")
+
+[node name="sfx_move" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+stream = ExtResource("6_s6fav")
+volume_db = -6.0
+playback_type = 1
 
 [connection signal="body_entered" from="PhysicalHurtbox" to="." method="_on_physical_hurtbox_body_entered"]
 [connection signal="body_exited" from="PhysicalHurtbox" to="." method="_on_physical_hurtbox_body_exited"]
