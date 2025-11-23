@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rb144dq1sf3u"
-path.s3tc="res://.godot/imported/player_crawl.png-63cdd24d114b2e0c3916e67545364117.s3tc.ctex"
+uid="uid://def3hl6qn3xmi"
+path.s3tc="res://.godot/imported/player_crawl_reverse.png-afdc5e8abc93c256805c6f6b184558fd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/player/player_crawl.png"
-dest_files=["res://.godot/imported/player_crawl.png-63cdd24d114b2e0c3916e67545364117.s3tc.ctex"]
+source_file="res://assets/sprites/player/player_crawl_reverse.png"
+dest_files=["res://.godot/imported/player_crawl_reverse.png-afdc5e8abc93c256805c6f6b184558fd.s3tc.ctex"]
 
 [params]
 
