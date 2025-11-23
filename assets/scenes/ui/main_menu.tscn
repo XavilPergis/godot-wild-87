@@ -82,16 +82,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_75pbp")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hyerr")
 text = "Play"
 
-[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-focus_neighbor_bottom = NodePath("../PlayButton")
-accessibility_name = "Quit"
-theme_override_fonts/font = ExtResource("4_75pbp")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_75pbp")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hyerr")
-text = "Quit"
-
 [node name="HowToPlayButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_75pbp")
@@ -107,6 +97,16 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_75pbp")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hyerr")
 text = "Credits"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../PlayButton")
+accessibility_name = "Quit"
+theme_override_fonts/font = ExtResource("4_75pbp")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_75pbp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hyerr")
+text = "Quit"
 
 [node name="HowToPlayModal" type="CenterContainer" parent="."]
 visible = false
@@ -201,8 +201,8 @@ theme_override_fonts/font = ExtResource("4_75pbp")
 text = "Close"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="HowToPlayModal/VBoxContainer/PanelContainer/CloseButton" to="HowToPlayModal" method="_on_close_button_pressed"]
 [connection signal="pressed" from="CreditsModal/VBoxContainer/PanelContainer/CloseButton" to="CreditsModal" method="_on_close_button_pressed"]
