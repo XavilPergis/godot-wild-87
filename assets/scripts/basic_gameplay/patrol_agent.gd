@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @export var player: Player
+@export var sprite_rotator: BillboardSpriteRotator
 @export_group("Gameplay")
 @export var movement_speed: float = 5.0
 # TODO: this should probably be controlled by an animation
@@ -46,6 +47,7 @@ var cant_see_player_time: float
 var attack_targets: Array[Node3D] = []
 
 func _ready() -> void:
+	sprite_rotator.play("walk")
 	for node in get_children():
 		if node is PatrolRoute:
 			patrol_route = node
@@ -106,6 +108,14 @@ func can_see(target: Vector3) -> bool:
 	var res = get_world_3d().direct_space_state.intersect_ray(query)
 	return res.is_empty()
 
+func attack(target: Node3D):
+	var health = target.get_meta(Components.HEALTH) as HealthComponent
+	health.damage(attack_strength)
+	play_zap_sound()
+	sprite_rotator.play("angry")
+	$AngryFaceTimer.start()
+	attack_timeout_remaining = attack_timeout
+
 func tick_pursuit(delta: float) -> void:
 	if not is_instance_valid(player):
 		patrol_route.target_nearest_point()
@@ -125,10 +135,7 @@ func tick_pursuit(delta: float) -> void:
 			look_at_horiz(target.global_position)
 			if target.has_meta(Components.HEALTH):
 				if can_see_player:
-					var health = target.get_meta(Components.HEALTH) as HealthComponent
-					health.damage(attack_strength)
-					play_zap_sound()
-					attack_timeout_remaining = attack_timeout
+					attack(target)
 	# otherwise, we should try to close the distance between the agent and the
 	# player. we wait until the attack timeout timer is done, so the agent will
 	# freeze for a little bit before resuming the chase.
@@ -221,3 +228,7 @@ func _on_physical_hurtbox_body_entered(body: Node3D) -> void:
 		attack_targets.push_back(body)
 func _on_physical_hurtbox_body_exited(body: Node3D) -> void:
 	attack_targets.remove_at(attack_targets.find(body))
+
+func _on_angry_face_timer_timeout() -> void:
+	sprite_rotator.play("walk")
+	pass # Replace with function body.

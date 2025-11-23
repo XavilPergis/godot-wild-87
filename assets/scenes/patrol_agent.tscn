@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cohuq3mecb8qx"]
+[gd_scene load_steps=25 format=3 uid="uid://cohuq3mecb8qx"]
 
 [ext_resource type="Script" uid="uid://dkejpngnf7dq1" path="res://assets/scripts/basic_gameplay/patrol_agent.gd" id="1_84a1w"]
 [ext_resource type="AudioStream" uid="uid://cnfptqv2qofa4" path="res://assets/sounds/enemy_alert1.ogg" id="2_o2c1r"]
@@ -15,9 +15,18 @@
 [ext_resource type="AudioStream" uid="uid://db7igt8chuoy5" path="res://assets/sounds/enemy_zap1.ogg" id="8_0vyos"]
 [ext_resource type="AudioStream" uid="uid://ea0xoxwstmot" path="res://assets/sounds/enemy_zap2.ogg" id="9_p05kr"]
 [ext_resource type="AudioStream" uid="uid://cna3y6silqtfe" path="res://assets/sounds/enemy_zap3.ogg" id="10_1lo2t"]
+[ext_resource type="Texture2D" uid="uid://c37h2spchcf8x" path="res://assets/sprites/robot/face_S_angry.png" id="11_p05kr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kugwo"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_p05kr")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_se2u6")
@@ -79,8 +88,9 @@ material = SubResource("StandardMaterial3D_6lyu1")
 [sub_resource type="BoxMesh" id="BoxMesh_oj3l8"]
 size = Vector3(0.5, 0.25, 0.25)
 
-[node name="PatrolAgent" type="CharacterBody3D"]
+[node name="PatrolAgent" type="CharacterBody3D" node_paths=PackedStringArray("sprite_rotator")]
 script = ExtResource("1_84a1w")
+sprite_rotator = NodePath("AnimatedSprite3D/BillboardSpriteRotator")
 player_tracking_cutoff = 1.0
 alert_sounds = Array[AudioStream]([ExtResource("2_o2c1r"), ExtResource("3_76l6v"), ExtResource("4_b4t8j")])
 shrug_sounds = Array[AudioStream]([ExtResource("5_v4r11"), ExtResource("6_xswv5"), ExtResource("7_0150i")])
@@ -92,7 +102,7 @@ pixel_size = 0.0008
 billboard = 1
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_kugwo")
-animation = &"walk_S"
+animation = &"angry"
 
 [node name="BillboardSpriteRotator" type="Node" parent="AnimatedSprite3D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("3_se2u6")
@@ -142,12 +152,16 @@ playback_type = 1
 [node name="sfx_voice" type="AudioStreamPlayer3D" parent="."]
 volume_db = -5.0
 
+[node name="sfx_zap" type="AudioStreamPlayer3D" parent="."]
+volume_db = -12.5
+
 [node name="BarkTimer" type="Timer" parent="."]
 wait_time = 6.118
 
-[node name="sfx_zap" type="AudioStreamPlayer3D" parent="."]
-volume_db = -12.5
+[node name="AngryFaceTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="body_entered" from="PhysicalHurtbox" to="." method="_on_physical_hurtbox_body_entered"]
 [connection signal="body_exited" from="PhysicalHurtbox" to="." method="_on_physical_hurtbox_body_exited"]
 [connection signal="timeout" from="BarkTimer" to="." method="_on_bark_timer_timeout"]
+[connection signal="timeout" from="AngryFaceTimer" to="." method="_on_angry_face_timer_timeout"]
