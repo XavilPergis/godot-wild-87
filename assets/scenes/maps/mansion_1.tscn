@@ -950,25 +950,25 @@ _surfaces = [{
 }]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5k0cn"]
-size = Vector3(8.4991, 2.7208252, 6.50972)
+size = Vector3(8.4991, 4.5039673, 6.50972)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7xcg8"]
-size = Vector3(8.411194, 2.7208252, 6.520462)
+size = Vector3(8.411194, 3.968811, 6.520462)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvn13"]
-size = Vector3(8.287903, 2.7208252, 6.921829)
+size = Vector3(8.287903, 3.987854, 6.921829)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_385a1"]
-size = Vector3(7.437439, 2.7208252, 6.4169464)
+size = Vector3(7.437439, 4.208069, 6.4169464)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_22jji"]
-size = Vector3(3.9156494, 2.7208252, 6.034134)
+size = Vector3(3.9156494, 3.25885, 6.034134)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ogjj4"]
-size = Vector3(4.218994, 2.7208252, 5.9794006)
+size = Vector3(4.218994, 3.5479126, 5.9794006)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f3332"]
-size = Vector3(7.7472076, 2.7208252, 6.360672)
+size = Vector3(7.7472076, 3.0786743, 6.360672)
 
 [node name="Mansion1" type="Node3D"]
 
@@ -1744,7 +1744,7 @@ script = ExtResource("31_5k0cn")
 camera_angle = -45.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraHintarea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26080894, 1.5738782, -1.0681686)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26080894, 0.6823071, -1.0681686)
 shape = SubResource("BoxShape3D_5k0cn")
 
 [node name="CameraHintarea3" type="Area3D" parent="."]
@@ -1754,7 +1754,7 @@ script = ExtResource("31_5k0cn")
 camera_angle = -45.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraHintarea3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42912102, 1.5738782, -0.53247833)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42912102, 0.94988525, -0.53247833)
 shape = SubResource("BoxShape3D_7xcg8")
 
 [node name="CameraHintarea5" type="Area3D" parent="."]
@@ -1763,7 +1763,7 @@ collision_layer = 32
 script = ExtResource("31_5k0cn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraHintarea5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2441845, 1.5738782, -1.2742233)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2441845, 0.94036376, -1.2742233)
 shape = SubResource("BoxShape3D_mvn13")
 
 [node name="CameraHintarea4" type="Area3D" parent="."]
@@ -1773,7 +1773,7 @@ script = ExtResource("31_5k0cn")
 camera_angle = 135.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraHintarea4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.72068596, 1.5738782, -0.58423615)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.72068596, 0.83025634, -0.58423615)
 shape = SubResource("BoxShape3D_385a1")
 
 [node name="CameraHintarea6" type="Area3D" parent="."]
@@ -1783,7 +1783,7 @@ script = ExtResource("31_5k0cn")
 camera_angle = 45.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraHintarea6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6379528, 1.5738782, -0.725441)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6379528, 1.3048657, -0.725441)
 shape = SubResource("BoxShape3D_22jji")
 
 [node name="CameraHintarea7" type="Area3D" parent="."]
@@ -1792,7 +1792,7 @@ collision_layer = 32
 script = ExtResource("31_5k0cn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraHintarea7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.78962517, 1.5738782, -0.69807434)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.78962517, 1.1603345, -0.69807434)
 shape = SubResource("BoxShape3D_ogjj4")
 
 [node name="CameraHintarea2" type="Area3D" parent="."]
@@ -1802,5 +1802,5 @@ script = ExtResource("31_5k0cn")
 camera_angle = 225.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraHintarea2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029870987, 1.5738782, -0.61237335)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029870987, 1.3949536, -0.61237335)
 shape = SubResource("BoxShape3D_f3332")
