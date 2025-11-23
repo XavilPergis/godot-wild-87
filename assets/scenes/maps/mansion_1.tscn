@@ -1,5 +1,6 @@
-[gd_scene load_steps=174 format=4 uid="uid://cin88rgxldyvm"]
+[gd_scene load_steps=175 format=4 uid="uid://cin88rgxldyvm"]
 
+[ext_resource type="PackedScene" uid="uid://b3ybwjbf4pkaa" path="res://assets/scenes/ui/hud.tscn" id="1_7xcg8"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_dqipo"]
 [ext_resource type="Resource" uid="uid://bso3tmlujp6bq" path="res://default_map_settings.tres" id="2_0guhe"]
 [ext_resource type="PackedScene" uid="uid://ccvlalddoddjt" path="res://assets/scenes/ui/death_screen.tscn" id="2_l67w6"]
@@ -30,7 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://dekl4utr4d53r" path="res://assets/scenes/exit_interactable.tscn" id="21_jjrif"]
 [ext_resource type="Material" uid="uid://dfrr5dbd2wokk" path="res://assets/materials/world/rocks1.tres" id="25_bo1w6"]
 [ext_resource type="Material" uid="uid://dt2g2kgniu0un" path="res://assets/materials/world/shrub1.tres" id="27_5k0cn"]
-[ext_resource type="Script" uid="uid://chstwaa0nwa0m" path="res://assets/scripts/CameraHintArea.gd" id="31_5k0cn"]
+[ext_resource type="Script" path="res://assets/scripts/CameraHintArea.gd" id="31_5k0cn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lqhm4"]
 
@@ -972,6 +973,8 @@ size = Vector3(7.7472076, 3.0786743, 6.360672)
 
 [node name="Mansion1" type="Node3D"]
 
+[node name="Hud" parent="." instance=ExtResource("1_7xcg8")]
+
 [node name="GameState" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("18_xp6cq")
 lose_screen_scene = ExtResource("2_l67w6")
@@ -1245,18 +1248,21 @@ metadata/_custom_type_script = "uid://d3wr3c5sj2lfr"
 
 [node name="DecayInteractable" parent="Interactables" instance=ExtResource("20_i16pv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3353305, 0, -5.8957767)
+decay_type = 1
 
 [node name="DecayInteractable2" parent="Interactables" instance=ExtResource("20_i16pv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.936459, 0, -10.869247)
 
 [node name="DecayInteractable3" parent="Interactables" instance=ExtResource("20_i16pv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.459315, 0, -3.920085)
+decay_type = 1
 
 [node name="DecayInteractable4" parent="Interactables" instance=ExtResource("20_i16pv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4698293, 0, -2.1819227)
 
 [node name="DecayInteractable5" parent="Interactables" instance=ExtResource("20_i16pv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.108446, 0, -4.0719585)
+decay_type = 1
 
 [node name="DecayInteractable6" parent="Interactables" instance=ExtResource("20_i16pv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.98881, 0, -0.33938694)

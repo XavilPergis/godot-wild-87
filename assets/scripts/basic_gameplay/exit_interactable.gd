@@ -8,6 +8,7 @@ extends Interactable
 
 func _ready() -> void:
 	enabled = false
+	$MaterialScroller.material = mesh_instance.mesh.material
 
 	var mesh = mesh_instance.mesh as CylinderMesh
 	var shape = interaction_shape.shape as CylinderShape3D
