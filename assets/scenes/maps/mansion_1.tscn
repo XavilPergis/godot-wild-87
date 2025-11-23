@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=4 uid="uid://cin88rgxldyvm"]
+[gd_scene load_steps=106 format=4 uid="uid://cin88rgxldyvm"]
 
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_dqipo"]
 [ext_resource type="Resource" uid="uid://bso3tmlujp6bq" path="res://default_map_settings.tres" id="2_0guhe"]
@@ -18,6 +18,11 @@
 [ext_resource type="PackedScene" uid="uid://c6dxdh2j650h2" path="res://assets/scenes/player.tscn" id="16_pqfom"]
 [ext_resource type="Script" uid="uid://da0ks6d670vv" path="res://assets/scripts/basic_gameplay/basic_camera.gd" id="18_lqhm4"]
 [ext_resource type="Script" uid="uid://benprqm3fuefu" path="res://assets/scripts/GameState.gd" id="18_xp6cq"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_xp6cq"]
+vertices = PackedVector3Array(0.24999905, 0.5, -11.000001, 1.999999, 0.5, -11.250001, 1.749999, 0.5, -12.250001, -1.500001, 0.5, -11.750001, -4.250001, 0.5, -9.500001, -3.500001, 0.5, -9.500001, -3.250001, 0.5, -12.000001, -4.250001, 0.5, -12.250001, -1.500001, 0.5, -7.750001, -4.250001, 0.5, -7.500001, -4.250001, 0.5, -5.500001, 0.49999905, 0.5, -5.750001, 0.49999905, 0.5, -6.250001, 3.749999, 0.5, -11.000001, 4.249999, 0.5, -12.250001, 3.749999, 0.5, -6.500001, 4.249999, 0.5, -5.500001, 7.999999, 0.5, -12.250001, 5.749999, 0.5, -12.250001, 5.499999, 0.5, -10.750001, 5.999999, 0.5, -5.500001, 8.249999, 0.5, -9.000001, 14.249999, 0.5, -5.500001, 11.749999, 0.5, -9.000001, 14.249999, 0.5, -12.250001, 11.999999, 0.5, -12.250001, 8.999999, 1.5, -12.000001, 8.999999, 1.5, -10.000001, 10.999999, 1.5, -10.000001, 10.999999, 1.5, -12.000001, -12.500001, 0.5, -9.750001, -13.250001, 0.5, -11.250001, -13.000001, 0.5, -5.500001, -12.250001, 0.5, -6.750001, -6.250001, 0.5, -7.000001, -5.500001, 0.5, -5.500001, -5.750001, 0.5, -11.250001, -6.500001, 0.5, -10.000001, 1.249999, 1.5, -10.250001, 1.249999, 1.5, -7.250001, 2.749999, 1.5, -7.250001, 2.749999, 1.5, -10.250001, -11.500001, 1.5, -9.000001, -11.500001, 1.5, -7.750001, -7.250001, 1.5, -7.750001, -7.250001, 1.5, -9.000001, -5.750001, 0.5, 0.24999905, -6.250001, 0.5, 0.24999905, -6.500001, 0.5, 0.74999905, -5.500001, 0.5, 2.249999, -6.500001, 0.5, -2.500001, -6.250001, 0.5, -1.750001, -5.750001, 0.5, -1.750001, -5.500001, 0.5, -4.250001, -14.250001, 0.5, -4.250001, -13.500001, 0.5, -2.250001, -14.250001, 0.5, 2.249999, -13.250001, 0.5, 0.74999905, -0.50000095, 0.5, 2.249999, -0.25000095, 0.5, 2.999999, -9.536743e-07, 0.5, 0.74999905, -0.75000095, 0.5, 0.74999905, -4.250001, 0.5, -4.250001, -4.250001, 0.5, 2.249999, -1.750001, 0.5, -0.25000095, -1.750001, 0.5, -1.750001, 1.749999, 0.5, -1.750001, 1.749999, 0.5, -1.000001, 4.249999, 0.5, -1.000001, 4.249999, 0.5, -4.250001, 0.99999905, 0.5, -2.500001, -1.000001, 0.5, -2.500001, 9.499999, 0.5, -4.250001, 8.249999, 0.5, -4.250001, 8.249999, 0.5, 0.49999905, 9.499999, 0.5, 2.249999, 5.749999, 0.5, -4.250001, 5.749999, 0.5, 2.249999, 7.249999, 0.5, 0.74999905, 6.999999, 0.5, -4.250001, 11.999999, 0.5, -4.250001, 11.999999, 0.5, -9.536743e-07, 14.249999, 0.5, -9.536743e-07, 14.249999, 0.5, -4.250001, -12.500001, 1.25, -1.500001, -12.500001, 1.25, -0.25000095, -7.250001, 1.25, -0.25000095, -7.250001, 1.25, -1.500001, -0.25000095, 1.5, -0.25000095, 0.74999905, 1.5, -0.75000095, 0.49999905, 1.5, -1.500001, -0.75000095, 1.5, -1.250001, 0.74999905, 0.5, 0.74999905, 1.749999, 0.5, -0.25000095, -0.50000095, 0.5, 3.749999, 0.24999905, 0.5, 2.499999, 4.249999, 0.5, 2.249999, -2.250001, -0.25, 7.499999, 2.249999, -0.25, 7.499999, 0.49999905, 0.5, 3.749999, 0.010011673, 0.25, 6.4859858, -2.250001, 0.5, 3.749999, 2.249999, 0.5, 3.749999, 12.249999, 0.75, 1.499999, 12.249999, 0.75, 1.999999, 13.999999, 0.75, 1.999999, 13.999999, 0.75, 1.499999, -2.750001, -1.5, 17.5, -2.750001, -1.25, 9.499999, -3.250001, -1.5, 9.499999, -3.000001, -1.5, 3.749999, -14.500001, -1.5, 3.749999, -14.500001, -1.5, 17.5, -1.750001, -1.5, 3.749999, -1.750001, -1.5, 5.499999, 1.999999, -1.5, 5.499999, 1.999999, -1.5, 3.749999, 3.249999, -1.5, 9.499999, 2.749999, -1.25, 9.499999, 2.749999, -1.5, 17.5, 14.499999, -1.5, 3.749999, 3.249999, -1.5, 3.749999, 14.499999, -1.5, 17.5, 2.249999, -1.25, 9.499999, -2.250001, -1.25, 9.499999)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(12, 11, 8), PackedInt32Array(8, 11, 9), PackedInt32Array(9, 11, 10), PackedInt32Array(6, 7, 3), PackedInt32Array(3, 7, 2), PackedInt32Array(3, 0, 8), PackedInt32Array(8, 0, 12), PackedInt32Array(1, 2, 13), PackedInt32Array(13, 2, 14), PackedInt32Array(15, 13, 16), PackedInt32Array(16, 13, 14), PackedInt32Array(12, 15, 11), PackedInt32Array(11, 15, 16), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 21), PackedInt32Array(19, 21, 20), PackedInt32Array(21, 23, 20), PackedInt32Array(20, 23, 22), PackedInt32Array(25, 24, 23), PackedInt32Array(23, 24, 22), PackedInt32Array(29, 28, 26), PackedInt32Array(26, 28, 27), PackedInt32Array(33, 32, 30), PackedInt32Array(30, 32, 31), PackedInt32Array(37, 36, 34), PackedInt32Array(34, 36, 35), PackedInt32Array(37, 30, 36), PackedInt32Array(36, 30, 31), PackedInt32Array(33, 34, 32), PackedInt32Array(32, 34, 35), PackedInt32Array(41, 40, 38), PackedInt32Array(38, 40, 39), PackedInt32Array(45, 44, 42), PackedInt32Array(42, 44, 43), PackedInt32Array(47, 46, 48), PackedInt32Array(48, 46, 49), PackedInt32Array(51, 50, 52), PackedInt32Array(52, 50, 53), PackedInt32Array(55, 54, 50), PackedInt32Array(50, 54, 53), PackedInt32Array(57, 56, 55), PackedInt32Array(55, 56, 54), PackedInt32Array(57, 48, 56), PackedInt32Array(56, 48, 49), PackedInt32Array(61, 60, 58), PackedInt32Array(58, 60, 59), PackedInt32Array(65, 64, 62), PackedInt32Array(62, 64, 63), PackedInt32Array(68, 67, 66), PackedInt32Array(61, 58, 64), PackedInt32Array(64, 58, 63), PackedInt32Array(66, 70, 68), PackedInt32Array(68, 70, 69), PackedInt32Array(71, 62, 70), PackedInt32Array(70, 62, 69), PackedInt32Array(71, 65, 62), PackedInt32Array(73, 72, 74), PackedInt32Array(74, 72, 75), PackedInt32Array(79, 78, 76), PackedInt32Array(76, 78, 77), PackedInt32Array(74, 75, 78), PackedInt32Array(78, 75, 77), PackedInt32Array(83, 82, 80), PackedInt32Array(80, 82, 81), PackedInt32Array(51, 52, 47), PackedInt32Array(47, 52, 46), PackedInt32Array(87, 86, 84), PackedInt32Array(84, 86, 85), PackedInt32Array(89, 88, 90), PackedInt32Array(90, 88, 91), PackedInt32Array(59, 60, 92), PackedInt32Array(93, 67, 68), PackedInt32Array(94, 59, 95), PackedInt32Array(95, 59, 92), PackedInt32Array(92, 93, 95), PackedInt32Array(95, 93, 96), PackedInt32Array(96, 93, 68), PackedInt32Array(98, 100, 99), PackedInt32Array(99, 100, 94), PackedInt32Array(94, 100, 97), PackedInt32Array(97, 100, 98), PackedInt32Array(97, 101, 94), PackedInt32Array(99, 102, 98), PackedInt32Array(94, 95, 99), PackedInt32Array(106, 105, 103), PackedInt32Array(103, 105, 104), PackedInt32Array(109, 108, 107), PackedInt32Array(111, 110, 109), PackedInt32Array(107, 112, 109), PackedInt32Array(109, 112, 111), PackedInt32Array(116, 115, 113), PackedInt32Array(113, 115, 114), PackedInt32Array(119, 118, 117), PackedInt32Array(117, 121, 120), PackedInt32Array(119, 117, 122), PackedInt32Array(122, 117, 120), PackedInt32Array(124, 97, 123), PackedInt32Array(123, 97, 98), PackedInt32Array(123, 119, 124), PackedInt32Array(124, 119, 107), PackedInt32Array(107, 108, 124), PackedInt32Array(123, 118, 119)]
+agent_radius = 0.2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_6ctdf"]
 _surfaces = [{
@@ -628,322 +633,6 @@ _surfaces = [{
 script = ExtResource("18_xp6cq")
 metadata/_custom_type_script = "uid://benprqm3fuefu"
 
-[node name="FuncGodotMap" type="Node3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
-script = ExtResource("1_dqipo")
-local_map_file = "uid://c5xby7r77keu1"
-map_settings = ExtResource("2_0guhe")
-metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
-
-[node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap"]
-collision_mask = 0
-
-[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn"]
-mesh = SubResource("ArrayMesh_6ctdf")
-
-[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_dilg7")
-
-[node name="entity_0_brush_1_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_pqfom")
-
-[node name="entity_0_brush_2_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_xp6cq")
-
-[node name="entity_0_brush_3_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_lqhm4")
-
-[node name="entity_0_brush_4_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_4iiy4")
-
-[node name="entity_0_brush_5_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_i16pv")
-
-[node name="entity_0_brush_6_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_jjrif")
-
-[node name="entity_0_brush_7_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_bw01d")
-
-[node name="entity_0_brush_8_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_v4yo6")
-
-[node name="entity_0_brush_9_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_t37eh")
-
-[node name="entity_0_brush_10_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_icbtq")
-
-[node name="entity_0_brush_11_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_l67w6")
-
-[node name="entity_0_brush_12_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_jw52q")
-
-[node name="entity_0_brush_13_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_ibt74")
-
-[node name="entity_0_brush_14_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_bo1w6")
-
-[node name="entity_0_brush_15_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_5k0cn")
-
-[node name="entity_0_brush_16_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_7xcg8")
-
-[node name="entity_0_brush_17_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_mvn13")
-
-[node name="entity_0_brush_18_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_385a1")
-
-[node name="entity_0_brush_19_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_22jji")
-
-[node name="entity_0_brush_20_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_ogjj4")
-
-[node name="entity_0_brush_21_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_f3332")
-
-[node name="entity_0_brush_22_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_p1dgw")
-
-[node name="entity_0_brush_23_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_x4mg8")
-
-[node name="entity_0_brush_24_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_yi3u3")
-
-[node name="entity_0_brush_25_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_hprfe")
-
-[node name="entity_0_brush_26_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_kf60j")
-
-[node name="entity_0_brush_27_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_f0uuv")
-
-[node name="entity_0_brush_28_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_67g8o")
-
-[node name="entity_0_brush_29_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_odhcd")
-
-[node name="entity_0_brush_30_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_jd24i")
-
-[node name="entity_0_brush_31_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_31jkq")
-
-[node name="entity_0_brush_32_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_1cq42")
-
-[node name="entity_0_brush_33_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_qw2wk")
-
-[node name="entity_0_brush_34_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_qqtdn")
-
-[node name="entity_0_brush_35_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_po5vw")
-
-[node name="entity_0_brush_36_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_uwlng")
-
-[node name="entity_0_brush_37_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_a2msx")
-
-[node name="entity_0_brush_38_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_ycyso")
-
-[node name="entity_0_brush_39_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_piqrr")
-
-[node name="entity_0_brush_40_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_j74s1")
-
-[node name="entity_0_brush_41_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_na3k6")
-
-[node name="entity_0_brush_42_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_p6hb0")
-
-[node name="entity_0_brush_43_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_p3vek")
-
-[node name="entity_0_brush_44_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_3rimn")
-
-[node name="entity_0_brush_45_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_tsh2y")
-
-[node name="entity_0_brush_46_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_4vnu5")
-
-[node name="entity_0_brush_47_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_8uti2")
-
-[node name="entity_0_brush_48_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_54ttr")
-
-[node name="entity_0_brush_49_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_cravn")
-
-[node name="entity_0_brush_50_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_7rb25")
-
-[node name="entity_0_brush_51_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_vvuqp")
-
-[node name="entity_0_brush_52_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_j7que")
-
-[node name="entity_0_brush_53_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_k6nqx")
-
-[node name="entity_0_brush_54_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_nj1h5")
-
-[node name="entity_0_brush_55_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_u2xf1")
-
-[node name="entity_0_brush_56_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_j6ltc")
-
-[node name="entity_0_brush_57_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_v38qr")
-
-[node name="entity_0_brush_58_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_weilg")
-
-[node name="entity_0_brush_59_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_lh4hm")
-
-[node name="entity_0_brush_60_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_caocv")
-
-[node name="entity_0_brush_61_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_omjsd")
-
-[node name="entity_0_brush_62_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_heup0")
-
-[node name="entity_0_brush_63_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_jyilj")
-
-[node name="entity_0_brush_64_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_vpovv")
-
-[node name="entity_0_brush_65_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_cvojd")
-
-[node name="entity_0_brush_66_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_00xes")
-
-[node name="entity_0_brush_67_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_45wp5")
-
-[node name="entity_0_brush_68_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_5p0lr")
-
-[node name="entity_1_func_detail_illusionary" type="Node3D" parent="FuncGodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.625, 1.3125, 4.9375)
-
-[node name="entity_1_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_1_func_detail_illusionary"]
-mesh = SubResource("ArrayMesh_mpqku")
-
-[node name="entity_2_func_detail_illusionary" type="Node3D" parent="FuncGodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9375, 1.3125, 12.5)
-
-[node name="entity_2_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_2_func_detail_illusionary"]
-mesh = SubResource("ArrayMesh_gcufg")
-
-[node name="entity_3_func_detail_illusionary" type="Node3D" parent="FuncGodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9375, 1.3125, 8.875)
-
-[node name="entity_3_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_3_func_detail_illusionary"]
-mesh = SubResource("ArrayMesh_i6mqa")
-
-[node name="entity_4_func_detail_illusionary" type="Node3D" parent="FuncGodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9375, 1.3125, 6.25)
-
-[node name="entity_4_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_4_func_detail_illusionary"]
-mesh = SubResource("ArrayMesh_5cbg2")
-
-[node name="entity_5_func_detail_illusionary" type="Node3D" parent="FuncGodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9375, 1.3125, 0)
-
-[node name="entity_5_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_5_func_detail_illusionary"]
-mesh = SubResource("ArrayMesh_q30ur")
-
-[node name="entity_6_func_detail_illusionary" type="Node3D" parent="FuncGodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.125, 1.3125, -4.9375)
-
-[node name="entity_6_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_6_func_detail_illusionary"]
-mesh = SubResource("ArrayMesh_l41a8")
-
-[node name="entity_7_func_detail_illusionary" type="Node3D" parent="FuncGodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9375, 1.3125, -12.875)
-
-[node name="entity_7_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_7_func_detail_illusionary"]
-mesh = SubResource("ArrayMesh_iibrl")
-
-[node name="entity_8_func_detail_illusionary" type="Node3D" parent="FuncGodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.625, 1.3125, -4.9375)
-
-[node name="entity_8_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_8_func_detail_illusionary"]
-mesh = SubResource("ArrayMesh_aqvp6")
-
-[node name="entity_9_func_detail_illusionary" type="Node3D" parent="FuncGodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9375, 1.3125, -3.0517578e-05)
-
-[node name="entity_9_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_9_func_detail_illusionary"]
-mesh = SubResource("ArrayMesh_j6ujn")
-
-[node name="entity_10_func_detail_illusionary" type="Node3D" parent="FuncGodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.875, 0.5, 1.9375)
-
-[node name="entity_10_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_10_func_detail_illusionary"]
-mesh = SubResource("ArrayMesh_l5ipo")
-
-[node name="entity_11_func_detail_illusionary" type="Node3D" parent="FuncGodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9999542, 0.5, -3.0517578e-05)
-
-[node name="entity_11_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_11_func_detail_illusionary"]
-mesh = SubResource("ArrayMesh_jdwui")
-
-[node name="entity_12_func_detail_illusionary" type="Node3D" parent="FuncGodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4375, 0.5, 10.75)
-
-[node name="entity_12_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_12_func_detail_illusionary"]
-mesh = SubResource("ArrayMesh_sigbg")
-
-[node name="entity_13_func_detail_illusionary" type="Node3D" parent="FuncGodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3125, 1, 10)
-
-[node name="entity_13_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_13_func_detail_illusionary"]
-mesh = SubResource("ArrayMesh_kjjqd")
-
-[node name="entity_14_func_detail_illusionary" type="Node3D" parent="FuncGodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.75, -1.125, -3.0517578e-05)
-
-[node name="entity_14_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_14_func_detail_illusionary"]
-mesh = SubResource("ArrayMesh_atpw4")
-
-[node name="entity_15_func_detail_illusionary" type="Node3D" parent="FuncGodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4374695, 0.015625, 9.999939)
-
-[node name="entity_15_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_15_func_detail_illusionary"]
-mesh = SubResource("ArrayMesh_7ls2h")
-
-[node name="entity_16_func_detail_illusionary" type="Node3D" parent="FuncGodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.4375, -10)
-
-[node name="entity_16_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_16_func_detail_illusionary"]
-mesh = SubResource("ArrayMesh_qkjdo")
-
 [node name="Player" parent="." node_paths=PackedStringArray("camera", "camera_anchor") instance=ExtResource("16_pqfom")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012802943, -1.8505702, 12.5853195)
 camera = NodePath("../MovableCamera")
@@ -967,3 +656,322 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012802943, -1.8505702, 12.5
 
 [node name="CameraAnchor" type="Marker3D" parent="PlayerPosReciever"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.257188, 3.541113)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_xp6cq")
+
+[node name="FuncGodotMap" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+script = ExtResource("1_dqipo")
+local_map_file = "uid://c5xby7r77keu1"
+map_settings = ExtResource("2_0guhe")
+metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
+
+[node name="entity_0_worldspawn" type="StaticBody3D" parent="NavigationRegion3D/FuncGodotMap"]
+collision_mask = 0
+
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+mesh = SubResource("ArrayMesh_6ctdf")
+
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_dilg7")
+
+[node name="entity_0_brush_1_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_pqfom")
+
+[node name="entity_0_brush_2_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_xp6cq")
+
+[node name="entity_0_brush_3_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_lqhm4")
+
+[node name="entity_0_brush_4_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_4iiy4")
+
+[node name="entity_0_brush_5_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_i16pv")
+
+[node name="entity_0_brush_6_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_jjrif")
+
+[node name="entity_0_brush_7_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_bw01d")
+
+[node name="entity_0_brush_8_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_v4yo6")
+
+[node name="entity_0_brush_9_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_t37eh")
+
+[node name="entity_0_brush_10_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_icbtq")
+
+[node name="entity_0_brush_11_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_l67w6")
+
+[node name="entity_0_brush_12_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_jw52q")
+
+[node name="entity_0_brush_13_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_ibt74")
+
+[node name="entity_0_brush_14_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_bo1w6")
+
+[node name="entity_0_brush_15_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_5k0cn")
+
+[node name="entity_0_brush_16_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_7xcg8")
+
+[node name="entity_0_brush_17_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_mvn13")
+
+[node name="entity_0_brush_18_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_385a1")
+
+[node name="entity_0_brush_19_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_22jji")
+
+[node name="entity_0_brush_20_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_ogjj4")
+
+[node name="entity_0_brush_21_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_f3332")
+
+[node name="entity_0_brush_22_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_p1dgw")
+
+[node name="entity_0_brush_23_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_x4mg8")
+
+[node name="entity_0_brush_24_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_yi3u3")
+
+[node name="entity_0_brush_25_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_hprfe")
+
+[node name="entity_0_brush_26_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_kf60j")
+
+[node name="entity_0_brush_27_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_f0uuv")
+
+[node name="entity_0_brush_28_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_67g8o")
+
+[node name="entity_0_brush_29_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_odhcd")
+
+[node name="entity_0_brush_30_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_jd24i")
+
+[node name="entity_0_brush_31_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_31jkq")
+
+[node name="entity_0_brush_32_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_1cq42")
+
+[node name="entity_0_brush_33_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_qw2wk")
+
+[node name="entity_0_brush_34_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_qqtdn")
+
+[node name="entity_0_brush_35_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_po5vw")
+
+[node name="entity_0_brush_36_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_uwlng")
+
+[node name="entity_0_brush_37_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_a2msx")
+
+[node name="entity_0_brush_38_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_ycyso")
+
+[node name="entity_0_brush_39_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_piqrr")
+
+[node name="entity_0_brush_40_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_j74s1")
+
+[node name="entity_0_brush_41_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_na3k6")
+
+[node name="entity_0_brush_42_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_p6hb0")
+
+[node name="entity_0_brush_43_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_p3vek")
+
+[node name="entity_0_brush_44_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_3rimn")
+
+[node name="entity_0_brush_45_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_tsh2y")
+
+[node name="entity_0_brush_46_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_4vnu5")
+
+[node name="entity_0_brush_47_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_8uti2")
+
+[node name="entity_0_brush_48_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_54ttr")
+
+[node name="entity_0_brush_49_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_cravn")
+
+[node name="entity_0_brush_50_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_7rb25")
+
+[node name="entity_0_brush_51_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_vvuqp")
+
+[node name="entity_0_brush_52_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_j7que")
+
+[node name="entity_0_brush_53_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_k6nqx")
+
+[node name="entity_0_brush_54_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_nj1h5")
+
+[node name="entity_0_brush_55_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_u2xf1")
+
+[node name="entity_0_brush_56_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_j6ltc")
+
+[node name="entity_0_brush_57_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_v38qr")
+
+[node name="entity_0_brush_58_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_weilg")
+
+[node name="entity_0_brush_59_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_lh4hm")
+
+[node name="entity_0_brush_60_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_caocv")
+
+[node name="entity_0_brush_61_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_omjsd")
+
+[node name="entity_0_brush_62_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_heup0")
+
+[node name="entity_0_brush_63_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_jyilj")
+
+[node name="entity_0_brush_64_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_vpovv")
+
+[node name="entity_0_brush_65_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_cvojd")
+
+[node name="entity_0_brush_66_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_00xes")
+
+[node name="entity_0_brush_67_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_45wp5")
+
+[node name="entity_0_brush_68_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_5p0lr")
+
+[node name="entity_1_func_detail_illusionary" type="Node3D" parent="NavigationRegion3D/FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.625, 1.3125, 4.9375)
+
+[node name="entity_1_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_1_func_detail_illusionary"]
+mesh = SubResource("ArrayMesh_mpqku")
+
+[node name="entity_2_func_detail_illusionary" type="Node3D" parent="NavigationRegion3D/FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9375, 1.3125, 12.5)
+
+[node name="entity_2_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_2_func_detail_illusionary"]
+mesh = SubResource("ArrayMesh_gcufg")
+
+[node name="entity_3_func_detail_illusionary" type="Node3D" parent="NavigationRegion3D/FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9375, 1.3125, 8.875)
+
+[node name="entity_3_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_3_func_detail_illusionary"]
+mesh = SubResource("ArrayMesh_i6mqa")
+
+[node name="entity_4_func_detail_illusionary" type="Node3D" parent="NavigationRegion3D/FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9375, 1.3125, 6.25)
+
+[node name="entity_4_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_4_func_detail_illusionary"]
+mesh = SubResource("ArrayMesh_5cbg2")
+
+[node name="entity_5_func_detail_illusionary" type="Node3D" parent="NavigationRegion3D/FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9375, 1.3125, 0)
+
+[node name="entity_5_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_5_func_detail_illusionary"]
+mesh = SubResource("ArrayMesh_q30ur")
+
+[node name="entity_6_func_detail_illusionary" type="Node3D" parent="NavigationRegion3D/FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.125, 1.3125, -4.9375)
+
+[node name="entity_6_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_6_func_detail_illusionary"]
+mesh = SubResource("ArrayMesh_l41a8")
+
+[node name="entity_7_func_detail_illusionary" type="Node3D" parent="NavigationRegion3D/FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9375, 1.3125, -12.875)
+
+[node name="entity_7_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_7_func_detail_illusionary"]
+mesh = SubResource("ArrayMesh_iibrl")
+
+[node name="entity_8_func_detail_illusionary" type="Node3D" parent="NavigationRegion3D/FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.625, 1.3125, -4.9375)
+
+[node name="entity_8_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_8_func_detail_illusionary"]
+mesh = SubResource("ArrayMesh_aqvp6")
+
+[node name="entity_9_func_detail_illusionary" type="Node3D" parent="NavigationRegion3D/FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9375, 1.3125, -3.0517578e-05)
+
+[node name="entity_9_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_9_func_detail_illusionary"]
+mesh = SubResource("ArrayMesh_j6ujn")
+
+[node name="entity_10_func_detail_illusionary" type="Node3D" parent="NavigationRegion3D/FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.875, 0.5, 1.9375)
+
+[node name="entity_10_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_10_func_detail_illusionary"]
+mesh = SubResource("ArrayMesh_l5ipo")
+
+[node name="entity_11_func_detail_illusionary" type="Node3D" parent="NavigationRegion3D/FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9999542, 0.5, -3.0517578e-05)
+
+[node name="entity_11_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_11_func_detail_illusionary"]
+mesh = SubResource("ArrayMesh_jdwui")
+
+[node name="entity_12_func_detail_illusionary" type="Node3D" parent="NavigationRegion3D/FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4375, 0.5, 10.75)
+
+[node name="entity_12_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_12_func_detail_illusionary"]
+mesh = SubResource("ArrayMesh_sigbg")
+
+[node name="entity_13_func_detail_illusionary" type="Node3D" parent="NavigationRegion3D/FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3125, 1, 10)
+
+[node name="entity_13_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_13_func_detail_illusionary"]
+mesh = SubResource("ArrayMesh_kjjqd")
+
+[node name="entity_14_func_detail_illusionary" type="Node3D" parent="NavigationRegion3D/FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.75, -1.125, -3.0517578e-05)
+
+[node name="entity_14_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_14_func_detail_illusionary"]
+mesh = SubResource("ArrayMesh_atpw4")
+
+[node name="entity_15_func_detail_illusionary" type="Node3D" parent="NavigationRegion3D/FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4374695, 0.015625, 9.999939)
+
+[node name="entity_15_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_15_func_detail_illusionary"]
+mesh = SubResource("ArrayMesh_7ls2h")
+
+[node name="entity_16_func_detail_illusionary" type="Node3D" parent="NavigationRegion3D/FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.4375, -10)
+
+[node name="entity_16_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_16_func_detail_illusionary"]
+mesh = SubResource("ArrayMesh_qkjdo")
