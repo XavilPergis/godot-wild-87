@@ -10,11 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://bi36u1ja7rqgi" path="res://assets/sprites/player/player_face_W.png" id="7_hrrj1"]
 [ext_resource type="Texture2D" uid="uid://dbke2my73rj3l" path="res://assets/sprites/player/player_step_W.png" id="8_c6vv5"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_cmmd3"]
-size = Vector3(1, 1.7, 1)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tc801"]
+radius = 0.4
+height = 1.7
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_fj761"]
-size = Vector3(1, 0.25, 1)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_60g6h"]
+height = 0.25
+radius = 0.4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d428f"]
 size = Vector3(0.95, 0.25, 0.95)
@@ -96,11 +98,11 @@ metadata/_custom_type_script = "uid://gi1wna232m0o"
 
 [node name="StandingShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
-shape = SubResource("BoxShape3D_cmmd3")
+shape = SubResource("CapsuleShape3D_tc801")
 
 [node name="CrawlingShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-shape = SubResource("BoxShape3D_fj761")
+shape = SubResource("CylinderShape3D_60g6h")
 
 [node name="StandingAllowedCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -137,11 +139,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="RightVisibility" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 0)
 target_position = Vector3(0, 0, -1)
 
 [node name="LeftVisibility" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 0)
 target_position = Vector3(0, 0, -1)
 
 [node name="InteractionArea" type="Area3D" parent="."]
