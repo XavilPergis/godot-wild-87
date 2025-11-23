@@ -1,8 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3868vqqr6mvp"]
+[gd_scene load_steps=10 format=3 uid="uid://c3868vqqr6mvp"]
 
 [ext_resource type="Script" uid="uid://cptdoei6lvhwd" path="res://assets/scenes/ui/main_menu.gd" id="1_4lhqn"]
-[ext_resource type="PackedScene" uid="uid://oas4ikx153f1" path="res://assets/scenes/basic_gameplay.tscn" id="2_qcgr3"]
+[ext_resource type="PackedScene" uid="uid://cin88rgxldyvm" path="res://assets/scenes/maps/mansion_1.tscn" id="2_or24b"]
 [ext_resource type="PackedScene" uid="uid://biaoa087sxvd5" path="res://assets/scenes/ui/scene_transition_animation.tscn" id="3_or24b"]
+[ext_resource type="FontFile" uid="uid://dx73f241dtx61" path="res://assets/fonts/FreeCheese-Regular.ttf" id="4_75pbp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hyerr"]
+font = ExtResource("4_75pbp")
+font_size = 100
+font_color = Color(0.3984, 0.83, 0.7077133, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75pbp"]
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.21176471, 0.4392157, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hyerr"]
+bg_color = Color(0.09411765, 0.2, 0.16862746, 1)
+
+[sub_resource type="GDScript" id="GDScript_75pbp"]
+script/source = "extends CenterContainer
+
+func _on_close_button_pressed() -> void:
+	visible = false
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_j5jn4"]
+font = ExtResource("4_75pbp")
+font_size = 24
+font_color = Color(0.4, 0.83137256, 0.7058824, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -12,11 +38,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4lhqn")
-play_scene = ExtResource("2_qcgr3")
+play_scene = ExtResource("2_or24b")
 
 [node name="SceneTransitionAnimation" parent="." instance=ExtResource("3_or24b")]
 layout_mode = 1
-fade_time_seconds = 0.25
+fade_time_seconds = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.29411766, 0.6117647, 0.52156866, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -30,16 +65,85 @@ grow_vertical = 2
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "VENGEANCE
+SERVED
+MOLD"
+label_settings = SubResource("LabelSettings_hyerr")
+
 [node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
 accessibility_name = "Play"
+theme_override_fonts/font = ExtResource("4_75pbp")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_75pbp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hyerr")
 text = "Play"
 
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../PlayButton")
 accessibility_name = "Quit"
+theme_override_fonts/font = ExtResource("4_75pbp")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_75pbp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hyerr")
 text = "Quit"
 
+[node name="AboutButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_75pbp")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_75pbp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hyerr")
+text = "About"
+
+[node name="HowToPlayModal" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_75pbp")
+
+[node name="ColorRect" type="ColorRect" parent="HowToPlayModal"]
+custom_minimum_size = Vector2(550, 300)
+layout_mode = 2
+color = Color(0.124800004, 0.26, 0.22169332, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HowToPlayModal"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="HowToPlayModal/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HowToPlayModal/VBoxContainer/CenterContainer"]
+layout_mode = 2
+text = "How To Play"
+label_settings = SubResource("LabelSettings_j5jn4")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HowToPlayModal/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "Plant mold in each spot marked by the purple indicators using [E] or [Circle], then abscond at the green one. Try to avoid detection by the robots on patrol; they will chase you down if they spot you. Crouch under objects with [Left Control] or [Left Shoulder] to avoid detection."
+fit_content = true
+
+[node name="PanelContainer" type="PanelContainer" parent="HowToPlayModal/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CloseButton" type="Button" parent="HowToPlayModal/VBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_75pbp")
+text = "Close"
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/AboutButton" to="." method="_on_how_to_play_button_pressed"]
+[connection signal="pressed" from="HowToPlayModal/VBoxContainer/PanelContainer/CloseButton" to="HowToPlayModal" method="_on_close_button_pressed"]

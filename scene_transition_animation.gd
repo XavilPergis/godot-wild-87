@@ -28,3 +28,6 @@ func transition_to_packed(scene: PackedScene) -> void:
 
 func transition_to_file(path: String) -> void:
 	_do_animation(func(tree): tree.change_scene_to_file(path))
+
+func transition_to_quit() -> void:
+	_do_animation(func(tree): tree.quit())
