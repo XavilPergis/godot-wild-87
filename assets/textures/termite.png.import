@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cmew1o38086k0"
 path.s3tc="res://.godot/imported/termite.png-e9dc16f4b4d798486748e25a8887fcff.s3tc.ctex"
+path.etc2="res://.godot/imported/termite.png-e9dc16f4b4d798486748e25a8887fcff.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/termite.png"
-dest_files=["res://.godot/imported/termite.png-e9dc16f4b4d798486748e25a8887fcff.s3tc.ctex"]
+dest_files=["res://.godot/imported/termite.png-e9dc16f4b4d798486748e25a8887fcff.s3tc.ctex", "res://.godot/imported/termite.png-e9dc16f4b4d798486748e25a8887fcff.etc2.ctex"]
 
 [params]
 

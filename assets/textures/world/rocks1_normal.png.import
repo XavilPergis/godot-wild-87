@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dew21433cm6nq"
 path.s3tc="res://.godot/imported/rocks1_normal.png-8650474d296913aa74cb6ad64c849788.s3tc.ctex"
+path.etc2="res://.godot/imported/rocks1_normal.png-8650474d296913aa74cb6ad64c849788.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/world/rocks1_normal.png"
-dest_files=["res://.godot/imported/rocks1_normal.png-8650474d296913aa74cb6ad64c849788.s3tc.ctex"]
+dest_files=["res://.godot/imported/rocks1_normal.png-8650474d296913aa74cb6ad64c849788.s3tc.ctex", "res://.godot/imported/rocks1_normal.png-8650474d296913aa74cb6ad64c849788.etc2.ctex"]
 
 [params]
 

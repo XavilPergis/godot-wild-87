@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://def3hl6qn3xmi"
 path.s3tc="res://.godot/imported/player_crawl_reverse.png-afdc5e8abc93c256805c6f6b184558fd.s3tc.ctex"
+path.etc2="res://.godot/imported/player_crawl_reverse.png-afdc5e8abc93c256805c6f6b184558fd.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/sprites/player/player_crawl_reverse.png"
-dest_files=["res://.godot/imported/player_crawl_reverse.png-afdc5e8abc93c256805c6f6b184558fd.s3tc.ctex"]
+dest_files=["res://.godot/imported/player_crawl_reverse.png-afdc5e8abc93c256805c6f6b184558fd.s3tc.ctex", "res://.godot/imported/player_crawl_reverse.png-afdc5e8abc93c256805c6f6b184558fd.etc2.ctex"]
 
 [params]
 

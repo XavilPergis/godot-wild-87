@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsry1oj6pai2f"
 path.s3tc="res://.godot/imported/stainless_steel_albedo.png-64d8fddd7cf6dcd3866e77e13cb43091.s3tc.ctex"
+path.etc2="res://.godot/imported/stainless_steel_albedo.png-64d8fddd7cf6dcd3866e77e13cb43091.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/world/stainless_steel_albedo.png"
-dest_files=["res://.godot/imported/stainless_steel_albedo.png-64d8fddd7cf6dcd3866e77e13cb43091.s3tc.ctex"]
+dest_files=["res://.godot/imported/stainless_steel_albedo.png-64d8fddd7cf6dcd3866e77e13cb43091.s3tc.ctex", "res://.godot/imported/stainless_steel_albedo.png-64d8fddd7cf6dcd3866e77e13cb43091.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cyns8wgvp2nwa"
 path.s3tc="res://.godot/imported/face_N.png-0ae17c703432164229cb4776ae86767c.s3tc.ctex"
+path.etc2="res://.godot/imported/face_N.png-0ae17c703432164229cb4776ae86767c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/sprites/robot/face_N.png"
-dest_files=["res://.godot/imported/face_N.png-0ae17c703432164229cb4776ae86767c.s3tc.ctex"]
+dest_files=["res://.godot/imported/face_N.png-0ae17c703432164229cb4776ae86767c.s3tc.ctex", "res://.godot/imported/face_N.png-0ae17c703432164229cb4776ae86767c.etc2.ctex"]
 
 [params]
 

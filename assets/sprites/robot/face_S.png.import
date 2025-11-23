@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b3g7c1rwfjtj5"
 path.s3tc="res://.godot/imported/face_S.png-7f3bb3967c16dbf2cce0a118ae6ba8f2.s3tc.ctex"
+path.etc2="res://.godot/imported/face_S.png-7f3bb3967c16dbf2cce0a118ae6ba8f2.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/sprites/robot/face_S.png"
-dest_files=["res://.godot/imported/face_S.png-7f3bb3967c16dbf2cce0a118ae6ba8f2.s3tc.ctex"]
+dest_files=["res://.godot/imported/face_S.png-7f3bb3967c16dbf2cce0a118ae6ba8f2.s3tc.ctex", "res://.godot/imported/face_S.png-7f3bb3967c16dbf2cce0a118ae6ba8f2.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7m6t2kmk6y41"
 path.s3tc="res://.godot/imported/rocks1_heightmap.png-1aeafbb05bd49f1eaaee7569ed5726ae.s3tc.ctex"
+path.etc2="res://.godot/imported/rocks1_heightmap.png-1aeafbb05bd49f1eaaee7569ed5726ae.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/world/rocks1_heightmap.png"
-dest_files=["res://.godot/imported/rocks1_heightmap.png-1aeafbb05bd49f1eaaee7569ed5726ae.s3tc.ctex"]
+dest_files=["res://.godot/imported/rocks1_heightmap.png-1aeafbb05bd49f1eaaee7569ed5726ae.s3tc.ctex", "res://.godot/imported/rocks1_heightmap.png-1aeafbb05bd49f1eaaee7569ed5726ae.etc2.ctex"]
 
 [params]
 

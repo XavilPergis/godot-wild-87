@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjm4pg1bp2dsu"
 path.s3tc="res://.godot/imported/wood1_heightmap.png-9b93f8670dd63678767e1253e89cd824.s3tc.ctex"
+path.etc2="res://.godot/imported/wood1_heightmap.png-9b93f8670dd63678767e1253e89cd824.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/world/wood1_heightmap.png"
-dest_files=["res://.godot/imported/wood1_heightmap.png-9b93f8670dd63678767e1253e89cd824.s3tc.ctex"]
+dest_files=["res://.godot/imported/wood1_heightmap.png-9b93f8670dd63678767e1253e89cd824.s3tc.ctex", "res://.godot/imported/wood1_heightmap.png-9b93f8670dd63678767e1253e89cd824.etc2.ctex"]
 
 [params]
 

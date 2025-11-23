@@ -2,5 +2,8 @@
 .godot/
 /android/
 
+# build directory
+build/
+
 # TrenchBroom autosaves
 trenchbroom/maps/autosave/*.map

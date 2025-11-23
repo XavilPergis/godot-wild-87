@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ceft355ets32u"
 path.s3tc="res://.godot/imported/blackmold.png-257a6fb12b44c09c0d46229a0c598d9c.s3tc.ctex"
+path.etc2="res://.godot/imported/blackmold.png-257a6fb12b44c09c0d46229a0c598d9c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/blackmold.png"
-dest_files=["res://.godot/imported/blackmold.png-257a6fb12b44c09c0d46229a0c598d9c.s3tc.ctex"]
+dest_files=["res://.godot/imported/blackmold.png-257a6fb12b44c09c0d46229a0c598d9c.s3tc.ctex", "res://.godot/imported/blackmold.png-257a6fb12b44c09c0d46229a0c598d9c.etc2.ctex"]
 
 [params]
 

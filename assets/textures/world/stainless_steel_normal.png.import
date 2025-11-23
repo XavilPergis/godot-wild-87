@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d37t7y7poc8jt"
 path.s3tc="res://.godot/imported/stainless_steel_normal.png-b8b235978315df40d40aa55f90dd0b4b.s3tc.ctex"
+path.etc2="res://.godot/imported/stainless_steel_normal.png-b8b235978315df40d40aa55f90dd0b4b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/world/stainless_steel_normal.png"
-dest_files=["res://.godot/imported/stainless_steel_normal.png-b8b235978315df40d40aa55f90dd0b4b.s3tc.ctex"]
+dest_files=["res://.godot/imported/stainless_steel_normal.png-b8b235978315df40d40aa55f90dd0b4b.s3tc.ctex", "res://.godot/imported/stainless_steel_normal.png-b8b235978315df40d40aa55f90dd0b4b.etc2.ctex"]
 
 [params]
 

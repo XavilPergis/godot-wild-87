@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cggpqna2iuwbf"
 path.s3tc="res://.godot/imported/granite1_normal.png-9a1963f924a2fe9b24dfa603c689640b.s3tc.ctex"
+path.etc2="res://.godot/imported/granite1_normal.png-9a1963f924a2fe9b24dfa603c689640b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/world/granite1_normal.png"
-dest_files=["res://.godot/imported/granite1_normal.png-9a1963f924a2fe9b24dfa603c689640b.s3tc.ctex"]
+dest_files=["res://.godot/imported/granite1_normal.png-9a1963f924a2fe9b24dfa603c689640b.s3tc.ctex", "res://.godot/imported/granite1_normal.png-9a1963f924a2fe9b24dfa603c689640b.etc2.ctex"]
 
 [params]
 

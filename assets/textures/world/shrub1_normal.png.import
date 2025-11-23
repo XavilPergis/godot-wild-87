@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://y34e4ab7qs33"
 path.s3tc="res://.godot/imported/shrub1_normal.png-aa448b39164024d149a9126c7f1d3f18.s3tc.ctex"
+path.etc2="res://.godot/imported/shrub1_normal.png-aa448b39164024d149a9126c7f1d3f18.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/world/shrub1_normal.png"
-dest_files=["res://.godot/imported/shrub1_normal.png-aa448b39164024d149a9126c7f1d3f18.s3tc.ctex"]
+dest_files=["res://.godot/imported/shrub1_normal.png-aa448b39164024d149a9126c7f1d3f18.s3tc.ctex", "res://.godot/imported/shrub1_normal.png-aa448b39164024d149a9126c7f1d3f18.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://buq2lamasx72i"
 path.s3tc="res://.godot/imported/tile1_orm.png-e62fbfddf09bdb1ee8b7d091a1c6101a.s3tc.ctex"
+path.etc2="res://.godot/imported/tile1_orm.png-e62fbfddf09bdb1ee8b7d091a1c6101a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/world/tile1_orm.png"
-dest_files=["res://.godot/imported/tile1_orm.png-e62fbfddf09bdb1ee8b7d091a1c6101a.s3tc.ctex"]
+dest_files=["res://.godot/imported/tile1_orm.png-e62fbfddf09bdb1ee8b7d091a1c6101a.s3tc.ctex", "res://.godot/imported/tile1_orm.png-e62fbfddf09bdb1ee8b7d091a1c6101a.etc2.ctex"]
 
 [params]
 
