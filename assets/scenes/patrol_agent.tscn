@@ -136,16 +136,17 @@ mesh = SubResource("BoxMesh_oj3l8")
 [node name="sfx_move" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 stream = ExtResource("6_s6fav")
-volume_db = -11.0
+volume_db = -16.0
 playback_type = 1
 
 [node name="sfx_voice" type="AudioStreamPlayer3D" parent="."]
+volume_db = -5.0
 
 [node name="BarkTimer" type="Timer" parent="."]
 wait_time = 6.118
 
 [node name="sfx_zap" type="AudioStreamPlayer3D" parent="."]
-volume_db = -7.5
+volume_db = -12.5
 
 [connection signal="body_entered" from="PhysicalHurtbox" to="." method="_on_physical_hurtbox_body_entered"]
 [connection signal="body_exited" from="PhysicalHurtbox" to="." method="_on_physical_hurtbox_body_exited"]
