@@ -124,10 +124,11 @@ func tick_pursuit(delta: float) -> void:
 			var target = attack_targets[rng.randi_range(0, len(attack_targets) - 1)]
 			look_at_horiz(target.global_position)
 			if target.has_meta(Components.HEALTH):
-				var health = target.get_meta(Components.HEALTH) as HealthComponent
-				health.damage(attack_strength)
-				play_zap_sound()
-				attack_timeout_remaining = attack_timeout
+				if can_see_player:
+					var health = target.get_meta(Components.HEALTH) as HealthComponent
+					health.damage(attack_strength)
+					play_zap_sound()
+					attack_timeout_remaining = attack_timeout
 	# otherwise, we should try to close the distance between the agent and the
 	# player. we wait until the attack timeout timer is done, so the agent will
 	# freeze for a little bit before resuming the chase.
