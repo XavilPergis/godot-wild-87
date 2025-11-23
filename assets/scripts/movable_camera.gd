@@ -70,7 +70,7 @@ func _unobstructed_position() -> Vector3:
 	else:
 		var space_state = get_world_3d().direct_space_state
 		var query = PhysicsRayQueryParameters3D.create(
-			target_look.global_position, target_position.global_position, 0x8)
+			target_look.global_position, target_position.global_position, 0x10)
 		var result = space_state.intersect_ray(query)
 		if result:
 			return lerp(result.position, target_look.global_position, 0.1)

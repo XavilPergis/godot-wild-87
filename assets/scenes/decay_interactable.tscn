@@ -30,6 +30,7 @@ cap_bottom = false
 
 [node name="DecayInteractable" instance=ExtResource("1_0vwdo")]
 script = ExtResource("2_nj6ei")
+radius = 0.8
 marker_height = 2.0
 interact_amount = 5.0
 

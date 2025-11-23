@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3868vqqr6mvp"]
+
+[ext_resource type="Script" uid="uid://cptdoei6lvhwd" path="res://assets/scenes/ui/main_menu.gd" id="1_4lhqn"]
+[ext_resource type="PackedScene" uid="uid://oas4ikx153f1" path="res://assets/scenes/basic_gameplay.tscn" id="2_qcgr3"]
+[ext_resource type="PackedScene" uid="uid://biaoa087sxvd5" path="res://assets/scenes/ui/scene_transition_animation.tscn" id="3_or24b"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4lhqn")
+play_scene = ExtResource("2_qcgr3")
+
+[node name="SceneTransitionAnimation" parent="." instance=ExtResource("3_or24b")]
+layout_mode = 1
+fade_time_seconds = 0.25
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+accessibility_name = "Play"
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../PlayButton")
+accessibility_name = "Quit"
+text = "Quit"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
