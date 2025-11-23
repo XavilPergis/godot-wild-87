@@ -50,18 +50,32 @@ func _interpolate() -> Transform3D:
 		var transition_completion = 1 - (transition_seconds_remaining / transition_seconds)
 		t = smoothing_curve.sample_baked(transition_completion)
 	if target_look:
-		var to_look_target = target_look.global_position - target_position.global_position
+		var to_look_target = target_look.global_position - _unobstructed_position()
 		var target_look_at = Basis.looking_at(to_look_target, up_dir)
 		interp.basis = _interpolate_rotation(source_basis, target_look_at, t)
 	else:
 		interp.basis = _interpolate_rotation(source_basis, target_position.global_basis, t)
-	interp.origin = lerp(source_position, target_position.global_position, t)
+	interp.origin = lerp(source_position, _unobstructed_position(), t)
 	return interp
 
 ## Set the camera's orientation directly to the target that the smoothing is
 ## trying to reach.
 func reset_smoothing() -> void:
 	global_transform = _interpolate()
+
+func _unobstructed_position() -> Vector3:
+	if not target_look:
+		return target_position.global_position
+	
+	else:
+		var space_state = get_world_3d().direct_space_state
+		var query = PhysicsRayQueryParameters3D.create(
+			target_look.global_position, target_position.global_position, 0x8)
+		var result = space_state.intersect_ray(query)
+		if result:
+			return lerp(result.position, target_look.global_position, 0.1)
+		else:
+			return target_position.global_position
 
 func _process(delta: float) -> void:
 	if not smoothing_curve or not target_position: return
