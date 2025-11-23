@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bocusuuj744wq"]
+
+[ext_resource type="Texture2D" uid="uid://cx0d1kagfxros" path="res://assets/textures/world/carpet1_albedo.png" id="1_1ws7d"]
+[ext_resource type="Texture2D" uid="uid://bq3evtakdq6n" path="res://assets/textures/world/carpet1_heightmap.png" id="2_ni11i"]
+
+[resource]
+albedo_texture = ExtResource("1_1ws7d")
+metallic_specular = 0.0
+heightmap_enabled = true
+heightmap_scale = 2.872
+heightmap_texture = ExtResource("2_ni11i")
+uv1_scale = Vector3(2, 2, 2)

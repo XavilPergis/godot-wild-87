@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rb144dq1sf3u"
-path.s3tc="res://.godot/imported/player_crawl.png-63cdd24d114b2e0c3916e67545364117.s3tc.ctex"
+uid="uid://c8yiey0wtwrvr"
+path.s3tc="res://.godot/imported/tile1_albedo.png-1f7bac4863802e96a3af80c4f8bd44b4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/player/player_crawl.png"
-dest_files=["res://.godot/imported/player_crawl.png-63cdd24d114b2e0c3916e67545364117.s3tc.ctex"]
+source_file="res://assets/textures/world/tile1_albedo.png"
+dest_files=["res://.godot/imported/tile1_albedo.png-1f7bac4863802e96a3af80c4f8bd44b4.s3tc.ctex"]
 
 [params]
 
